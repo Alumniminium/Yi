@@ -23,23 +23,23 @@ namespace YiX.SelfContainedSystems
 
         public static void Drop(YiObj attacker, Monster mob)
         {
-            Item created = null;
             var rand = YiCore.Random.Next(1, 1000);
 
+            Item created = default(Item);
             switch (mob.Id)
             {
                 case 3131:
                 case 3135:
-                    created = Item.Factory.Create(ItemNames.ExpPotion); break;//exp potion from titan and gano
+                    created = ItemFactory.Create(ItemNames.ExpPotion); break;//exp potion from titan and gano
                 default:
-                {
-                    if (!GenerateDrop(attacker, mob, rand, ref created))//YOU FORGOT TO ADD THE ! SO NOTHING WAS DROPPING
+                    {
+                        if (!GenerateDrop(attacker, mob, rand, ref created))//YOU FORGOT TO ADD THE ! SO NOTHING WAS DROPPING
                             return;
-                    break;
-                }
+                        break;
+                    }
             }
 
-            if (created != null)
+            if (created.Valid())
                 FloorItemSystem.Drop(attacker, mob, created);
 
             if (YiCore.Success(5)) //5% chance to drop more than one item.
@@ -58,31 +58,31 @@ namespace YiX.SelfContainedSystems
                     switch (WeatherSystem.CurrentWeatherType)
                     {
                         case WeatherType.Rain:
-                        {
-                            if (!YiCore.Success(item.RainChance))
-                                break;
+                            {
+                                if (!YiCore.Success(item.RainChance))
+                                    break;
 
-                            created= Item.Factory.Create(item.ItemId);
-                            return true;
-                        }
-                        case WeatherType.Snow:
-                        {
-                            if (!YiCore.Success(item.SnowChance))
-                                break;
-
-                            created = Item.Factory.Create(item.ItemId);
+                                created = ItemFactory.Create(item.ItemId);
                                 return true;
-                        }
+                            }
+                        case WeatherType.Snow:
+                            {
+                                if (!YiCore.Success(item.SnowChance))
+                                    break;
+
+                                created = ItemFactory.Create(item.ItemId);
+                                return true;
+                            }
                     }
 
                     if (DayNightSystem.IsDay() && YiCore.Success(item.DayChance))
                     {
-                        created = Item.Factory.Create(item.ItemId);
+                        created = ItemFactory.Create(item.ItemId);
                         return true;
                     }
                     if (DayNightSystem.IsNight() && YiCore.Success(item.NightChance))
                     {
-                        created = Item.Factory.Create(item.ItemId);
+                        created = ItemFactory.Create(item.ItemId);
                         return true;
                     }
                 }
@@ -91,14 +91,14 @@ namespace YiX.SelfContainedSystems
             if (rand < 200)
                 FloorItemSystem.DropMoney(attacker, mob, mob.Drops.Money + mob.Level * YiCore.Random.Next(1, 10));
             else if (rand < 250)
-                created = Item.Factory.Create( mob.Drops.Hp); //HP POTS
+                created = ItemFactory.Create(mob.Drops.Hp); //HP POTS
             else if (rand < 300)
-                created = Item.Factory.Create( mob.Drops.Mp); //MP POTS
+                created = ItemFactory.Create(mob.Drops.Mp); //MP POTS
             else if (rand < 550) //REGULAR ITEMS
             {
-                created = Item.Factory.Create(GenerateItemId(mob));
+                created = ItemFactory.Create(GenerateItemId(mob));
 
-                if (created == null)
+                if (!created.Valid())
                     return false;
 
                 var plus = GeneratePurity(mob.Level);
@@ -111,7 +111,7 @@ namespace YiX.SelfContainedSystems
 
                 var sockets = GenerateSocketCount(created.ItemId, mob.Level);
 
-                if(sockets!=0)
+                if (sockets != 0)
                     Output.WriteLine($"Dropped {sockets} item.");
 
                 switch (sockets)
@@ -125,7 +125,7 @@ namespace YiX.SelfContainedSystems
                         break;
                 }
             }
-            return created != null;
+            return created.Valid();
         }
 
         private static int GenerateItemId(Monster mob)
@@ -159,7 +159,7 @@ namespace YiX.SelfContainedSystems
                 itemLevel = mob.Drops.Armet;//??
                 IsArmet = true;
             }
-            else if (mob.Drops.Armor != 99 &&  rand >= 400 && rand < 700)
+            else if (mob.Drops.Armor != 99 && rand >= 400 && rand < 700)
             {
                 itemType = ArmorType[YiCore.Random.Next(0, ArmorType.Length)];
                 if (mob.Level > 10 && itemType == 132) itemType++;//noob coats don't work for high level mobs
@@ -174,32 +174,32 @@ namespace YiX.SelfContainedSystems
                     itemType = 421;
                 else if (mob.Drops.Weapon != 99 && nRate >= 40 && nRate < 80)
                     itemType = OneHanderType[YiCore.Random.Next(0, OneHanderType.Length)];
-                else if(mob.Drops.Weapon != 99)
+                else if (mob.Drops.Weapon != 99)
                     itemType = TwoHanderType[YiCore.Random.Next(0, TwoHanderType.Length)];
             }
             if (itemLevel == 99 || itemLevel == 0 || itemType == 0)
                 return 0;
-            
-            var itemId = (int) (itemType * 1000 + itemLevel * 10 + itemQuality);
+
+            var itemId = (int)(itemType * 1000 + itemLevel * 10 + itemQuality);
 
             if (IsArmet || itemType == 900) itemId += 300;
-            if (IsArmor) itemId += YiCore.Random.Next(0,9)*100;//shields might need to be in the armor section?
+            if (IsArmor) itemId += YiCore.Random.Next(0, 9) * 100;//shields might need to be in the armor section?
             if (IsBracelet) itemId -= 90;
             if (IsBag) itemId += 10;
 
-            if(!Collections.Items.ContainsKey(itemId))
-                Output.WriteLine("Cody's Mob Drop System generated an invalid ID (AGAIN!): "+itemId);
+            if (!Collections.Items.ContainsKey(itemId))
+                Output.WriteLine("Cody's Mob Drop System generated an invalid ID (AGAIN!): " + itemId);
 
             return Collections.Items.ContainsKey(itemId) ? itemId : 0;
         }
 
-        private static byte GeneratePurity(int moblevel) => (byte) (YiCore.Random.Next(1, 500) <= 3 + moblevel / 25 ? 1 : 0);
+        private static byte GeneratePurity(int moblevel) => (byte)(YiCore.Random.Next(1, 500) <= 3 + moblevel / 25 ? 1 : 0);
 
         private static byte GenerateBless()
         {
             var rand = YiCore.Random.Next(0, 1000);
             if (rand < 1) return 5;
-            return (byte) (rand < 5 ? 3 : 0);
+            return (byte)(rand < 5 ? 3 : 0);
         }
 
         private static byte GenerateSocketCount(int itemId, int moblevel)
@@ -212,7 +212,7 @@ namespace YiX.SelfContainedSystems
             if (nRate < 5)
                 return 2;
 
-            return (byte) (nRate < 20 ? 1 : 0);
+            return (byte)(nRate < 20 ? 1 : 0);
         }
 
         private static byte GenerateQuality(int moblevel)
@@ -227,7 +227,7 @@ namespace YiX.SelfContainedSystems
             if (i < 31)
                 return 7;//uni
 
-            return (byte) (i < 55 ? 6 : 3);
+            return (byte)(i < 55 ? 6 : 3);
         }
     }
 }

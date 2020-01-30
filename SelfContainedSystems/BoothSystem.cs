@@ -11,107 +11,108 @@ namespace YiX.SelfContainedSystems
 {
     public static class BoothSystem
     {
-        public static ConcurrentDictionary<int, ConcurrentDictionary<int,Item>> BoothPool = new ConcurrentDictionary<int, ConcurrentDictionary<int,Item>>();
+        public static ConcurrentDictionary<int, ConcurrentDictionary<int, Product>> BoothPool = new ConcurrentDictionary<int, ConcurrentDictionary<int, Product>>();
 
-        public static void Create(YiObj owner)
+        public static void CreateFor(YiObj owner)
         {
             if (owner is Npc npc)
             {
                 npc.Type = 2;
                 owner.BoothId = 10000000 + owner.UniqueId;
-                BoothPool.AddOrUpdate(owner.BoothId, new ConcurrentDictionary<int, Item>());
+                BoothPool.AddOrUpdate(owner.BoothId, new ConcurrentDictionary<int, Product>());
                 foreach (var item in owner.Inventory)
                 {
-                    item.Value.StackAmount = 255;
-                    item.Value.Product = new Product(owner.UniqueId, item.Value.PriceBaseline, owner.BoothId);
-                    Add(owner, item.Key, item.Value.Product.Price);
+                    var product = new Product(owner.UniqueId, item.Value.PriceBaseline, owner.BoothId, item.Value);
+                    Add(owner, item.Key, product.Price);
                 }
             }
             else
             {
                 owner.BoothId = owner.BoothId;
-                BoothPool.AddOrUpdate(owner.BoothId, new ConcurrentDictionary<int, Item>());
+                BoothPool.AddOrUpdate(owner.BoothId, new ConcurrentDictionary<int, Product>());
 
                 (owner as Player)?.Send(MsgStatus.Create(owner.MapId, 0x0010));
-                (owner as Player)?.Send(LegacyPackets.SpawnCarpet((Player) owner, owner.BoothId));
+                (owner as Player)?.Send(LegacyPackets.SpawnCarpet((Player)owner, owner.BoothId));
             }
         }
 
-        public static void Destroy(YiObj owner) => BoothPool.TryRemove(owner.UniqueId);
+        public static void DestroyFor(YiObj owner) => BoothPool.TryRemove(owner.UniqueId);
 
         public static bool Add(YiObj owner, int uniqueId, int price)
         {
             if (!BoothPool.ContainsKey(owner.BoothId))
-                Create(owner);
+                CreateFor(owner);
 
             var item = owner.Inventory.FindByUID(uniqueId);
-            item.Product = new Product(owner.UniqueId, price, owner.BoothId);
-            (owner as Player)?.Send(MsgItemInfoEx.CreateBoothItem(item));
-            return BoothPool[owner.BoothId].TryAdd(item.UniqueId, item);
+            if (!item.Valid())
+                return false;
+            var product = new Product(owner.UniqueId, price, owner.BoothId, item);
+            (owner as Player)?.Send(MsgItemInfoEx.CreateBoothItem(product));
+            return BoothPool[owner.BoothId].TryAdd(item.UniqueId, product);
         }
         public static bool Add(YiObj owner, Item item, int price)
         {
             if (!BoothPool.ContainsKey(owner.BoothId))
-                Create(owner);
+                CreateFor(owner);
 
-            item.Product = new Product(owner.UniqueId, price, owner.BoothId);
-            (owner as Player)?.Send(MsgItemInfoEx.CreateBoothItem(item));
-            return BoothPool[owner.BoothId].TryAdd(item.UniqueId, item);
+            var product = new Product(owner.UniqueId, price, owner.BoothId, item);
+            (owner as Player)?.Send(MsgItemInfoEx.CreateBoothItem(product));
+            return BoothPool[owner.BoothId].TryAdd(item.UniqueId, product);
         }
         public static bool Remove(YiObj owner, int uniqueId)
         {
             if (!BoothPool.ContainsKey(owner.BoothId))
-                Create(owner);
+                CreateFor(owner);
 
             var product = owner.Inventory.FindByUID(uniqueId);
-            return product != null && BoothPool[owner.BoothId].TryRemove(product.UniqueId);
+            return product.Valid() && BoothPool[owner.BoothId].TryRemove(product.UniqueId);
         }
 
         public static void Show(Player player, int uniqueId)
         {
-            if (!GameWorld.Find(uniqueId- 10000000, out YiObj owner))
+            if (!GameWorld.Find(uniqueId - 10000000, out YiObj owner))
                 return;
 
-            var ordered = BoothPool[owner.BoothId].OrderByDescending(kvp => kvp.Value.ItemId);
+            var ordered = BoothPool[owner.BoothId].OrderByDescending(kvp => kvp.Value.Item.ItemId);
             foreach (var product in ordered)
                 player.Send(MsgItemInfoEx.CreateBoothItem(product.Value));
         }
 
-        public static bool Buy(Player player, int shopId, int productId)
+        public static bool Buy(Player player, int shopId, int itemId)
         {
             var last = false;
             var ownerId = BoothPool.Keys.FirstOrDefault(c => c == shopId);
 
-            if (!GameWorld.Find(ownerId- 10000000, out YiObj owner))
+            if (!GameWorld.Find(ownerId - 10000000, out YiObj owner))
                 return false;
 
-            var product = owner?.Inventory.FindByUID(productId);
+            var item = owner.Inventory.FindByUID(itemId);
 
-            if (product == null || !BoothPool[ownerId].ContainsKey(product.UniqueId))
+            if (!item.Valid() || !BoothPool[ownerId].ContainsKey(item.UniqueId))
                 return false;
 
-            var price = BoothPool[ownerId][product.UniqueId].Product.Price;
+            var price = BoothPool[ownerId][item.UniqueId].Price;
 
             if (player.Money < price)
                 return false;
 
             if (player.Inventory.Count >= 40)
                 return false;
-            
+
             player.Money -= price;
             owner.Money += price;
-            if (product.StackAmount == 1)
+            if (item.StackAmount == 1)
             {
-                Remove(owner, productId);
-                owner.Inventory.RemoveItem(product);
+                Remove(owner, itemId);
+                owner.Inventory.RemoveItem(item);
                 last = true;
             }
             else
             {
-                product.StackAmount--;
-                product.Product.Price += product.Product.Price/2;
+                item.StackAmount--;
+                //item.Price += item.Price / 2;
             }
-            var purchased = CloneChamber.Clone(product);
+            var purchased = CloneChamber.Clone(item);
             purchased.StackAmount = 1;
             player.Inventory.AddItem(purchased);
             Show(player, shopId);
@@ -121,7 +122,7 @@ namespace YiX.SelfContainedSystems
         public static void SetUpBooths()
         {
             foreach (var yiObj in Collections.Npcs.Where(yiObj => yiObj.Value.Inventory?.Count > 0))
-                Create(yiObj.Value);
+                CreateFor(yiObj.Value);
         }
     }
 }

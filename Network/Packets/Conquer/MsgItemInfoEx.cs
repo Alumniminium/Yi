@@ -50,8 +50,28 @@ namespace YiX.Network.Packets.Conquer
             Enchant = item.Enchant;
             Restrain = item.CustomTextId;
         }
+        public MsgItemInfoEx(Product product, MsgItemPosition position = MsgItemPosition.Inventory, ItemExType type = ItemExType.None) : this()
+        {
+            Size = (ushort)sizeof(MsgItemInfoEx);
+            Id = 1108;
+            OwnerUID = product.Owner;
+            UniqueId = product.Item.UniqueId;
+            ItemId = product.Item.ItemId;
+            Price = product.Price;
+            CurrentDurability = product.Item.CurrentDurability;
+            MaxiumumDurability = product.Item.MaximumDurability;
+            ItemExType = type;
+            Position = position;
+            Gem1 = product.Item.Gem1;
+            Gem2 = product.Item.Gem2;
+            RebornEffect = product.Item.RebornEffect;
+            Plus = product.Item.Plus;
+            Bless = product.Item.Bless;
+            Enchant = product.Item.Enchant;
+            Restrain = product.Item.CustomTextId;
+        }
 
-        public static implicit operator byte[] (MsgItemInfoEx msg)
+        public static implicit operator byte[](MsgItemInfoEx msg)
         {
             var buffer = BufferPool.GetBuffer();
             fixed (byte* p = buffer)
@@ -59,12 +79,12 @@ namespace YiX.Network.Packets.Conquer
             return buffer;
         }
 
-        public static MsgItemInfoEx CreateBoothItem(Item item)
+        public static MsgItemInfoEx CreateBoothItem(Product item)
         {
             var msg = new MsgItemInfoEx(item, MsgItemPosition.Inventory, ItemExType.Booth)
             {
-                OwnerUID = item.Product.ShopId,
-                Price = item.Product.Price
+                OwnerUID = item.ShopId,
+                Price = item.Price
             };
             return msg;
         }

@@ -21,7 +21,7 @@ namespace YiX.Network.Packets.Conquer
         {
             var msgP = stackalloc MsgGemSocket[1];
             {
-                msgP->Size = (ushort) sizeof(MsgGemSocket);
+                msgP->Size = (ushort)sizeof(MsgGemSocket);
                 msgP->Id = 1027;
                 msgP->UnqiueId = uid;
                 msgP->ItemUID = itemuid;
@@ -42,7 +42,7 @@ namespace YiX.Network.Packets.Conquer
             {
                 fixed (byte* p = buffer)
                 {
-                    var packet = *(MsgGemSocket*) p;
+                    var packet = *(MsgGemSocket*)p;
                     BufferPool.RecycleBuffer(buffer);
 
                     player.Inventory.Items.TryGetValue(packet.ItemUID, out var item); //get the item now
@@ -52,7 +52,7 @@ namespace YiX.Network.Packets.Conquer
                         Output.WriteLine("MsgGemSocket player not equal to packet's player uid.");
                         return;
                     }
-                    if (item == null)
+                    if (!item.Valid())
                     {
                         Output.WriteLine("MsgGemSocket player's item is null.");
                         return;
@@ -63,40 +63,40 @@ namespace YiX.Network.Packets.Conquer
                     switch (packet.RemoveGem)
                     {
                         case 0:
-                        {
-                            player.Inventory.Items.TryGetValue(packet.GemUID, out var gem);
-
-                            if (gem == null)
                             {
-                                Output.WriteLine("MsgGemSocket player's gem is null.");
-                                return;
+                                player.Inventory.Items.TryGetValue(packet.GemUID, out var gem);
+
+                                if (!gem.Valid())
+                                {
+                                    Output.WriteLine("MsgGemSocket player's gem is null.");
+                                    return;
+                                }
+
+                                if (packet.SocketID == 1)
+                                    item.Gem1 = (byte)(gem.ItemId % 100);
+                                else
+                                    item.Gem2 = (byte)(gem.ItemId % 100);
+
+                                player.Inventory.RemoveItem(item);
+                                player.Inventory.AddOrUpdate(item.UniqueId, item); //we could just addorupdate etc after the switch?
+                                player.Inventory.RemoveItem(gem);
+
+                                player.Send(new MsgItemInformation(item, MsgItemPosition.Inventory));
+                                break;
                             }
-
-                            if (packet.SocketID == 1)
-                                item.Gem1 = (byte) (gem.ItemId % 100);
-                            else
-                                item.Gem2 = (byte) (gem.ItemId % 100);
-
-                            player.Inventory.RemoveItem(item);
-                            player.Inventory.AddOrUpdate(item.UniqueId, item); //we could just addorupdate etc after the switch?
-                            player.Inventory.RemoveItem(gem);
-
-                            player.Send(new MsgItemInformation(item, MsgItemPosition.Inventory));
-                            break;
-                        }
                         case 1:
-                        {
-                            if (packet.SocketID == 1)
-                                item.Gem1 = 255;
-                            else
-                                item.Gem2 = 255;
+                            {
+                                if (packet.SocketID == 1)
+                                    item.Gem1 = 255;
+                                else
+                                    item.Gem2 = 255;
 
-                            player.Inventory.RemoveItem(item);
-                            player.Inventory.AddOrUpdate(item.UniqueId, item); //we could just addorupdate etc after the switch?
+                                player.Inventory.RemoveItem(item);
+                                player.Inventory.AddOrUpdate(item.UniqueId, item); //we could just addorupdate etc after the switch?
 
-                            player.Send(new MsgItemInformation(item, MsgItemPosition.Inventory));
-                            break;
-                        }
+                                player.Send(new MsgItemInformation(item, MsgItemPosition.Inventory));
+                                break;
+                            }
                     }
                 }
             }

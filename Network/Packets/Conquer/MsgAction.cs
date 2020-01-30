@@ -35,7 +35,7 @@ namespace YiX.Network.Packets.Conquer
                 Id = 1010,
                 Timestamp = Environment.TickCount,
                 UniqueId = player.UniqueId,
-                Param = (player.Location.X +1 << 16) | (player.Location.Y & 0xffff),
+                Param = (player.Location.X + 1 << 16) | (player.Location.Y & 0xffff),
                 Type = MsgActionType.Pathfinding
             };
             return pack;
@@ -83,8 +83,8 @@ namespace YiX.Network.Packets.Conquer
             Marshal.Copy((IntPtr)msgP, buffer, 0, sizeof(MsgAction));
             return buffer;
         }
-        public static byte[] LevelUp(YiObj obj) => new MsgAction {Size = (ushort)sizeof(MsgAction), Id = 1010, Timestamp = Environment.TickCount, UniqueId = obj.UniqueId, Param = 0, X = obj.Location.X, Y = obj.Location.Y, Direction = (byte)obj.Direction, Type = MsgActionType.Leveled};
-        public static byte[] Spawn(YiObj obj) => new MsgAction {Size = (ushort)sizeof(MsgAction), Id = 1010, Timestamp = Environment.TickCount, UniqueId = obj.UniqueId, Param = 0, X = obj.Location.X, Y = obj.Location.Y, Direction = (byte)obj.Direction, Type = MsgActionType.EntitySpawn};
+        public static byte[] LevelUp(YiObj obj) => new MsgAction { Size = (ushort)sizeof(MsgAction), Id = 1010, Timestamp = Environment.TickCount, UniqueId = obj.UniqueId, Param = 0, X = obj.Location.X, Y = obj.Location.Y, Direction = (byte)obj.Direction, Type = MsgActionType.Leveled };
+        public static byte[] Spawn(YiObj obj) => new MsgAction { Size = (ushort)sizeof(MsgAction), Id = 1010, Timestamp = Environment.TickCount, UniqueId = obj.UniqueId, Param = 0, X = obj.Location.X, Y = obj.Location.Y, Direction = (byte)obj.Direction, Type = MsgActionType.EntitySpawn };
         public static byte[] SpawnEffect(YiObj obj)
         {
             MsgAction* msgP = stackalloc MsgAction[1];
@@ -115,11 +115,11 @@ namespace YiX.Network.Packets.Conquer
             var buffer = BufferPool.GetBuffer();
 
             Marshal.Copy((IntPtr)msgP, buffer, 0, sizeof(MsgAction));
-            
+
             return buffer;
         }
-        public static byte[] CashEffect(YiObj obj, int amount) => new MsgAction {Size = (ushort)sizeof(MsgAction), Id = 1010, Timestamp = Environment.TickCount, UniqueId = obj.UniqueId, Param = amount, X = obj.Location.X, Y = obj.Location.Y, Direction = (byte)obj.Direction, Type = MsgActionType.PickupCashEffect};
-        
+        public static byte[] CashEffect(YiObj obj, int amount) => new MsgAction { Size = (ushort)sizeof(MsgAction), Id = 1010, Timestamp = Environment.TickCount, UniqueId = obj.UniqueId, Param = amount, X = obj.Location.X, Y = obj.Location.Y, Direction = (byte)obj.Direction, Type = MsgActionType.PickupCashEffect };
+
         public static byte[] Jump(YiObj obj, int x, int y)
         {
             MsgAction* msgP = stackalloc MsgAction[1];
@@ -143,7 +143,7 @@ namespace YiX.Network.Packets.Conquer
             {
                 fixed (byte* p = buffer)
                 {
-                    var packet = *(MsgAction*) p;
+                    var packet = *(MsgAction*)p;
                     BufferPool.RecycleBuffer(buffer);
 
                     switch (packet.Type)
@@ -244,7 +244,7 @@ namespace YiX.Network.Packets.Conquer
                             break;
                         default:
                             Output.WriteLine($"MsgAction Subtype not implemented: {Enum.GetName(typeof(MsgActionType), packet.Type)}");
-                            Output.WriteLine(((byte[]) packet).HexDump());
+                            Output.WriteLine(((byte[])packet).HexDump());
                             break;
                     }
                 }
@@ -283,7 +283,7 @@ namespace YiX.Network.Packets.Conquer
             player.RemoveStatusEffect(StatusEffect.Cyclone);
             player.RemoveStatusEffect(StatusEffect.SuperMan);
             player.RemoveStatusEffect(StatusEffect.XpShield);
-           
+
             player.Send(packet);
 
             if (player.HasFlag(StatusEffect.Die))
@@ -354,8 +354,8 @@ namespace YiX.Network.Packets.Conquer
         private static void OpenShop(Player player, MsgAction packet)
         {
             player.BoothId = 10000000 + player.UniqueId;
-            player.Direction = (Direction) packet.Direction;
-            BoothSystem.Create(player);
+            player.Direction = (Direction)packet.Direction;
+            BoothSystem.CreateFor(player);
             packet.Param = player.BoothId;
             player.Send(packet);
         }
@@ -395,13 +395,13 @@ namespace YiX.Network.Packets.Conquer
 
             if (GameWorld.Maps.ContainsKey(player.MapId))
             {
-                if (GameWorld.Maps[player.MapId].GroundValid((ushort) packet.Param, (ushort) (packet.Param >> 16)))
+                if (GameWorld.Maps[player.MapId].GroundValid((ushort)packet.Param, (ushort)(packet.Param >> 16)))
                 {
                     if (!ScreenSystem.SendJump(player, ref packet))
                         ScreenSystem.Send(player, packet, false, true, packet.Size);
-                    player.Direction = Position.GetDirection(player.Location.X, player.Location.Y, (ushort) packet.Param, (ushort) (packet.Param >> 16));
-                    player.Location.X = (ushort) packet.Param;
-                    player.Location.Y = (ushort) (packet.Param >> 16);
+                    player.Direction = Position.GetDirection(player.Location.X, player.Location.Y, (ushort)packet.Param, (ushort)(packet.Param >> 16));
+                    player.Location.X = (ushort)packet.Param;
+                    player.Location.Y = (ushort)(packet.Param >> 16);
                     if (TeamSystem.Teams.ContainsKey(player.UniqueId))
                         TeamSystem.Teams[player.UniqueId].UpdateLeaderPosition(player);
                     ScreenSystem.Update(player);
@@ -498,13 +498,13 @@ namespace YiX.Network.Packets.Conquer
                 foreach (var portal in GameWorld.Maps[player.MapId].Portals.Values.Where(portal => portal.X == portalX && portal.Y == portalY))
                 {
                     var passway = PortalProcessor.FindPortal((int)portal.IdX, player.MapId);
-                    player.Teleport((ushort) passway.portal_x, (ushort)passway.portal_y, (ushort)passway.mapid);
+                    player.Teleport((ushort)passway.portal_x, (ushort)passway.portal_y, (ushort)passway.mapid);
                     return;
                 }
             }
 
             Output.WriteLine($"Portal from {portalX}-{portalY} on {player.MapId} not found.");
-            player.Teleport((ushort) (player.Location.X - 3), (ushort) (player.Location.Y - 3), player.MapId);
+            player.Teleport((ushort)(player.Location.X - 3), (ushort)(player.Location.Y - 3), player.MapId);
         }
 
         private static void Revive(Player player)

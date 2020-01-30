@@ -23,7 +23,8 @@ namespace YiX.Database
         public static readonly List<Task> TaskList = new List<Task>();
 
         public static async Task<bool> Load()
-        {try
+        {
+            try
             {
                 UniqueIdGenerator.Load();
                 LoadItems();
@@ -36,7 +37,7 @@ namespace YiX.Database
                 SquigglyDb.LoadItemBonus();
                 SquigglyDb.Spawn();
 
-                await Task.WhenAll(LoadStatpoints(),LoadSkills(), LoadAccounts(),
+                await Task.WhenAll(LoadStatpoints(), LoadSkills(), LoadAccounts(),
                     LoadFloorItems(), LoadStoragePool(), LoadBoothPool());
 
 
@@ -113,7 +114,7 @@ namespace YiX.Database
                     using (var stream = new StreamReader(DbRoot + "/Database/BoothPool.json"))
                     using (var reader = new JsonTextReader(stream))
                         BoothSystem.BoothPool =
-                            serializer.Deserialize<ConcurrentDictionary<int, ConcurrentDictionary<int, Item>>>(reader);
+                            serializer.Deserialize<ConcurrentDictionary<int, ConcurrentDictionary<int, Product>>>(reader);
                 }
                 catch (Exception ex)
                 {
@@ -121,7 +122,7 @@ namespace YiX.Database
                 }
             });
         }
-        
+
         private static void LoadItems()
         {
             try
@@ -135,7 +136,7 @@ namespace YiX.Database
                 Output.WriteLine(ex);
             }
         }
-        
+
         private static Task LoadFloorItems()
         {
             return Task.Run(() =>
@@ -204,7 +205,7 @@ namespace YiX.Database
                 }
             });
         }
-        
+
         public static async Task SetUpScriptingEngine()
         {
             await ScriptEngine.Configure();

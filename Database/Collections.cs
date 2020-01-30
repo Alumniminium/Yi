@@ -4,7 +4,6 @@ using YiX.Database.Squiggly.Models;
 using YiX.Entities;
 using YiX.Items;
 using YiX.Structures;
-using YiX.World;
 
 namespace YiX.Database
 {
@@ -20,7 +19,7 @@ namespace YiX.Database
         public static Dictionary<int, Monster> BaseMonsters = new Dictionary<int, Monster>();
         public static Dictionary<int, Guild> Guilds = new Dictionary<int, Guild>();
         public static Dictionary<int, string> MonsterNames = new Dictionary<int, string>();
-        public static Dictionary<int, Monster> Monsters=new Dictionary<int, Monster>();
+        public static Dictionary<int, Monster> Monsters = new Dictionary<int, Monster>();
         public static Dictionary<int, YiObj> Npcs = new Dictionary<int, YiObj>();
     }
 }

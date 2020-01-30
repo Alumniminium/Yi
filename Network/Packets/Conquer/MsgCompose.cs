@@ -21,7 +21,7 @@ namespace YiX.Network.Packets.Conquer
         {
             fixed (byte* p = buffer)
             {
-                var packet = *(MsgCompose*) p;
+                var packet = *(MsgCompose*)p;
                 BufferPool.RecycleBuffer(buffer);
 
                 try
@@ -30,7 +30,7 @@ namespace YiX.Network.Packets.Conquer
                     var firstTreasure = player.Inventory.FindByUID(packet.FirstItemUID);
                     var secondTreasure = player.Inventory.FindByUID(packet.SecondItemUID);
 
-                    if (mainItem == null || firstTreasure == null || secondTreasure == null)
+                    if (!mainItem.Valid() || !firstTreasure.Valid() || !secondTreasure.Valid())
                         return;
 
                     if (firstTreasure.Plus != secondTreasure.Plus)
@@ -42,22 +42,22 @@ namespace YiX.Network.Packets.Conquer
                     if (mainItem.Plus >= 9)
                         return;
 
-                    var mainType = (short) (mainItem.ItemId / 1000);
-                    var firstTreasureType = (short) (firstTreasure.ItemId / 1000);
-                    var secondTreasureType = (short) (secondTreasure.ItemId / 1000);
+                    var mainType = (short)(mainItem.ItemId / 1000);
+                    var firstTreasureType = (short)(firstTreasure.ItemId / 1000);
+                    var secondTreasureType = (short)(secondTreasure.ItemId / 1000);
 
                     if (firstTreasureType != 730 && secondTreasureType != 730)
                     {
-                        if ((short) (mainType / 100) == 4 && ((short) (firstTreasureType / 100) != 4 || (short) (secondTreasureType / 100) != 4))
+                        if ((short)(mainType / 100) == 4 && ((short)(firstTreasureType / 100) != 4 || (short)(secondTreasureType / 100) != 4))
                             return;
 
-                        if ((short) (mainType / 100) == 5 && ((short) (firstTreasureType / 100) != 5 || (short) (secondTreasureType / 100) != 5))
+                        if ((short)(mainType / 100) == 5 && ((short)(firstTreasureType / 100) != 5 || (short)(secondTreasureType / 100) != 5))
                             return;
 
-                        if ((short) (mainType / 100) == 9 && ((short) (firstTreasureType / 100) != 9 || (short) (secondTreasureType / 100) != 9))
+                        if ((short)(mainType / 100) == 9 && ((short)(firstTreasureType / 100) != 9 || (short)(secondTreasureType / 100) != 9))
                             return;
 
-                        if ((short) (mainType / 100) != 4 && (short) (mainType / 100) != 5 && (short) (mainType / 100) != 9)
+                        if ((short)(mainType / 100) != 4 && (short)(mainType / 100) != 5 && (short)(mainType / 100) != 9)
                             if (mainType != firstTreasureType || mainType != secondTreasureType)
                                 return;
                     }
@@ -67,7 +67,7 @@ namespace YiX.Network.Packets.Conquer
                         var firstGem = player.Inventory.FindByUID(packet.FirstGemUID);
                         var secondGem = player.Inventory.FindByUID(packet.SecondGemUID);
 
-                        if (firstGem == null || secondGem == null)
+                        if (!firstGem.Valid() || !secondGem.Valid())
                             return;
 
                         player.Inventory.RemoveItem(firstGem);

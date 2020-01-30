@@ -5,9 +5,8 @@ using YiX.Enums;
 namespace YiX.Items
 {
     [Serializable]
-    public partial class Item
+    public struct Item
     {
-        public Product Product { get; set; }
         public int UniqueId { get; set; }
         public int OwnerUniqueId { get; set; }
         public int ItemId { get; set; }
@@ -33,10 +32,10 @@ namespace YiX.Items
         public ushort PotAddMp { get; set; }
         public byte StackAmount
         {
-            get => (byte) (CustomTextId% 10000000);
+            get => (byte)(CustomTextId % 10000000);
             set
             {
-                var amount = CustomTextId%10000000;
+                var amount = CustomTextId % 10000000;
                 CustomTextId -= amount;
                 amount = value;
                 CustomTextId += amount;
@@ -52,10 +51,6 @@ namespace YiX.Items
         public int CustomTextId { get; set; }
         public cq_itemaddition Bonus { get; set; }
         public short Dodge { get; set; }
-
-        public Item()
-        {
-        }
 
         private int GetBonusId()
         {
@@ -80,6 +75,8 @@ namespace YiX.Items
             return bonusId;
         }
 
-        public override string ToString() => $"UniqueId: {UniqueId} Id: {ItemId} Plus:{Plus} Bless:{Bless} Enchant{Enchant} Gems:{Gem1},{Gem2} RebornId:{RebornEffect} Restrain:{CustomTextId} " +base.ToString();
+        public override string ToString() => $"UniqueId: {UniqueId} Id: {ItemId} Plus:{Plus} Bless:{Bless} Enchant{Enchant} Gems:{Gem1},{Gem2} RebornId:{RebornEffect} Restrain:{CustomTextId} " + base.ToString();
+
+        internal bool Valid() => ItemId != -1;
     }
 }

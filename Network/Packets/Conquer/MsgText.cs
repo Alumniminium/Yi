@@ -447,7 +447,7 @@ namespace YiX.Network.Packets.Conquer
                             [SkillId.Penetration] = new Skill((ushort)SkillId.Penetration, 0, 0),
                             [SkillId.Snow] = new Skill((ushort)SkillId.Snow, 0, 0),
                         };
-                        player.Skills.Add(SkillId.FireCircle, new Skill((ushort) SkillId.FireCircle, 2, 0));
+                        player.Skills.Add(SkillId.FireCircle, new Skill((ushort)SkillId.FireCircle, 2, 0));
                         player.MaximumMp = 10000;
                         player.CurrentMp = 10000;
                         player.MaximumHp = 10000;
@@ -478,7 +478,7 @@ namespace YiX.Network.Packets.Conquer
 
                                 if (Collections.Items.ContainsKey(id))
                                 {
-                                    var cloned = Item.Factory.Create(id);
+                                    var cloned = ItemFactory.Create(id);
                                     cloned.Plus = Math.Min(plus, (byte)9);
                                     cloned.Bless = Math.Min(bless, (byte)7);
                                     cloned.Enchant = Math.Min(enchant, (byte)255);
@@ -716,7 +716,7 @@ namespace YiX.Network.Packets.Conquer
         {
         }
 
-        public static unsafe implicit operator byte[] (MsgText msg)
+        public static unsafe implicit operator byte[](MsgText msg)
         {
             var buffer = BufferPool.GetBuffer();
             fixed (byte* p = buffer)

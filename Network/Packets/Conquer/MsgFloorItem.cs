@@ -23,11 +23,11 @@ namespace YiX.Network.Packets.Conquer
             var packet = new MsgFloorItem
             {
                 Size = (ushort)sizeof(MsgFloorItem),
-                Id=1101,
+                Id = 1101,
                 UniqueId = item.UniqueId,
                 X = item.Location.X,
                 Y = item.Location.Y,
-                ItemId = item.Original?.ItemId ?? (int)item.Look,
+                ItemId = item.Original.Valid() ? (int)item.Look : item.Original.ItemId,
                 MsgFloorItemType = type,
             };
             return packet;
@@ -39,7 +39,7 @@ namespace YiX.Network.Packets.Conquer
             {
                 fixed (byte* p = buffer)
                 {
-                    var packet = *(MsgFloorItem*) p;
+                    var packet = *(MsgFloorItem*)p;
                     BufferPool.RecycleBuffer(buffer);
 
                     switch (packet.MsgFloorItemType)
@@ -54,7 +54,7 @@ namespace YiX.Network.Packets.Conquer
                         case MsgFloorItemType.RemoveEffect:
                             break;
                         default:
-                            Output.WriteLine(((byte[]) packet).HexDump());
+                            Output.WriteLine(((byte[])packet).HexDump());
                             break;
                     }
                 }

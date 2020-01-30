@@ -23,18 +23,9 @@ namespace YiX
             GCSettings.LargeObjectHeapCompactionMode = GCLargeObjectHeapCompactionMode.CompactOnce;
             GC.Collect(2, GCCollectionMode.Forced, true, true);
         }
-      
+
         private static string GetIP()
         {
-            return new WebClient().DownloadString("https://wtfismyip.com/text");
-
-            if (Environment.UserName== "Faggot McNigger")
-            {
-           }
-            if (Environment.UserName == "omgno")
-            {
-                return "70.185.214.175";//yea?
-            }
             using (var socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, 0))
             {
                 socket.Connect("8.8.8.8", 80);

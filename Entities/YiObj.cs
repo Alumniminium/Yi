@@ -19,18 +19,18 @@ namespace YiX.Entities
     {
         public virtual string Name { get; set; }
         public bool Alive => CurrentHp > 0 && !HasFlag(StatusEffect.Die);
-        public int UniqueId{ get; set; }
-        public virtual uint Look{ get; set; }
-        public ushort MapId{ get; set; }
+        public int UniqueId { get; set; }
+        public virtual uint Look { get; set; }
+        public ushort MapId { get; set; }
         public Vector2 Location { get; set; }
-        public Direction Direction{ get; set; }
+        public Direction Direction { get; set; }
         public virtual byte Level { get; set; }
         public virtual int CurrentHp { get; set; }
         public virtual ushort MaximumHp { get; set; }
-        public ushort Dexterity{ get; set; }
-        public int Defense{ get; set; }
-        public int MagicDefense{ get; set; }
-        public Emote Emote{ get; set; }
+        public ushort Dexterity { get; set; }
+        public int Defense { get; set; }
+        public int MagicDefense { get; set; }
+        public Emote Emote { get; set; }
         public StatusEffect StatusEffects { get; set; }
         public bool HasFlag(StatusEffect flag) => (StatusEffects & flag) != 0;
         public int BoothId { get; set; }
@@ -101,7 +101,8 @@ namespace YiX.Entities
                 return Math.Max(_attackRange, 1);
             }
             set => _attackRange = value;
-        }[JsonIgnore]
+        }
+        [JsonIgnore]
         public Trade Trade { get; set; }
         public PkMode PkMode { get; set; }
         public Guild Guild { get; set; }
@@ -121,7 +122,7 @@ namespace YiX.Entities
 
         protected YiObj()
         {
-            Location=new Vector2(0,0);
+            Location = new Vector2(0, 0);
             Friends = new List<int>();
             Enemies = new List<int>();
         }
@@ -139,7 +140,7 @@ namespace YiX.Entities
                 (attacker as Player)?.Send(MsgInteract.Create(attacker, this, MsgInteractType.Death, 0xFFFF * attacker.XpKills));
             else
                 ScreenSystem.Send(this, MsgInteract.Die(attacker, this), true);
-            
+
             if (attacker is Player humanAttacker)
             {
                 var killed = this as Player;
@@ -171,18 +172,18 @@ namespace YiX.Entities
         public void AddWeaponProf(MsgItemPosition position, uint exp)
         {
             var item = GetEquip(position);
-            if (item != null)
+            if (item.Valid())
             {
                 if (Profs.TryGetValue(item.ItemId / 1000, out var prof))
                     prof.Experience += exp;
                 else
-                    Profs.Add(item.ItemId / 1000, new Prof((ushort) (item.ItemId / 1000), 0, exp));
+                    Profs.Add(item.ItemId / 1000, new Prof((ushort)(item.ItemId / 1000), 0, exp));
             }
         }
         public void AddArmorProf(MsgItemPosition position, uint exp)
         {
             var item = GetEquip(position);
-            if (item != null)
+            if (item.Valid())
             {
                 if (Profs.TryGetValue(item.ItemId / 1000, out var prof))
                     prof.Experience += exp;
@@ -202,11 +203,11 @@ namespace YiX.Entities
             s = null;
             return false;
         }
-        
+
         public Item GetEquip(MsgItemPosition position)
         {
             if (Equipment == null)
-                return null;
+                return ItemFactory.CreateInvalidItem();
 
             Equipment.TryGetValue(position, out var found);
             return found;
@@ -244,7 +245,7 @@ namespace YiX.Entities
                 GameWorld.Maps[MapId].Enter(this);
                 if (GameWorld.Maps[MapId].RespawnLocation == null)
                 {
-                    GetMessage("SYSTEM",Name, "THIS MAP HAS TO RESPAWN POINT! GO TO THE POSITION YOU WOULD RESPAWN AND TYPE 'setspawn' THEN SAVE THE DB!",MsgTextType.Center);
+                    GetMessage("SYSTEM", Name, "THIS MAP HAS TO RESPAWN POINT! GO TO THE POSITION YOU WOULD RESPAWN AND TYPE 'setspawn' THEN SAVE THE DB!", MsgTextType.Center);
                 }
             }
             catch (Exception ex)
@@ -315,9 +316,9 @@ namespace YiX.Entities
 
             MsgAction packet;
             fixed (byte* p = buffer)
-                packet = *(MsgAction*) p;
+                packet = *(MsgAction*)p;
 
-            var x  = (ushort)packet.Param;
+            var x = (ushort)packet.Param;
             var y = (ushort)(packet.Param >> 16);
 
             ScreenSystem.Send(this, packet, false, true, packet.Size);

@@ -10,7 +10,7 @@ namespace YiX.Calculations
     {
         public static void Recalculate(YiObj entity)
         {
-            if (entity == null||entity.UniqueId==0)
+            if (entity == null || entity.UniqueId == 0)
                 return;
             var defense = 0;
             var dodge = 0;
@@ -18,11 +18,11 @@ namespace YiX.Calculations
             var magicAttack = 0;
             var maximumHp = 0;
             var maximumMp = 0;
-            var job=entity.Class;
+            var job = entity.Class;
             if (job == 100)
                 job += 20;
 
-            if (Collections.Statpoints.ContainsKey(job / 10 * 100 + entity.Level) && entity.Reborn==0)
+            if (Collections.Statpoints.ContainsKey(job / 10 * 100 + entity.Level) && entity.Reborn == 0)
             {
                 var agility = (ushort)Collections.Statpoints[job / 10 * 100 + entity.Level].Agility;
                 var spirit = (ushort)Collections.Statpoints[job / 10 * 100 + entity.Level].Spirit;
@@ -98,14 +98,14 @@ namespace YiX.Calculations
                 if (item.Key == MsgItemPosition.RightWeapon || item.Key == MsgItemPosition.LeftWeapon)
                 {
                     var subType = item.Value.ItemId / 1000;
-                    var sum = (from skill in entity.Skills where skill.Value.Info.WeaponSubType == subType where skill.Value.Level > 12 && skill.Value.Level <= 20 select (20.00f - skill.Value.Level)/100).Sum();
+                    var sum = (from skill in entity.Skills where skill.Value.Info.WeaponSubType == subType where skill.Value.Level > 12 && skill.Value.Level <= 20 select (20.00f - skill.Value.Level) / 100).Sum();
                     minimumPhsyicalAttack += (int)sum;
                     maximumPhsyicalAttack += (int)sum;
                 }
                 switch ((ItemNames)item.Value.Gem1)
                 {
                     case ItemNames.ShortNormalPhoenixGem:
-                        magicAttack = (int) (magicAttack * 0.05f);
+                        magicAttack = (int)(magicAttack * 0.05f);
                         break;
                     case ItemNames.ShortRefPhoenixGem:
                         magicAttack = (int)(magicAttack * 0.1f);
@@ -114,7 +114,7 @@ namespace YiX.Calculations
                         magicAttack = (int)(magicAttack * 0.15f);
                         break;
                     case ItemNames.ShortNormalDragonGem:
-                        minimumPhsyicalAttack += (int)(minimumPhsyicalAttack*0.05f);
+                        minimumPhsyicalAttack += (int)(minimumPhsyicalAttack * 0.05f);
                         break;
                     case ItemNames.ShortRefDragonGem:
                         minimumPhsyicalAttack += (int)(minimumPhsyicalAttack * 0.1f);
@@ -123,7 +123,7 @@ namespace YiX.Calculations
                         minimumPhsyicalAttack += (int)(minimumPhsyicalAttack * 0.15f);
                         break;
                     case ItemNames.ShortNormalFuryGem:
-                        dodge += (int) (dodge * 0.05f);
+                        dodge += (int)(dodge * 0.05f);
                         break;
                     case ItemNames.ShortRefFuryGem:
                         dodge += (int)(dodge * 0.1f);
@@ -159,7 +159,7 @@ namespace YiX.Calculations
                         entity.MagicExpBonus += 1.00f;
                         break;
                     case ItemNames.ShortNormalTortoiseGem:
-                        defense -= (int)(defense*0.02f);
+                        defense -= (int)(defense * 0.02f);
                         break;
                     case ItemNames.ShortRefTortoiseGem:
                         defense -= (int)(defense * 0.04f);
@@ -256,12 +256,12 @@ namespace YiX.Calculations
             entity.MaximumMp = (ushort)maximumMp;
 
             var arrows = entity.GetEquip(MsgItemPosition.LeftWeapon);
-            if (arrows != null)
+            if (arrows.Valid())
             {
                 if (arrows.ItemId / 10 == 105010)
                 {
-                    entity.MinimumPhsyicalAttack = (int) (entity.MinimumPhsyicalAttack * 0.85);
-                    entity.MaximumPhsyicalAttack = (int) (entity.MaximumPhsyicalAttack * 0.85);
+                    entity.MinimumPhsyicalAttack = (int)(entity.MinimumPhsyicalAttack * 0.85);
+                    entity.MaximumPhsyicalAttack = (int)(entity.MaximumPhsyicalAttack * 0.85);
                 }
 
                 if (arrows.ItemId / 10 == 105020)
@@ -273,8 +273,8 @@ namespace YiX.Calculations
 
                 if (arrows.ItemId / 10 == 105040)
                 {
-                    entity.MinimumPhsyicalAttack = (int) (entity.MinimumPhsyicalAttack * 1.15);
-                    entity.MaximumPhsyicalAttack = (int) (entity.MaximumPhsyicalAttack * 1.15);
+                    entity.MinimumPhsyicalAttack = (int)(entity.MinimumPhsyicalAttack * 1.15);
+                    entity.MaximumPhsyicalAttack = (int)(entity.MaximumPhsyicalAttack * 1.15);
                 }
             }
 
@@ -290,7 +290,7 @@ namespace YiX.Calculations
             if (entity.HasFlag(StatusEffect.Cyclone))
                 entity.AttackSpeed /= 2;
             dodge += entity.Agility + 25;
-            entity.Dexterity += (ushort) dodge;
+            entity.Dexterity += (ushort)dodge;
         }
     }
 }

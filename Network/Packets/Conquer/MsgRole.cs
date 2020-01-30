@@ -17,8 +17,8 @@ namespace YiX.Network.Packets.Conquer
 {
     public class MsgRole
     {
-        private static readonly ushort[] Models = {1004, 2004, 1002, 2002, 1003, 2003, 2001, 1001};
-        private static readonly byte[] Jobs = {10, 20, 40, 100};
+        private static readonly ushort[] Models = { 1004, 2004, 1002, 2002, 1003, 2003, 2001, 1001 };
+        private static readonly byte[] Jobs = { 10, 20, 40, 100 };
         public static Player Player;
         public static string AccountId, CharName;
         public static ushort Model;
@@ -103,23 +103,23 @@ namespace YiX.Network.Packets.Conquer
 
         private static void GiveStarterItems(Player character)
         {
-            character.Equipment.AddOrUpdate(MsgItemPosition.Armor, Item.Factory.Create(ItemNames.Coat));
-            character.Inventory.AddItem(Item.Factory.Create(ItemNames.Stancher), 3);
+            character.Equipment.AddOrUpdate(MsgItemPosition.Armor, ItemFactory.Create(ItemNames.Coat));
+            character.Inventory.AddItem(ItemFactory.Create(ItemNames.Stancher), 3);
             if (Job == 100)
             {
-                character.Equipment.AddOrUpdate(MsgItemPosition.RightWeapon, Item.Factory.Create(ItemNames.LuckyBacksword));
-                character.Inventory.AddItem(Item.Factory.Create(ItemNames.Agrypnotic), 3);
+                character.Equipment.AddOrUpdate(MsgItemPosition.RightWeapon, ItemFactory.Create(ItemNames.LuckyBacksword));
+                character.Inventory.AddItem(ItemFactory.Create(ItemNames.Agrypnotic), 3);
             }
 
             if (Job == 40)
             {
-                character.Equipment.AddOrUpdate(MsgItemPosition.RightWeapon, Item.Factory.Create(ItemNames.LuckyBow));
-                character.Inventory.AddItem(Item.Factory.Create(ItemNames.LuckyArrow), 3);
+                character.Equipment.AddOrUpdate(MsgItemPosition.RightWeapon, ItemFactory.Create(ItemNames.LuckyBow));
+                character.Inventory.AddItem(ItemFactory.Create(ItemNames.LuckyArrow), 3);
             }
 
             if (Job == 10 || Job == 20)
             {
-                character.Equipment.AddOrUpdate(MsgItemPosition.RightWeapon, Item.Factory.Create(ItemNames.LuckyBlade));
+                character.Equipment.AddOrUpdate(MsgItemPosition.RightWeapon, ItemFactory.Create(ItemNames.LuckyBlade));
             }
         }
 

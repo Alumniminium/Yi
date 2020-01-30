@@ -19,11 +19,11 @@ namespace YiX.SelfContainedSystems
             player.Class = newClass;
             player.Level = 15;
             Reallot(player);
-            
+
             var rbSpells = GetRebornSpells(oldClass, newClass);
             var SpellsToLearn = new Dictionary<SkillId, Skill>();
 
-            if(rbSpells != null)
+            if (rbSpells != null)
                 foreach (var spell in rbSpells)//get the potential spells to learn
                     if (!SpellsToLearn.ContainsKey((SkillId)spell))
                         SpellsToLearn.Add((SkillId)spell, new Skill(spell, 0, 0));
@@ -43,20 +43,20 @@ namespace YiX.SelfContainedSystems
 
             foreach (var gear in player.Equipment.Items)
             {
-                if(gear.Key == MsgItemPosition.Head) Output.WriteLine("Head is real");
+                if (gear.Key == MsgItemPosition.Head) Output.WriteLine("Head is real");
                 if (gear.Value.ItemId >= 1050000 && gear.Value.ItemId <= 1051000) continue;//because arrow
                 if (gear.Value.Level <= 15) { Output.WriteLine("The gear in " + gear.Key + " didn't need to be downgraded because it's level " + gear.Value.Level); continue; }//because we don't need to drop it more
                 var jmp = 0;
                 var itemId = gear.Value.ItemId;
                 var itemType = itemId / 10000;
-                CheckValidID:
+            CheckValidID:
                 itemId -= 10;
 
                 Collections.Items.TryGetValue(itemId, out var newgear);
-                if(newgear != null && newgear.Level <= 15)
+                if (newgear.Valid() && newgear.Level <= 15)
                 {
                     Output.WriteLine("the item should be changed!");
-                    var finalgear = Item.Factory.Create(itemId);
+                    var finalgear = ItemFactory.Create(itemId);
                     player.Equipment.TryRemove(gear.Key, out var reAdd);
                     player.Equipment.Items.TryAdd(gear.Key, finalgear);
                     player.ForceSend(new MsgItemInformation(finalgear, gear.Key), (ushort)sizeof(MsgItemInformation));
@@ -77,8 +77,8 @@ namespace YiX.SelfContainedSystems
             player.Spirit = 0;
 
             ushort stat = 0;
-            if(player.Class == 135)
-                switch(player.Level)
+            if (player.Class == 135)
+                switch (player.Level)
                 {
                     case 112: stat = 1; break;
                     case 114: stat = 3; break;
@@ -90,7 +90,7 @@ namespace YiX.SelfContainedSystems
                     case 123: stat = 21; break;
                     case 124:
                     case 125: stat = 28; break;
-                    case 126: 
+                    case 126:
                     case 127: stat = 36; break;
                     case 128:
                     case 129: stat = 45; break;

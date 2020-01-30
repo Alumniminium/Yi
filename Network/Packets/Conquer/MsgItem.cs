@@ -45,7 +45,7 @@ namespace YiX.Network.Packets.Conquer
             {
                 fixed (byte* p = buffer)
                 {
-                    var packet = *(MsgItem*) p;
+                    var packet = *(MsgItem*)p;
 
                     BufferPool.RecycleBuffer(buffer);
 
@@ -111,7 +111,7 @@ namespace YiX.Network.Packets.Conquer
                             player.GetMessage("Server", player.Name.TrimEnd('\0'), "This server doesn't use conquer points as currency.", MsgTextType.Action);
                             break;
                         default:
-                            Output.WriteLine(((byte[]) packet).HexDump());
+                            Output.WriteLine(((byte[])packet).HexDump());
                             break;
                     }
                 }
@@ -125,7 +125,7 @@ namespace YiX.Network.Packets.Conquer
         private static void RepairItem(Player player, ref MsgItem packet)
         {
             var found = player.Inventory.FindByUID(packet.UnqiueId);
-            if (found == null)
+            if (!found.Valid())
                 return;
 
             if (found.CurrentDurability >= found.MaximumDurability)
@@ -189,8 +189,14 @@ namespace YiX.Network.Packets.Conquer
 
         private static void AddItemToShop(Player player, ref MsgItem packet)
         {
-            BoothSystem.Add(player, packet.UnqiueId, packet.Param);
-            ScreenSystem.Send(player, packet, true);
+            var item = player.Inventory.FindByUID(packet.UnqiueId);
+            if (item.Valid())
+            {
+                BoothSystem.Add(player, packet.UnqiueId, packet.Param);
+                ScreenSystem.Send(player, packet, true);
+            }
+            else
+                Message.SendTo(player, "Invalid Item", MsgTextType.Action);
         }
 
         private static void Ping(Player player, ref MsgItem packet)
@@ -204,8 +210,8 @@ namespace YiX.Network.Packets.Conquer
             if (player.Money >= packet.UnqiueId)
             {
                 FloorItemSystem.DropMoney(null, player, packet.UnqiueId);
+                player.Send(packet);
             }
-            player.Send(packet);
         }
 
         private static void DropItem(Player player, ref MsgItem packet)
@@ -226,7 +232,7 @@ namespace YiX.Network.Packets.Conquer
         private static void EquipItem(Player player, ref MsgItem packet)
         {
             var found = player.Inventory.FindByUID(packet.UnqiueId);
-            if (found != null)
+            if (!found.Valid())
             {
                 //if(ScriptEngine.ActivateScript(found.ItemId).Result)
                 //    return;
@@ -235,7 +241,7 @@ namespace YiX.Network.Packets.Conquer
 
                 Message.SendTo(player, $"Item {found.ItemId} has no script - Equipping it instead at {(MsgItemPosition)packet.Param}", MsgTextType.Action);
 
-                if (player.Equipment.Equip(found, (MsgItemPosition) packet.Param))
+                if (player.Equipment.Equip(found, (MsgItemPosition)packet.Param))
                 {
                     packet.Type = MsgItemType.SetEquipPosition;
                     player.Send(packet);
@@ -246,7 +252,7 @@ namespace YiX.Network.Packets.Conquer
         private static void SellItem(Player player, ref MsgItem packet)
         {
             var found = player.Inventory.FindByUID(packet.Param);
-            if (found != null)
+            if (!found.Valid())
             {
                 if (player.Inventory.Items.TryRemove(found.UniqueId, out found))
                     player.Money += found.PriceBaseline;
@@ -292,12 +298,12 @@ namespace YiX.Network.Packets.Conquer
         {
             var mainItem = player.Inventory.FindByUID(packet.UnqiueId);//item to upgrade
             var subItem = player.Inventory.FindByUID(packet.Param);//met
-            if (mainItem != null && subItem != null)
+            if (mainItem.Valid() && subItem.Valid())
             {
                 var jmp = 0;
                 var itemId = mainItem.ItemId;
                 var itemType = itemId / 10000;
-                CheckValidID:
+            CheckValidID:
                 switch (itemType)
                 {
                     case 11: // head
@@ -308,9 +314,9 @@ namespace YiX.Network.Packets.Conquer
                         itemId += 10;
                         break;
                     default:
-                            if (itemType >= 40 && itemType <= 61) // weapons
-                                itemId += 10;
-                            break;
+                        if (itemType >= 40 && itemType <= 61) // weapons
+                            itemId += 10;
+                        break;
                 }
                 if (itemId != mainItem.ItemId)
                 {
@@ -322,10 +328,10 @@ namespace YiX.Network.Packets.Conquer
                             var lucky = false;
                             var num = YiCore.Random.Next(1, 1000);
                             if (itemQuality < 6) lucky = num <= 950;
-                            else if (itemQuality == 6)lucky = num <= 880;
-                            else if (itemQuality == 7)lucky = num <= 750;
+                            else if (itemQuality == 6) lucky = num <= 880;
+                            else if (itemQuality == 7) lucky = num <= 750;
                             else if (itemQuality >= 8) lucky = num <= 670;
-                           
+
                             if (lucky)
                             {
                                 Message.SendTo(player, "You have successfully upgraded your item\'s level!", MsgTextType.Action);
@@ -360,7 +366,7 @@ namespace YiX.Network.Packets.Conquer
         {
             var mainItem = player.Inventory.FindByUID(packet.UnqiueId);//item to upgrade
             var subItem = player.Inventory.FindByUID(packet.Param);//db
-            if (mainItem != null && subItem != null)
+            if (mainItem.Valid() && subItem.Valid())
             {
                 if (subItem.ItemId == 1088000)
                 {
@@ -370,10 +376,10 @@ namespace YiX.Network.Packets.Conquer
                         player.Inventory.RemoveItem(mainItem);//remove the item to update
                         player.Inventory.RemoveItem(subItem);//remove the db before attempting
                         var lucky = true;
-                        var num = YiCore.Random.Next(5);
-                        if (itemQuality < 6)lucky = num <= 90;
-                        else if (itemQuality == 6)lucky = num <= 75;
-                        else if (itemQuality == 7)lucky = num <= 50;
+                        var num = YiCore.Random.Next(101);
+                        if (itemQuality < 6) lucky = num <= 90;
+                        else if (itemQuality == 6) lucky = num <= 75;
+                        else if (itemQuality == 7) lucky = num <= 50;
                         else if (itemQuality == 8) lucky = num <= 35;
 
                         if (num == 1 && mainItem.Gem1 == 0)
@@ -411,16 +417,32 @@ namespace YiX.Network.Packets.Conquer
                 switch (itemId)
                 {
                     /* unique ---------------------------------------------------unique-----------------------------*/
-                    case 700012:                         high = 159; low = 100; break;// dragon
-                    case 700002:case 700062:case 700052: high = 109; low = 60; break;// phoenix, moon, violet
-                    case 700032:                         high = 129; low = 80; break; // rainbow
-                    case 700072:case 700042:case 700022: high = 89; low = 40; break;// tortoise, kylin, fury
+                    case 700012:
+                        high = 159;
+                        low = 100;
+                        break;// dragon
+                    case 700002:
+                    case 700062:
+                    case 700052:
+                        high = 109;
+                        low = 60;
+                        break;// phoenix, moon, violet
+                    case 700032:
+                        high = 129;
+                        low = 80;
+                        break; // rainbow
+                    case 700072:
+                    case 700042:
+                    case 700022:
+                        high = 89;
+                        low = 40;
+                        break;// tortoise, kylin, fury
                     /* super -------------------------------------------------------super---------------------------*/
-                    case 700013:                         high = 255; low = 200; break; // dragon
-                    case 700003: case 700073:case 700033:high = 229; low = 170; break;// phoenix, tortoise, rainbow
-                    case 700063: case 700053:            high = 199; low = 140; break;// moon, violet
-                    case 700023:                         high = 149; low = 90; break;// fury
-                    case 700043:                         high = 119; low = 70; break;// kylin
+                    case 700013: high = 255; low = 200; break; // dragon
+                    case 700003: case 700073: case 700033: high = 229; low = 170; break;// phoenix, tortoise, rainbow
+                    case 700063: case 700053: high = 199; low = 140; break;// moon, violet
+                    case 700023: high = 149; low = 90; break;// fury
+                    case 700043: high = 119; low = 70; break;// kylin
                 }
             }
             return YiCore.Random.Next(low, high);
@@ -431,7 +453,7 @@ namespace YiX.Network.Packets.Conquer
             var mainItem = player.Inventory.FindByUID(packet.UnqiueId);
 
             var subItem = player.Inventory.FindByUID(packet.Param);
-            if (mainItem != null && subItem != null)
+            if (mainItem.Valid() && subItem.Valid())
             {
                 if (subItem.ItemId / 1000 == 700)//gem id const
                 {

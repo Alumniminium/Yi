@@ -28,7 +28,7 @@ namespace YiX.SelfContainedSystems
                 switch (_currentWeather.weather.First().main)
                 {
                     case "Rain":
-                        CurrentWeatherType=WeatherType.Rain;
+                        CurrentWeatherType = WeatherType.Rain;
                         SetRaining(150, (int)_currentWeather.wind.deg);
                         break;
                     case "Snow":
@@ -36,11 +36,11 @@ namespace YiX.SelfContainedSystems
                         SetSnowing(150, (int)_currentWeather.wind.deg);
                         break;
                     default:
-                    {
-                        SetClear(150, (int)_currentWeather.wind.deg);
-                        Output.WriteLine("Default Weather: " + _currentWeather.weather.First().main);
-                        break;
-                    }
+                        {
+                            SetClear(150, (int)_currentWeather.wind.deg);
+                            Output.WriteLine("Default Weather: " + _currentWeather.weather.First().main);
+                            break;
+                        }
                 }
             }
             catch (Exception e)
@@ -50,9 +50,9 @@ namespace YiX.SelfContainedSystems
         }
         public static void SetWeatherFor(Player player)
         {
-            if(_currentWeather?.weather?.First() == null)
+            if (_currentWeather?.weather?.First() == null)
                 return;
-            
+
             switch (_currentWeather.weather.First().main)
             {
                 case "Rain":
@@ -70,7 +70,7 @@ namespace YiX.SelfContainedSystems
             player.Send(MsgText.Create("WeatherSystem", player.Name, $"Weather set to: {_currentWeather.weather.First().main} - Intensity: {150} - Angel: {_currentWeather.wind.deg}", MsgTextType.Talk));
         }
 
-        private static void SetSnowing(int intensity,int angel)
+        private static void SetSnowing(int intensity, int angel)
         {
             foreach (var player in GameWorld.Maps.Values.SelectMany(map => map.Entities.Values.OfType<Player>()))
             {

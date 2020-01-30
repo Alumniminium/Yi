@@ -278,7 +278,7 @@ namespace YiX.Database.Squiggly
 
         private static void ACTION_ITEM_ADD(YiObj target, YiObj invoker, cq_action cqaction, SquigglyContext db)
         {
-            invoker.Inventory.AddItem(Item.Factory.Create(721189));
+            invoker.Inventory.AddItem(ItemFactory.Create(721189));
             Process(target, invoker, db.cq_action.Find(cqaction.id_next), db);
         }
 
@@ -352,7 +352,7 @@ namespace YiX.Database.Squiggly
             //Output.WriteLine($"Mob Action -> Data: {cqaction.data} Param: {cqaction.param.Trim()}",ConsoleColor.Green);
 
             var dropId = cqaction.param.Trim().Split(' ')[1];
-            var item = Item.Factory.Create(int.Parse(dropId));
+            var item = ItemFactory.Create(int.Parse(dropId));
             FloorItemSystem.Drop(attacker, target, item);
         }
 
@@ -871,7 +871,7 @@ namespace YiX.Database.Squiggly
                         var id = int.Parse(condition.Split(' ')[1]);
                         //Output.WriteLine($"{type}:{(int) type} -> {id}", ConsoleColor.Green);
                         Process(target, attacker, db.cq_action.Find(cqaction.id_next), db);
-                        FloorItemSystem.Drop(attacker, target, Item.Factory.Create(id));
+                        FloorItemSystem.Drop(attacker, target, ItemFactory.Create(id));
                         Process(target, attacker, db.cq_action.Find(cqaction.id_next), db);
                         break;
                     }

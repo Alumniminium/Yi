@@ -30,7 +30,7 @@ namespace YiX.SelfContainedSystems
             }
         }
 
-        public static void Drop(YiObj owner,YiObj dropper, Item drop)
+        public static void Drop(YiObj owner, YiObj dropper, Item drop)
         {
             var floorItem = new FloorItem
             {
@@ -49,7 +49,7 @@ namespace YiX.SelfContainedSystems
         {
             var floorItem = new FloorItem
             {
-                Original = Item.Factory.CreateMoney(amount),
+                Original = ItemFactory.CreateMoney(amount),
                 Owner = owner is Player ? owner : null,
                 MapId = dropper.MapId,
                 Amount = amount,
@@ -81,13 +81,13 @@ namespace YiX.SelfContainedSystems
                     {
                         if (drop.Money > 0 && teamData2.MoneyLocked)
                         {
-                            Message.SendTo(picker, $"This item belongs to {drop.Owner.Name.TrimEnd('\0')}",MsgTextType.Action);
+                            Message.SendTo(picker, $"This item belongs to {drop.Owner.Name.TrimEnd('\0')}", MsgTextType.Action);
                             return;
                         }
 
                         if (teamData2.ItemsLocked)
                         {
-                            Message.SendTo(picker, $"This item belongs to {drop.Owner.Name.TrimEnd('\0')}",MsgTextType.Action);
+                            Message.SendTo(picker, $"This item belongs to {drop.Owner.Name.TrimEnd('\0')}", MsgTextType.Action);
                             return;
                         }
                     }
@@ -102,7 +102,7 @@ namespace YiX.SelfContainedSystems
                 drop.Destroy();
                 if (drop.Amount > 2000)
                     ScreenSystem.Send(picker, MsgAction.CashEffect(picker, drop.Amount), true);
-                picker.GetMessage(Constants.System,picker.Name,$"You've picked up {drop.Amount:##,###} gold.",MsgTextType.Top);
+                picker.GetMessage(Constants.System, picker.Name, $"You've picked up {drop.Amount:##,###} gold.", MsgTextType.Top);
             }
             else if (picker.Inventory.AddItem(drop.Original))
             {
@@ -130,7 +130,7 @@ namespace YiX.SelfContainedSystems
                         ScreenSystem.Create(drop);
                         FloorItems.AddOrUpdate(drop.UniqueId, drop);
                         GameWorld.Maps[drop.MapId].Enter(drop);
-                        if (drop.Original != null && drop.Owner is Player player)
+                        if (drop.Original.Valid() && drop.Owner is Player player)
                         {
                             var packet = MsgItem.Create(drop.Original.UniqueId, drop.Original.UniqueId, drop.Original.UniqueId, MsgItemType.RemoveInventory);
                             player.Send(packet);
@@ -140,7 +140,7 @@ namespace YiX.SelfContainedSystems
                         return;
                     }
                 }
-                if (drop.Original != null && drop.Owner is Player owner)
+                if (drop.Original.Valid() && drop.Owner is Player owner)
                 {
                     owner.Inventory.AddOrUpdate(drop.Original.UniqueId, drop.Original);
                     owner.Send(new MsgItemInformation(drop.Original, MsgItemPosition.Inventory));
