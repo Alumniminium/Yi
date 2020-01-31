@@ -24,7 +24,7 @@ namespace YiX.Structures
             {
                 OwnerId = owner.UniqueId,
                 NpcId = npcId,
-                StorageId = YiCore.Random.Next(0, 1000),
+                StorageId = SafeRandom.Next(0, 1000),
                 AccessCode = "",
                 StorageName = "Unnamed Storage",
                 Contents = new ConcurrentDictionary<int, Item>(),
@@ -62,7 +62,7 @@ namespace YiX.Structures
                 if (Members[req.UniqueId].HasFlag(StorageAccess.ItemTake))
                     itemAccess += "W";
             }
-            return $"{StorageId.ToString("00000")}   {StorageName.Size32(' ')}   {GetOwner().Name.Replace("\0","").Size16(' ')}   Money: {moneyAccess}   Items: {itemAccess}";
+            return $"{StorageId.ToString("00000")}   {StorageName.Size32(' ')}   {GetOwner().Name.Replace("\0", "").Size16(' ')}   Money: {moneyAccess}   Items: {itemAccess}";
         }
     }
 }

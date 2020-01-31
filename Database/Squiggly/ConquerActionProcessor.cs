@@ -3,6 +3,7 @@ using System.Linq;
 using YiX.Database.Squiggly.Models;
 using YiX.Entities;
 using YiX.Enums;
+using YiX.Helpers;
 using YiX.Items;
 using YiX.Network.Packets.Conquer;
 using YiX.SelfContainedSystems;
@@ -344,7 +345,7 @@ namespace YiX.Database.Squiggly
         {
             var nextIds = cqaction.param.Trim().Split(' ');
 
-            var nextIndex = YiCore.Random.Next(nextIds.Length);
+            var nextIndex = SafeRandom.Next(nextIds.Length);
 
             var nextId = long.Parse(nextIds[nextIndex]);
 

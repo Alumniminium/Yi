@@ -65,7 +65,7 @@ namespace YiX.Structures
             for (var i = 0; i < count; i++)
             {
                 var clone = CloneChamber.Clone(item);
-                clone.UniqueId = YiCore.Random.Next(1000, 100000);
+                clone.UniqueId = SafeRandom.Next(1000, 100000);
                 Items.TryAdd(clone.UniqueId, clone);
                 (_owner as Player)?.Send(new MsgItemInformation(clone, MsgItemPosition.Inventory));
             }

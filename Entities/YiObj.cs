@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using YiX.Calculations;
 using YiX.Database.Squiggly.Models;
 using YiX.Enums;
+using YiX.Helpers;
 using YiX.Items;
 using YiX.Network.Packets.Conquer;
 using YiX.Scheduler;
@@ -193,7 +194,7 @@ namespace YiX.Entities
         }
         public bool ActivatePassiveSkill(YiObj attacker, ref int damage, out Skill? s)
         {
-            foreach (var skill in from skill in Skills.Values from item in Equipment.Values where item.ItemId / 1000 == skill.Info.WeaponSubType where YiCore.Random.Next(0, 100) >= skill.Info.Success select skill)
+            foreach (var skill in from skill in Skills.Values from item in Equipment.Values where item.ItemId / 1000 == skill.Info.WeaponSubType where SafeRandom.Next(0, 100) >= skill.Info.Success select skill)
             {
                 damage += AttackCalcs.GetDamage(attacker, attacker.CurrentTarget, MsgInteractType.Magic);
                 damage += skill.Info.Power;

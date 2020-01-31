@@ -281,7 +281,7 @@ namespace YiX.Network.Packets.Conquer
                         if (player.Inventory.Count < 40)
                         {
                             var cloned = CloneChamber.Clone(item);
-                            cloned.UniqueId = YiCore.Random.Next(1000, 100000);
+                            cloned.UniqueId = SafeRandom.Next(1000, 100000);
                             player.Inventory.Items.AddOrUpdate(cloned.UniqueId, cloned);
                             player.Money -= cloned.PriceBaseline;
                             player.Send(new MsgItemInformation(cloned, MsgItemPosition.Inventory));
@@ -323,7 +323,7 @@ namespace YiX.Network.Packets.Conquer
                     if (itemQuality >= 3 && itemQuality <= 9)
                     {
                         var lucky = false;
-                        var num = YiCore.Random.Next(1, 1000);
+                        var num = SafeRandom.Next(1, 1000);
                         if (itemQuality < 6) lucky = num <= 950;
                         else if (itemQuality == 6) lucky = num <= 880;
                         else if (itemQuality == 7) lucky = num <= 750;
@@ -372,7 +372,7 @@ namespace YiX.Network.Packets.Conquer
                     player.Inventory.RemoveItem(mainItem);//remove the item to update
                     player.Inventory.RemoveItem(subItem);//remove the db before attempting
                     var lucky = true;
-                    var num = YiCore.Random.Next(101);
+                    var num = SafeRandom.Next(101);
                     if (itemQuality < 6) lucky = num <= 90;
                     else if (itemQuality == 6) lucky = num <= 75;
                     else if (itemQuality == 7) lucky = num <= 50;
@@ -380,7 +380,7 @@ namespace YiX.Network.Packets.Conquer
 
                     if (num == 1 && mainItem.Gem1 == 0)
                         mainItem.Gem1 = 255;
-                    else if (num == 1 && YiCore.Random.Next(3) == 3)
+                    else if (num == 1 && SafeRandom.Next(3) == 3)
                         mainItem.Gem2 = 255;
 
                     if (lucky)
@@ -440,7 +440,7 @@ namespace YiX.Network.Packets.Conquer
                     case 700043: high = 119; low = 70; break;// kylin
                 }
             }
-            return YiCore.Random.Next(low, high);
+            return SafeRandom.Next(low, high);
         }
 
         private static void UpgradeItemEnchant(Player player, ref MsgItem packet)

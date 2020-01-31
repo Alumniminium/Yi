@@ -2,16 +2,16 @@
 using System.Net;
 using System.Net.Sockets;
 using System.Runtime;
+using YiX.Helpers;
 
 namespace YiX
 {
     public static class YiCore
     {
-        public static readonly Random Random = new Random();
         public static string ServerIp => GetIP();
         public static double ExpMulti { get; } = 1.25;
 
-        public static bool Success(float chance) => Random.Next(0, 101) <= chance;
+        public static bool Success(float chance) => SafeRandom.Next(0, 101) <= chance;
 
         public static void CompactLoh()
         {

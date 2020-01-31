@@ -1,6 +1,7 @@
 using System;
 using YiX.Entities;
 using YiX.Enums;
+using YiX.Helpers;
 using YiX.SelfContainedSystems;
 
 namespace YiX.Calculations
@@ -12,7 +13,7 @@ namespace YiX.Calculations
             float damage;
             if (attacker.CurrentSkill.Id == 1115 || attacker.CurrentSkill.Info.WeaponSubType != 0 && attacker.CurrentSkill.Info.WeaponSubType != 500)
             {
-                damage = YiCore.Random.Next(attacker.MinimumPhsyicalAttack, attacker.MaximumPhsyicalAttack);
+                damage = SafeRandom.Next(attacker.MinimumPhsyicalAttack, attacker.MaximumPhsyicalAttack);
                 if (attacker.CurrentSkill.Info.Power > 30000)
                     damage *= (float)(attacker.CurrentSkill.Info.Power - 30000) / 100;
                 else
@@ -23,7 +24,7 @@ namespace YiX.Calculations
             }
             else if (attacker.CurrentSkill.Info.WeaponSubType == 500)
             {
-                damage = YiCore.Random.Next(attacker.MinimumPhsyicalAttack, attacker.MaximumPhsyicalAttack);
+                damage = SafeRandom.Next(attacker.MinimumPhsyicalAttack, attacker.MaximumPhsyicalAttack);
                 if (attacker.CurrentSkill.Info.Power > 30000)
                     damage *= (float)(attacker.CurrentSkill.Info.Power - 30000) / 100;
                 else
@@ -59,7 +60,7 @@ namespace YiX.Calculations
             float damage;
 
             var reborn = 1.00f;
-            if (target.Reborn >0)
+            if (target.Reborn > 0)
                 reborn -= 0.30f; //30%
 
             var dodge = 1.00f;
@@ -67,7 +68,7 @@ namespace YiX.Calculations
 
             if (attacker.CurrentSkill.Id == 1115 || attacker.CurrentSkill.Info.WeaponSubType != 0 && attacker.CurrentSkill.Info.WeaponSubType != 500)
             {
-                damage = YiCore.Random.Next(attacker.MinimumPhsyicalAttack, attacker.MaximumPhsyicalAttack);
+                damage = SafeRandom.Next(attacker.MinimumPhsyicalAttack, attacker.MaximumPhsyicalAttack);
                 if (attacker.HasFlag(StatusEffect.SuperMan) && target is Player)
                     damage *= 0.2f; //PvP Reduction!
 
@@ -80,15 +81,15 @@ namespace YiX.Calculations
             }
             else if (attacker.CurrentSkill.Info.WeaponSubType == 500)
             {
-                damage = YiCore.Random.Next(attacker.MinimumPhsyicalAttack, attacker.MaximumPhsyicalAttack);
-                if (attacker.HasFlag(StatusEffect.SuperMan)&&target is Player)
+                damage = SafeRandom.Next(attacker.MinimumPhsyicalAttack, attacker.MaximumPhsyicalAttack);
+                if (attacker.HasFlag(StatusEffect.SuperMan) && target is Player)
                     damage *= 0.2f; //PvP Reduction!
 
                 if (attacker.CurrentSkill.Info.Power > 30000)
                     damage *= (float)(attacker.CurrentSkill.Info.Power - 30000) / 100;
                 else
                     damage += attacker.CurrentSkill.Info.Power;
-                
+
             }
             else
             {
@@ -117,13 +118,13 @@ namespace YiX.Calculations
                 return 0;
 
             var damage = 1.0d;
-            
+
             switch (attackType)
             {
                 case MsgInteractType.Physical:
-                    damage = YiCore.Random.Next(attacker.MinimumPhsyicalAttack, attacker.MaximumPhsyicalAttack);
+                    damage = SafeRandom.Next(attacker.MinimumPhsyicalAttack, attacker.MaximumPhsyicalAttack);
                     if (attacker is Monster)
-                        damage = YiCore.Random.Next(attacker.MinimumPhsyicalAttack, attacker.MaximumPhsyicalAttack);
+                        damage = SafeRandom.Next(attacker.MinimumPhsyicalAttack, attacker.MaximumPhsyicalAttack);
                     if (target is Monster monster)
                         damage = AdjustPvE((float)damage, attacker, monster);
                     if (attacker is Monster monster1 && target != null)
@@ -142,7 +143,7 @@ namespace YiX.Calculations
                     //    damage = AdjustEvP(damage, (Monster)attacker, (YiObj)target);
                     if (target != null)
                     {
-                        damage *= (float) (100 - Math.Min(target.MagicDefense, 95)) / 100;
+                        damage *= (float)(100 - Math.Min(target.MagicDefense, 95)) / 100;
                         damage -= target.MagicDefense; //MagicBlock
                         damage *= 0.65;
                     }
@@ -155,20 +156,20 @@ namespace YiX.Calculations
                     if (attacker == null)
                         return 0;
 
-                    damage = YiCore.Random.Next(attacker.MinimumPhsyicalAttack, attacker.MaximumPhsyicalAttack);
-                    damage = AdjustPvE((float) damage, attacker, attacker.CurrentTarget as Monster);
+                    damage = SafeRandom.Next(attacker.MinimumPhsyicalAttack, attacker.MaximumPhsyicalAttack);
+                    damage = AdjustPvE((float)damage, attacker, attacker.CurrentTarget as Monster);
                     break;
             }
-            
+
             if (target != null)
             {
-                if (target.Reborn>0)
+                if (target.Reborn > 0)
                     damage *= 0.7;
 
                 damage *= Math.Max(target.Bless, 1);
             }
             if (damage > 0)
-                damage = YiCore.Random.Next((int) (damage / 1.2), (int) damage);
+                damage = SafeRandom.Next((int)(damage / 1.2), (int)damage);
 
             damage *= 0.75;
 
@@ -177,15 +178,15 @@ namespace YiX.Calculations
             if (attacker is Player aPlayer)
             {
 
-               if (target == null)
-                    return (int) Math.Round(damage, 0);
+                if (target == null)
+                    return (int)Math.Round(damage, 0);
 
                 if (attacker.HasFlag(StatusEffect.SuperMan))
                     damage *= 10;
             }
 
             if (target != null)
-                TeamSystem.ShareExp(attacker, target, (uint) Math.Round(target.MaximumHp * 0.05));
+                TeamSystem.ShareExp(attacker, target, (uint)Math.Round(target.MaximumHp * 0.05));
             attacker.Experience += AdjustExp((int)Math.Round(damage, 0), attacker, target);
 
             return (int)Math.Round(damage, 0);
@@ -286,9 +287,9 @@ namespace YiX.Calculations
         {
             var minDmg = 1;
             minDmg += attacker.Level / 10;
-            
+
             if (!attacker.Equipment.TryGetValue(MsgItemPosition.Armor, out var item))
-                return Math.Max(minDmg, (int) damage);
+                return Math.Max(minDmg, (int)damage);
 
             minDmg += item.ItemId % 10;
 
@@ -299,7 +300,7 @@ namespace YiX.Calculations
 
         public static float AdjustPvE(float damage, YiObj attacker, Monster target)
         {
-            if (target == null || attacker==null)
+            if (target == null || attacker == null)
                 return 0;
             if (!target.IsGreen(attacker))
                 return Math.Max(0, (int)damage);

@@ -26,7 +26,7 @@ namespace YiX.Database.Squiggly
                     return;
 
                 if (monster.Look != 900 && monster.Look != 910)
-                    amount = (ushort) (amount * 9);
+                    amount = (ushort)(amount * 9);
 
                 for (var i = 0; i < amount; i++)
                 {
@@ -59,9 +59,9 @@ namespace YiX.Database.Squiggly
                             }
                         }
 
-                    obj.Location.X = (ushort) YiCore.Random.Next(spawn.Value.Xstart - 10,
-                            spawn.Value.Xstart + spawn.Value.Xend + 10);
-                        obj.Location.Y = (ushort) YiCore.Random.Next(spawn.Value.Ystart - 10,
+                        obj.Location.X = (ushort)SafeRandom.Next(spawn.Value.Xstart - 10,
+                                spawn.Value.Xstart + spawn.Value.Xend + 10);
+                        obj.Location.Y = (ushort)SafeRandom.Next(spawn.Value.Ystart - 10,
                             spawn.Value.Ystart + spawn.Value.Yend + 10);
                     }
                 }
@@ -88,7 +88,7 @@ namespace YiX.Database.Squiggly
                         Height = cqmap.Height,
                     };
                     if (cqmap.DMAP != null)
-                        MapAccess.MapData.AddOrUpdate((ushort) cqmap.mapdoc, new MapAccess(cqmap.DMAP));
+                        MapAccess.MapData.AddOrUpdate((ushort)cqmap.mapdoc, new MapAccess(cqmap.DMAP));
                     GameWorld.Maps.Add((ushort)cqmap.id, map);
                 }
                 foreach (var dportal in db.Dmap_Portals)
@@ -106,7 +106,7 @@ namespace YiX.Database.Squiggly
                     }
                 }
             }
-            
+
             sw.Stop();
             Debug.WriteLine($"[SquigglyLite] Loaded {GameWorld.Maps.Count}\t Maps in {sw.Elapsed.TotalMilliseconds}ms");
         }
@@ -121,7 +121,7 @@ namespace YiX.Database.Squiggly
                         continue;
                     var npc = new Npc
                     {
-                        UniqueId = (int) cqNpc.id,
+                        UniqueId = (int)cqNpc.id,
                         Location =
                         {
                             X = cqNpc.cellx,
@@ -140,7 +140,7 @@ namespace YiX.Database.Squiggly
                         Task4 = cqNpc.task4,
                         Task5 = cqNpc.task5,
                         Task6 = cqNpc.task6,
-                        Task7 = cqNpc.task7, 
+                        Task7 = cqNpc.task7,
                     };
 
                     Collections.Npcs.Add(npc.UniqueId, npc);
@@ -224,15 +224,15 @@ namespace YiX.Database.Squiggly
                         MobId = cqSpawn.npctype,
                         BornX = cqSpawn.born_x,
                         BornY = cqSpawn.born_y,
-                        TimerBegin =  cqSpawn.timer_begin,
-                        TimerEnd =  cqSpawn.timer_end,
-                        MaxAmount =  cqSpawn.maxnpc,
-                        Xstart =  cqSpawn.bound_x,
-                        Ystart =  cqSpawn.bound_y,
-                        Xend =  cqSpawn.bound_cx,
-                        Yend =  cqSpawn.bound_cy,
-                        RespawnDelay =  cqSpawn.rest_secs,
-                        Amount =  cqSpawn.max_per_gen
+                        TimerBegin = cqSpawn.timer_begin,
+                        TimerEnd = cqSpawn.timer_end,
+                        MaxAmount = cqSpawn.maxnpc,
+                        Xstart = cqSpawn.bound_x,
+                        Ystart = cqSpawn.bound_y,
+                        Xend = cqSpawn.bound_cx,
+                        Yend = cqSpawn.bound_cy,
+                        RespawnDelay = cqSpawn.rest_secs,
+                        Amount = cqSpawn.max_per_gen
                     };
                     if (!Collections.Spawns.ContainsKey(counter))
                         Collections.Spawns.TryAdd(counter, spawn);
@@ -255,7 +255,7 @@ namespace YiX.Database.Squiggly
                         AllLevTime = cqLvlExp.up_lev_time,
                         ExpReq = cqLvlExp.exp
                     };
-                    Collections.LevelExps.Add((int) cqLvlExp.level, lvlExp);
+                    Collections.LevelExps.Add((int)cqLvlExp.level, lvlExp);
                 }
             }
             sw.Stop();

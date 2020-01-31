@@ -5,6 +5,7 @@ using YiX.AI;
 using YiX.Database;
 using YiX.Database.Squiggly;
 using YiX.Enums;
+using YiX.Helpers;
 using YiX.Network.Packets.Conquer;
 using YiX.Scheduler;
 using YiX.SelfContainedSystems;
@@ -82,8 +83,8 @@ namespace YiX.Entities
                 if (spawnAttempts > 1000)
                     break;
 
-                Location.X = (ushort) YiCore.Random.Next(spawn.Xstart - 10, spawn.Xstart + spawn.Xend + 10);
-                Location.Y = (ushort) YiCore.Random.Next(spawn.Ystart - 10, spawn.Ystart + spawn.Yend + 10);
+                Location.X = (ushort)SafeRandom.Next(spawn.Xstart - 10, spawn.Xstart + spawn.Xend + 10);
+                Location.Y = (ushort)SafeRandom.Next(spawn.Ystart - 10, spawn.Ystart + spawn.Yend + 10);
 
                 spawnAttempts++;
                 if (GameWorld.Maps[MapId].MobValid(Location.X, Location.Y))

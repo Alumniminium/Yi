@@ -51,8 +51,6 @@ namespace YiX.Helpers
             }
         }
 
-        public static int Next() => GetNext();
-
         public static int Next(int maxValue) => GetNext(0, maxValue);
 
         public static int Next(int minValue, int maxValue) => GetNext(minValue, maxValue);

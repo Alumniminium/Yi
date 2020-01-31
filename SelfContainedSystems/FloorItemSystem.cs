@@ -119,8 +119,8 @@ namespace YiX.SelfContainedSystems
                 {
                     if (!GameWorld.Maps[drop.MapId].ItemValid(drop.Location.X, drop.Location.Y))
                     {
-                        drop.Location.X += (ushort)YiCore.Random.Next(-1, 2);
-                        drop.Location.Y += (ushort)YiCore.Random.Next(-1, 2);
+                        drop.Location.X += (ushort)SafeRandom.Next(-1, 2);
+                        drop.Location.Y += (ushort)SafeRandom.Next(-1, 2);
                     }
                     else
                     {

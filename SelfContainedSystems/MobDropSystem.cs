@@ -2,6 +2,7 @@
 using YiX.Database;
 using YiX.Entities;
 using YiX.Enums;
+using YiX.Helpers;
 using YiX.Items;
 using YiX.Structures;
 using YiX.World;
@@ -23,7 +24,7 @@ namespace YiX.SelfContainedSystems
 
         public static void Drop(YiObj attacker, Monster mob)
         {
-            var rand = YiCore.Random.Next(1, 1000);
+            var rand = SafeRandom.Next(1, 1000);
 
             Item created = default(Item);
             switch (mob.Id)
@@ -89,7 +90,7 @@ namespace YiX.SelfContainedSystems
             }
 
             if (rand < 200)
-                FloorItemSystem.DropMoney(attacker, mob, mob.Drops.Money + mob.Level * YiCore.Random.Next(1, 10));
+                FloorItemSystem.DropMoney(attacker, mob, mob.Drops.Money + mob.Level * SafeRandom.Next(1, 10));
             else if (rand < 250)
                 created = ItemFactory.Create(mob.Drops.Hp); //HP POTS
             else if (rand < 300)
@@ -134,7 +135,7 @@ namespace YiX.SelfContainedSystems
             uint itemType = 0;
             short itemLevel;
             bool IsArmet = false, IsArmor = false, IsBracelet = false, IsBag = false;
-            var rand = YiCore.Random.Next(0, 1200);
+            var rand = SafeRandom.Next(0, 1200);
 
             if (mob.Drops.Shoes != 99 && rand >= 0 && rand < 20)
             {
@@ -143,39 +144,39 @@ namespace YiX.SelfContainedSystems
             }
             else if (mob.Drops.Necklace != 99 && rand >= 20 && rand < 50)
             {
-                itemType = NecklaceType[YiCore.Random.Next(0, NecklaceType.Length)];
+                itemType = NecklaceType[SafeRandom.Next(0, NecklaceType.Length)];
                 itemLevel = mob.Drops.Necklace;//??
                 IsBag = true;
             }
             else if (mob.Drops.Ring != 99 && rand >= 50 && rand < 100)
             {
-                itemType = RingType[YiCore.Random.Next(0, RingType.Length)];
+                itemType = RingType[SafeRandom.Next(0, RingType.Length)];
                 itemLevel = mob.Drops.Ring;//??
                 if (itemType == 152) IsBracelet = true;//bracelets are just one level under for some reason?
             }
             else if (mob.Drops.Armet != 99 && rand >= 100 && rand < 400)
             {
-                itemType = ArmetType[YiCore.Random.Next(0, ArmetType.Length)];
+                itemType = ArmetType[SafeRandom.Next(0, ArmetType.Length)];
                 itemLevel = mob.Drops.Armet;//??
                 IsArmet = true;
             }
             else if (mob.Drops.Armor != 99 && rand >= 400 && rand < 700)
             {
-                itemType = ArmorType[YiCore.Random.Next(0, ArmorType.Length)];
+                itemType = ArmorType[SafeRandom.Next(0, ArmorType.Length)];
                 if (mob.Level > 10 && itemType == 132) itemType++;//noob coats don't work for high level mobs
                 itemLevel = mob.Drops.Armor;
                 IsArmor = true;
             }
             else // 45%
             {
-                var nRate = YiCore.Random.Next(0, 100);
+                var nRate = SafeRandom.Next(0, 100);
                 itemLevel = mob.Drops.Weapon;//THIS IS UNIVERSAL AND WASN'T IN THE BACKSWORD SECTION BTW
                 if (nRate >= 0 && nRate < 20)
                     itemType = 421;
                 else if (mob.Drops.Weapon != 99 && nRate >= 40 && nRate < 80)
-                    itemType = OneHanderType[YiCore.Random.Next(0, OneHanderType.Length)];
+                    itemType = OneHanderType[SafeRandom.Next(0, OneHanderType.Length)];
                 else if (mob.Drops.Weapon != 99)
-                    itemType = TwoHanderType[YiCore.Random.Next(0, TwoHanderType.Length)];
+                    itemType = TwoHanderType[SafeRandom.Next(0, TwoHanderType.Length)];
             }
             if (itemLevel == 99 || itemLevel == 0 || itemType == 0)
                 return 0;
@@ -183,7 +184,7 @@ namespace YiX.SelfContainedSystems
             var itemId = (int)(itemType * 1000 + itemLevel * 10 + itemQuality);
 
             if (IsArmet || itemType == 900) itemId += 300;
-            if (IsArmor) itemId += YiCore.Random.Next(0, 9) * 100;//shields might need to be in the armor section?
+            if (IsArmor) itemId += SafeRandom.Next(0, 9) * 100;//shields might need to be in the armor section?
             if (IsBracelet) itemId -= 90;
             if (IsBag) itemId += 10;
 
@@ -193,11 +194,11 @@ namespace YiX.SelfContainedSystems
             return Collections.Items.ContainsKey(itemId) ? itemId : 0;
         }
 
-        private static byte GeneratePurity(int moblevel) => (byte)(YiCore.Random.Next(1, 500) <= 3 + moblevel / 25 ? 1 : 0);
+        private static byte GeneratePurity(int moblevel) => (byte)(SafeRandom.Next(1, 500) <= 3 + moblevel / 25 ? 1 : 0);
 
         private static byte GenerateBless()
         {
-            var rand = YiCore.Random.Next(0, 1000);
+            var rand = SafeRandom.Next(0, 1000);
             if (rand < 1) return 5;
             return (byte)(rand < 5 ? 3 : 0);
         }
@@ -207,7 +208,7 @@ namespace YiX.SelfContainedSystems
             if (itemId < 410000 || itemId > 601999)
                 return 0;
 
-            var nRate = YiCore.Random.Next(0, 200 - moblevel / 2);
+            var nRate = SafeRandom.Next(0, 200 - moblevel / 2);
 
             if (nRate < 5)
                 return 2;
@@ -217,7 +218,7 @@ namespace YiX.SelfContainedSystems
 
         private static byte GenerateQuality(int moblevel)
         {
-            var i = YiCore.Random.Next(1, 1000);
+            var i = SafeRandom.Next(1, 1000);
             i -= moblevel / 25;
 
             if (i < 1)
