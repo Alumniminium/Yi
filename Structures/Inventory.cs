@@ -30,7 +30,7 @@ namespace YiX.Structures
 
         public void SetOwner(YiObj owner) => _owner = owner;
 
-        public bool FindByUID(int uniqueId, out Item found) => Items.TryGetValue(uniqueId, out found);
+        public bool TryGetItem(int uniqueId, out Item found) => Items.TryGetValue(uniqueId, out found);
         public bool RemoveItem(ItemNames name, int count = 1) => RemoveItem(name, count);
         private bool RemoveItem(int id, int count = 1)
         {

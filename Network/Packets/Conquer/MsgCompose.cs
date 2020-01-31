@@ -26,11 +26,11 @@ namespace YiX.Network.Packets.Conquer
 
                 try
                 {
-                    if (!player.Inventory.FindByUID(packet.UnqiueId, out var mainItem))
+                    if (!player.Inventory.TryGetItem(packet.UnqiueId, out var mainItem))
                         return;
-                    if (!player.Inventory.FindByUID(packet.FirstItemUID, out var firstTreasure))
+                    if (!player.Inventory.TryGetItem(packet.FirstItemUID, out var firstTreasure))
                         return;
-                    if (!player.Inventory.FindByUID(packet.SecondItemUID, out var secondTreasure))
+                    if (!player.Inventory.TryGetItem(packet.SecondItemUID, out var secondTreasure))
                         return;
 
                     if (firstTreasure.Plus != secondTreasure.Plus)
@@ -64,9 +64,9 @@ namespace YiX.Network.Packets.Conquer
 
                     if (mainItem.Plus >= 5)
                     {
-                        if (!player.Inventory.FindByUID(packet.FirstGemUID, out var firstGem))
+                        if (!player.Inventory.TryGetItem(packet.FirstGemUID, out var firstGem))
                             return;
-                        if (!player.Inventory.FindByUID(packet.SecondGemUID, out var secondGem))
+                        if (!player.Inventory.TryGetItem(packet.SecondGemUID, out var secondGem))
                             return;
 
                         player.Inventory.RemoveItem(firstGem);

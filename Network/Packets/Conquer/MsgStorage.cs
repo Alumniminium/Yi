@@ -82,7 +82,7 @@ namespace YiX.Network.Packets.Conquer
 
         private static void AddToStorage(Player player, ref MsgStorage packet)
         {
-            if (!player.Inventory.FindByUID(packet.Param, out var found))
+            if (!player.Inventory.TryGetItem(packet.Param, out var found))
                 return;
             if (StorageSystem.PutIn(player, packet.UniqueId, found))
             {

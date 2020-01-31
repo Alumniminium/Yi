@@ -124,7 +124,7 @@ namespace YiX.Network.Packets.Conquer
 
         private static void RepairItem(Player player, ref MsgItem packet)
         {
-            if (!player.Inventory.FindByUID(packet.UnqiueId, out var found))
+            if (!player.Inventory.TryGetItem(packet.UnqiueId, out var found))
                 return;
 
             if (found.CurrentDurability >= found.MaximumDurability)
@@ -188,7 +188,7 @@ namespace YiX.Network.Packets.Conquer
 
         private static void AddItemToShop(Player player, ref MsgItem packet)
         {
-            if (player.Inventory.FindByUID(packet.UnqiueId, out var item))
+            if (player.Inventory.TryGetItem(packet.UnqiueId, out var item))
             {
                 BoothSystem.Add(player, packet.UnqiueId, packet.Param);
                 ScreenSystem.Send(player, packet, true);
@@ -229,7 +229,7 @@ namespace YiX.Network.Packets.Conquer
 
         private static void EquipItem(Player player, ref MsgItem packet)
         {
-            if (player.Inventory.FindByUID(packet.UnqiueId, out var found))
+            if (player.Inventory.TryGetItem(packet.UnqiueId, out var found))
             {
                 //if(ScriptEngine.ActivateScript(found.ItemId).Result)
                 //    return;
@@ -248,7 +248,7 @@ namespace YiX.Network.Packets.Conquer
 
         private static void SellItem(Player player, ref MsgItem packet)
         {
-            if (player.Inventory.FindByUID(packet.Param, out var found))
+            if (player.Inventory.TryGetItem(packet.Param, out var found))
             {
                 if (player.Inventory.Items.TryRemove(found.UniqueId, out found))
                     player.Money += found.PriceBaseline;
@@ -292,9 +292,9 @@ namespace YiX.Network.Packets.Conquer
         }
         private static void UpgradeMeteor(Player player, ref MsgItem packet)
         {
-            if (!player.Inventory.FindByUID(packet.UnqiueId, out var mainItem))//item to upgrade
+            if (!player.Inventory.TryGetItem(packet.UnqiueId, out var mainItem))//item to upgrade
                 return;
-            if (!player.Inventory.FindByUID(packet.Param, out var subItem))//item to upgrade
+            if (!player.Inventory.TryGetItem(packet.Param, out var subItem))//item to upgrade
                 return;
 
             var jmp = 0;
@@ -359,9 +359,9 @@ namespace YiX.Network.Packets.Conquer
 
         private static void UpgradeDragonball(Player player, ref MsgItem packet)
         {
-            if (!player.Inventory.FindByUID(packet.UnqiueId, out var mainItem))//item to upgrade
+            if (!player.Inventory.TryGetItem(packet.UnqiueId, out var mainItem))//item to upgrade
                 return;
-            if (!player.Inventory.FindByUID(packet.Param, out var subItem))//db
+            if (!player.Inventory.TryGetItem(packet.Param, out var subItem))//db
                 return;
 
             if (subItem.ItemId == 1088000)
@@ -445,9 +445,9 @@ namespace YiX.Network.Packets.Conquer
 
         private static void UpgradeItemEnchant(Player player, ref MsgItem packet)
         {
-            if (!player.Inventory.FindByUID(packet.UnqiueId, out var mainItem))//item to upgrade
+            if (!player.Inventory.TryGetItem(packet.UnqiueId, out var mainItem))//item to upgrade
                 return;
-            if (!player.Inventory.FindByUID(packet.Param, out var subItem))//db
+            if (!player.Inventory.TryGetItem(packet.Param, out var subItem))//db
                 return;
 
             if (subItem.ItemId / 1000 == 700)//gem id const
