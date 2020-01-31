@@ -43,8 +43,7 @@ namespace YiX.SelfContainedSystems
             if (!BoothPool.ContainsKey(owner.BoothId))
                 CreateFor(owner);
 
-            var item = owner.Inventory.FindByUID(uniqueId);
-            if (!item.Valid())
+            if (!owner.Inventory.FindByUID(uniqueId, out var item))
                 return false;
             var product = new Product(owner.UniqueId, price, owner.BoothId, item);
             (owner as Player)?.Send(MsgItemInfoEx.CreateBoothItem(product));
@@ -64,8 +63,10 @@ namespace YiX.SelfContainedSystems
             if (!BoothPool.ContainsKey(owner.BoothId))
                 CreateFor(owner);
 
-            var product = owner.Inventory.FindByUID(uniqueId);
-            return product.Valid() && BoothPool[owner.BoothId].TryRemove(product.UniqueId);
+            if (!owner.Inventory.FindByUID(uniqueId, out var product))
+                return false;
+
+            return BoothPool[owner.BoothId].TryRemove(product.UniqueId);
         }
 
         public static void Show(Player player, int uniqueId)
@@ -86,9 +87,7 @@ namespace YiX.SelfContainedSystems
             if (!GameWorld.Find(ownerId - 10000000, out YiObj owner))
                 return false;
 
-            var item = owner.Inventory.FindByUID(itemId);
-
-            if (!item.Valid() || !BoothPool[ownerId].ContainsKey(item.UniqueId))
+            if (!owner.Inventory.FindByUID(itemId, out var item) || !BoothPool[ownerId].ContainsKey(item.UniqueId))
                 return false;
 
             var price = BoothPool[ownerId][item.UniqueId].Price;

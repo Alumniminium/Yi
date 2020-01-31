@@ -19,7 +19,7 @@ namespace YiX.Network.Packets.Conquer
         public ushort Unknown2;
         public int Param;
 
-        public static implicit operator byte[] (MsgStorage msg)
+        public static implicit operator byte[](MsgStorage msg)
         {
             var buffer = BufferPool.GetBuffer();
             fixed (byte* p = buffer)
@@ -31,7 +31,7 @@ namespace YiX.Network.Packets.Conquer
         {
             var msg = new MsgStorage
             {
-                Length = (ushort) sizeof (MsgStorage),
+                Length = (ushort)sizeof(MsgStorage),
                 Id = 1102,
                 Param = 0,
                 Action = action,
@@ -48,7 +48,7 @@ namespace YiX.Network.Packets.Conquer
             {
                 fixed (byte* p = buffer)
                 {
-                    var packet = *(MsgStorage*) p;
+                    var packet = *(MsgStorage*)p;
                     BufferPool.RecycleBuffer(buffer);
 
                     switch (packet.Action)
@@ -63,7 +63,7 @@ namespace YiX.Network.Packets.Conquer
                             ListStorage(player, ref packet);
                             break;
                         default:
-                            Output.WriteLine(((byte[]) packet).HexDump());
+                            Output.WriteLine(((byte[])packet).HexDump());
                             break;
                     }
                 }
@@ -82,14 +82,12 @@ namespace YiX.Network.Packets.Conquer
 
         private static void AddToStorage(Player player, ref MsgStorage packet)
         {
-            var found = player.Inventory.FindByUID(packet.Param);
-            if (found.UniqueId == packet.Param)
+            if (!player.Inventory.FindByUID(packet.Param, out var found))
+                return;
+            if (StorageSystem.PutIn(player, packet.UniqueId, found))
             {
-                if (StorageSystem.PutIn(player, packet.UniqueId, found))
-                {
-                    player.Send(packet);
-                    StorageSystem.ShowStock(player);
-                }
+                player.Send(packet);
+                StorageSystem.ShowStock(player);
             }
         }
 

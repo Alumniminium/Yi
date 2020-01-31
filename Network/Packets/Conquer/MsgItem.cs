@@ -124,8 +124,7 @@ namespace YiX.Network.Packets.Conquer
 
         private static void RepairItem(Player player, ref MsgItem packet)
         {
-            var found = player.Inventory.FindByUID(packet.UnqiueId);
-            if (!found.Valid())
+            if (!player.Inventory.FindByUID(packet.UnqiueId, out var found))
                 return;
 
             if (found.CurrentDurability >= found.MaximumDurability)
@@ -189,8 +188,7 @@ namespace YiX.Network.Packets.Conquer
 
         private static void AddItemToShop(Player player, ref MsgItem packet)
         {
-            var item = player.Inventory.FindByUID(packet.UnqiueId);
-            if (item.Valid())
+            if (player.Inventory.FindByUID(packet.UnqiueId, out var item))
             {
                 BoothSystem.Add(player, packet.UnqiueId, packet.Param);
                 ScreenSystem.Send(player, packet, true);
@@ -231,8 +229,7 @@ namespace YiX.Network.Packets.Conquer
 
         private static void EquipItem(Player player, ref MsgItem packet)
         {
-            var found = player.Inventory.FindByUID(packet.UnqiueId);
-            if (!found.Valid())
+            if (player.Inventory.FindByUID(packet.UnqiueId, out var found))
             {
                 //if(ScriptEngine.ActivateScript(found.ItemId).Result)
                 //    return;
@@ -251,8 +248,7 @@ namespace YiX.Network.Packets.Conquer
 
         private static void SellItem(Player player, ref MsgItem packet)
         {
-            var found = player.Inventory.FindByUID(packet.Param);
-            if (!found.Valid())
+            if (player.Inventory.FindByUID(packet.Param, out var found))
             {
                 if (player.Inventory.Items.TryRemove(found.UniqueId, out found))
                     player.Money += found.PriceBaseline;
@@ -296,110 +292,109 @@ namespace YiX.Network.Packets.Conquer
         }
         private static void UpgradeMeteor(Player player, ref MsgItem packet)
         {
-            var mainItem = player.Inventory.FindByUID(packet.UnqiueId);//item to upgrade
-            var subItem = player.Inventory.FindByUID(packet.Param);//met
-            if (mainItem.Valid() && subItem.Valid())
+            if (!player.Inventory.FindByUID(packet.UnqiueId, out var mainItem))//item to upgrade
+                return;
+            if (!player.Inventory.FindByUID(packet.Param, out var subItem))//item to upgrade
+                return;
+
+            var jmp = 0;
+            var itemId = mainItem.ItemId;
+            var itemType = itemId / 10000;
+        CheckValidID:
+            switch (itemType)
             {
-                var jmp = 0;
-                var itemId = mainItem.ItemId;
-                var itemType = itemId / 10000;
-            CheckValidID:
-                switch (itemType)
-                {
-                    case 11: // head
-                    case 12: // neck
-                    case 15: // ring
-                    case 13: // armor
-                    case 16: // boots
+                case 11: // head
+                case 12: // neck
+                case 15: // ring
+                case 13: // armor
+                case 16: // boots
+                    itemId += 10;
+                    break;
+                default:
+                    if (itemType >= 40 && itemType <= 61) // weapons
                         itemId += 10;
-                        break;
-                    default:
-                        if (itemType >= 40 && itemType <= 61) // weapons
-                            itemId += 10;
-                        break;
-                }
-                if (itemId != mainItem.ItemId)
-                {
-                    if (Collections.Items.ContainsKey(itemId))
-                    {
-                        var itemQuality = (byte)(mainItem.ItemId % 10);
-                        if (itemQuality >= 3 && itemQuality <= 9)
-                        {
-                            var lucky = false;
-                            var num = YiCore.Random.Next(1, 1000);
-                            if (itemQuality < 6) lucky = num <= 950;
-                            else if (itemQuality == 6) lucky = num <= 880;
-                            else if (itemQuality == 7) lucky = num <= 750;
-                            else if (itemQuality >= 8) lucky = num <= 670;
-
-                            if (lucky)
-                            {
-                                Message.SendTo(player, "You have successfully upgraded your item\'s level!", MsgTextType.Action);
-                                if (num < 10 && mainItem.Gem1 == 0)
-                                    mainItem.Gem1 = 255;
-                                else if (num == 1 && mainItem.Gem2 == 0)
-                                    mainItem.Gem2 = 255;
-
-                                mainItem.ItemId = itemId;
-                                player.Inventory.RemoveItem(mainItem);//remove the main item
-                                player.Inventory.RemoveItem(subItem);//remove the met
-                                player.Inventory.AddOrUpdate(mainItem.UniqueId, mainItem);//update the new item
-                                player.Send(new MsgItemInformation(mainItem, MsgItemPosition.Inventory));
-                            }
-                            else Message.SendTo(player, "Your item failed to upgrade.", MsgTextType.Action);
-                        }
-                        else
-                            Output.WriteLine("The item quality has recieved an else in MsgItem.cs with a value of " + itemQuality);
-                    }
-                    else if (jmp < 3)
-                    {
-                        jmp++;
-                        goto CheckValidID;
-                    }
-                }
-                else Message.SendTo(player, "You can\'t upgrade the level of this item.", MsgTextType.Action);
+                    break;
             }
-            else Message.SendTo(player, "Invalid items were attempted.", MsgTextType.Action);
+            if (itemId != mainItem.ItemId)
+            {
+                if (Collections.Items.ContainsKey(itemId))
+                {
+                    var itemQuality = (byte)(mainItem.ItemId % 10);
+                    if (itemQuality >= 3 && itemQuality <= 9)
+                    {
+                        var lucky = false;
+                        var num = YiCore.Random.Next(1, 1000);
+                        if (itemQuality < 6) lucky = num <= 950;
+                        else if (itemQuality == 6) lucky = num <= 880;
+                        else if (itemQuality == 7) lucky = num <= 750;
+                        else if (itemQuality >= 8) lucky = num <= 670;
+
+                        if (lucky)
+                        {
+                            Message.SendTo(player, "You have successfully upgraded your item\'s level!", MsgTextType.Action);
+                            if (num < 10 && mainItem.Gem1 == 0)
+                                mainItem.Gem1 = 255;
+                            else if (num == 1 && mainItem.Gem2 == 0)
+                                mainItem.Gem2 = 255;
+
+                            mainItem.ItemId = itemId;
+                            player.Inventory.RemoveItem(mainItem);//remove the main item
+                            player.Inventory.RemoveItem(subItem);//remove the met
+                            player.Inventory.AddOrUpdate(mainItem.UniqueId, mainItem);//update the new item
+                            player.Send(new MsgItemInformation(mainItem, MsgItemPosition.Inventory));
+                        }
+                        else Message.SendTo(player, "Your item failed to upgrade.", MsgTextType.Action);
+                    }
+                    else
+                        Output.WriteLine("The item quality has recieved an else in MsgItem.cs with a value of " + itemQuality);
+                }
+                else if (jmp < 3)
+                {
+                    jmp++;
+                    goto CheckValidID;
+                }
+            }
+            else Message.SendTo(player, "You can\'t upgrade the level of this item.", MsgTextType.Action);
         }
 
         private static void UpgradeDragonball(Player player, ref MsgItem packet)
         {
-            var mainItem = player.Inventory.FindByUID(packet.UnqiueId);//item to upgrade
-            var subItem = player.Inventory.FindByUID(packet.Param);//db
-            if (mainItem.Valid() && subItem.Valid())
+            if (!player.Inventory.FindByUID(packet.UnqiueId, out var mainItem))//item to upgrade
+                return;
+            if (!player.Inventory.FindByUID(packet.Param, out var subItem))//db
+                return;
+
+            if (subItem.ItemId == 1088000)
             {
-                if (subItem.ItemId == 1088000)
+                var itemQuality = (byte)(mainItem.ItemId % 10);
+                if (itemQuality >= 3 && itemQuality < 9)
                 {
-                    var itemQuality = (byte)(mainItem.ItemId % 10);
-                    if (itemQuality >= 3 && itemQuality < 9)
+                    player.Inventory.RemoveItem(mainItem);//remove the item to update
+                    player.Inventory.RemoveItem(subItem);//remove the db before attempting
+                    var lucky = true;
+                    var num = YiCore.Random.Next(101);
+                    if (itemQuality < 6) lucky = num <= 90;
+                    else if (itemQuality == 6) lucky = num <= 75;
+                    else if (itemQuality == 7) lucky = num <= 50;
+                    else if (itemQuality == 8) lucky = num <= 35;
+
+                    if (num == 1 && mainItem.Gem1 == 0)
+                        mainItem.Gem1 = 255;
+                    else if (num == 1 && YiCore.Random.Next(3) == 3)
+                        mainItem.Gem2 = 255;
+
+                    if (lucky)
                     {
-                        player.Inventory.RemoveItem(mainItem);//remove the item to update
-                        player.Inventory.RemoveItem(subItem);//remove the db before attempting
-                        var lucky = true;
-                        var num = YiCore.Random.Next(101);
-                        if (itemQuality < 6) lucky = num <= 90;
-                        else if (itemQuality == 6) lucky = num <= 75;
-                        else if (itemQuality == 7) lucky = num <= 50;
-                        else if (itemQuality == 8) lucky = num <= 35;
-
-                        if (num == 1 && mainItem.Gem1 == 0)
-                            mainItem.Gem1 = 255;
-                        else if (num == 1 && YiCore.Random.Next(3) == 3)
-                            mainItem.Gem2 = 255;
-
-                        if (lucky)
-                        {
-                            Message.SendTo(player, "You have successfully upgraded your item\'s quality!", MsgTextType.Action);
-                            if (itemQuality < 3) mainItem.ItemId += 2;//so it goes straight to refined
-                            mainItem.ItemId++;
-                        }
-                        else Message.SendTo(player, "You have failed to upgrade your item\'s quality.", MsgTextType.Action);
-
-                        player.Inventory.AddOrUpdate(mainItem.UniqueId, mainItem);//RETURN THE ITEM TO THE PLAYER REGARDLESS OF UPGRADE
-                        player.Send(new MsgItemInformation(mainItem, MsgItemPosition.Inventory));
+                        Message.SendTo(player, "You have successfully upgraded your item\'s quality!", MsgTextType.Action);
+                        if (itemQuality < 3) mainItem.ItemId += 2;//so it goes straight to refined
+                        mainItem.ItemId++;
                     }
-                    else Message.SendTo(player, "Invalid items were attempted.", MsgTextType.Action);
+                    else Message.SendTo(player, "You have failed to upgrade your item\'s quality.", MsgTextType.Action);
+
+                    player.Inventory.AddOrUpdate(mainItem.UniqueId, mainItem);//RETURN THE ITEM TO THE PLAYER REGARDLESS OF UPGRADE
+                    player.Send(new MsgItemInformation(mainItem, MsgItemPosition.Inventory));
                 }
+                else Message.SendTo(player, "Invalid items were attempted.", MsgTextType.Action);
             }
         }
 
@@ -450,22 +445,21 @@ namespace YiX.Network.Packets.Conquer
 
         private static void UpgradeItemEnchant(Player player, ref MsgItem packet)
         {
-            var mainItem = player.Inventory.FindByUID(packet.UnqiueId);
+            if (!player.Inventory.FindByUID(packet.UnqiueId, out var mainItem))//item to upgrade
+                return;
+            if (!player.Inventory.FindByUID(packet.Param, out var subItem))//db
+                return;
 
-            var subItem = player.Inventory.FindByUID(packet.Param);
-            if (mainItem.Valid() && subItem.Valid())
+            if (subItem.ItemId / 1000 == 700)//gem id const
             {
-                if (subItem.ItemId / 1000 == 700)//gem id const
-                {
-                    var num = GetGemBlessWorth(subItem.ItemId);
-                    if (num > mainItem.Enchant)
-                        mainItem.Enchant = (byte)num;
+                var num = GetGemBlessWorth(subItem.ItemId);
+                if (num > mainItem.Enchant)
+                    mainItem.Enchant = (byte)num;
 
-                    player.Inventory.RemoveItem(mainItem);//remove the item to update
-                    player.Inventory.RemoveItem(subItem);//remove the db before attempting
-                    player.Inventory.AddOrUpdate(mainItem.UniqueId, mainItem);//RETURN THE ITEM TO THE PLAYER REGARDLESS OF UPGRADE
-                    player.Send(new MsgItemInformation(mainItem, MsgItemPosition.Inventory));
-                }
+                player.Inventory.RemoveItem(mainItem);//remove the item to update
+                player.Inventory.RemoveItem(subItem);//remove the db before attempting
+                player.Inventory.AddOrUpdate(mainItem.UniqueId, mainItem);//RETURN THE ITEM TO THE PLAYER REGARDLESS OF UPGRADE
+                player.Send(new MsgItemInformation(mainItem, MsgItemPosition.Inventory));
             }
         }
 

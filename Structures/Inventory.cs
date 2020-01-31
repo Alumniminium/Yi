@@ -25,17 +25,12 @@ namespace YiX.Structures
         public Inventory(YiObj owner)
         {
             _owner = owner;
-            Items=new ConcurrentDictionary<int, Item>();
+            Items = new ConcurrentDictionary<int, Item>();
         }
 
         public void SetOwner(YiObj owner) => _owner = owner;
 
-        public Item FindByUID(int uniqueId)
-        {
-            Item found;
-            Items.TryGetValue(uniqueId, out found);
-            return found;
-        }
+        public bool FindByUID(int uniqueId, out Item found) => Items.TryGetValue(uniqueId, out found);
         public bool RemoveItem(ItemNames name, int count = 1) => RemoveItem(name, count);
         private bool RemoveItem(int id, int count = 1)
         {
@@ -46,7 +41,7 @@ namespace YiX.Structures
                     foreach (var item in Items.Values.Where(item => item.ItemId == id))
                     {
                         Items.TryRemove(item.UniqueId);
-                        (_owner as Player)?.Send(MsgItem.Create(item.UniqueId, 0,0, MsgItemType.RemoveInventory));
+                        (_owner as Player)?.Send(MsgItem.Create(item.UniqueId, 0, 0, MsgItemType.RemoveInventory));
                     }
                 }
                 return true;
@@ -56,7 +51,7 @@ namespace YiX.Structures
 
         public void RemoveItem(Item remove)
         {
-            (_owner as Player)?.Send(MsgItem.Create(remove.UniqueId, 0,0, MsgItemType.RemoveInventory));
+            (_owner as Player)?.Send(MsgItem.Create(remove.UniqueId, 0, 0, MsgItemType.RemoveInventory));
             Items.TryRemove(remove.UniqueId);
         }
 
@@ -83,7 +78,7 @@ namespace YiX.Structures
         internal bool HasItems(params int[] itemIds) => Items.ContainsAll(itemIds);
         public bool HasItems(params ItemNames[] itemIds) => Items.ContainsAll(itemIds);
 
-        public IEnumerator<KeyValuePair<int,Item>>  GetEnumerator() => Items.GetEnumerator();
+        public IEnumerator<KeyValuePair<int, Item>> GetEnumerator() => Items.GetEnumerator();
 
         public void AddOrUpdate(int uniqueId, Item original) => Items.AddOrUpdate(uniqueId, original);
 
