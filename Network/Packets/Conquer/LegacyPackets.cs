@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Linq;
+using YiX.Calculations;
 using YiX.Entities;
 using YiX.Items;
 using YiX.Network.Sockets;
@@ -21,7 +22,7 @@ namespace YiX.Network.Packets.Conquer
                     .Int(contents.Count);
 
                 //var position = 16;
-                foreach (var item in contents.OrderByDescending(kvp=>kvp.Value.ItemId))
+                foreach (var item in contents.OrderByDescending(kvp => kvp.Value.ItemId))
                 {
                     yi
                         .Int(item.Key)
@@ -29,13 +30,13 @@ namespace YiX.Network.Packets.Conquer
                         .Byte(0)
                         .Byte(item.Value.Gem1)
                         .Byte(item.Value.Gem2)
-                        .Byte((byte) item.Value.RebornEffect)
+                        .Byte((byte)item.Value.RebornEffect)
                         .Byte(0)
                         .Byte(item.Value.Plus)
                         .Byte(item.Value.Bless)
                         .Byte(0)
                         .Short(item.Value.Enchant)
-                        .Short((short) item.Value.CustomTextId);
+                        .Short((short)item.Value.CustomTextId);
                     //.Goto(position += 20);
                 }
 
@@ -43,42 +44,18 @@ namespace YiX.Network.Packets.Conquer
             }
         }
 
-        public static unsafe byte[] SpawnCarpet(Npc character, int id)
+        public static unsafe byte[] SpawnCarpet(YiObj character, int id)
         {
             const ushort packetType = 1109;
             var packet = BufferPool.GetBuffer();
 
             fixed (byte* p = packet)
             {
-                *(ushort*)p = (ushort)packet.Length;
+                *(ushort*)p = (ushort)(28 + character.Name.Length);
                 *(ushort*)(p + 2) = packetType;
                 *(int*)(p + 4) = id;
-                *(ushort*)(p + 16) = (ushort)(character.Location.X + 0);
-                *(ushort*)(p + 18) = (ushort)(character.Location.Y + 1);
-                *(ushort*)(p + 20) = 400;
-                *(ushort*)(p + 22) = 14;
-                *(p + 24) = 11;
-                *(p + 26) = 1;
-                *(p + 27) = (byte)"Booth".Length;
-                for (var I = 0; I < "Booth".Length; I++)
-                {
-                    *(p + 28 + I) = Convert.ToByte("Booth"[I]);
-                }
-            }
-            return packet;
-        }
-        public static unsafe byte[] SpawnCarpet(Player character, int id)
-        {
-            const ushort packetType = 1109;
-            var packet = BufferPool.GetBuffer();
-
-            fixed (byte* p = packet)
-            {
-                *(ushort*) p = (ushort) (28 + character.Name.Length);
-                *(ushort*)(p + 2) = packetType;
-                *(int*)(p + 4) = id;
-                *(ushort*)(p + 16) = character.Location.X;
-                *(ushort*)(p + 18) = (ushort)(character.Location.Y + 1);
+                *(ushort*)(p + 16) = (ushort)(character.Location.X + (ushort)Constants.DeltaX[(sbyte)character.Direction]);
+                *(ushort*)(p + 18) = (ushort)(character.Location.Y + (ushort)Constants.DeltaY[(sbyte)character.Direction]);
                 *(ushort*)(p + 20) = 400;
                 *(ushort*)(p + 22) = 14;
                 *(p + 24) = 11;
@@ -187,7 +164,7 @@ namespace YiX.Network.Packets.Conquer
                     .Int(key)
                     .StringWithoutLenght(YiCore.ServerIp)
                     .Goto(28)
-                    .Short((short) port);
+                    .Short((short)port);
 
                 return yi;
             }

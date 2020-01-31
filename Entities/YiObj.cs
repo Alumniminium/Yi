@@ -23,7 +23,7 @@ namespace YiX.Entities
         public virtual uint Look { get; set; }
         public ushort MapId { get; set; }
         public Vector2 Location { get; set; }
-        public Direction Direction { get; set; }
+        public virtual Direction Direction { get; set; }
         public virtual byte Level { get; set; }
         public virtual int CurrentHp { get; set; }
         public virtual ushort MaximumHp { get; set; }
