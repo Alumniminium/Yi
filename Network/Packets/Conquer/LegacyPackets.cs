@@ -56,7 +56,7 @@ namespace YiX.Network.Packets.Conquer
                 *(int*)(p + 4) = id;
                 *(ushort*)(p + 16) = (ushort)(character.Location.X + (ushort)Constants.DeltaX[(sbyte)character.Direction]);
                 *(ushort*)(p + 18) = (ushort)(character.Location.Y + (ushort)Constants.DeltaY[(sbyte)character.Direction]);
-                *(ushort*)(p + 20) = 400;
+                *(ushort*)(p + 20) = 400; //TODO Figure out what value this is, set proper direction
                 *(ushort*)(p + 22) = 14;
                 *(p + 24) = 11;
                 *(p + 26) = 1;

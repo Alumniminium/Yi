@@ -3,7 +3,7 @@ using System.Security.Cryptography;
 
 namespace YiX.Helpers
 {
-    public class SafeRandom : Random
+    public static class SafeRandom
     {
         private const int PoolSize = 2048;
 
@@ -51,11 +51,11 @@ namespace YiX.Helpers
             }
         }
 
-        public override int Next() => GetNext();
+        public static int Next() => GetNext();
 
-        public override int Next(int maxValue) => GetNext(0, maxValue);
+        public static int Next(int maxValue) => GetNext(0, maxValue);
 
-        public override int Next(int minValue, int maxValue) => GetNext(minValue, maxValue);
+        public static int Next(int minValue, int maxValue) => GetNext(minValue, maxValue);
 
         private static byte[] GeneratePool(byte[] buffer)
         {
