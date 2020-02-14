@@ -1,0 +1,131 @@
+{
+  "900001": {
+    "Original": {
+      "UniqueId": 81331,
+      "ItemId": 1001000,
+      "CurrentDurability": 1,
+      "MaximumDurability": 1,
+      "Range": 1,
+      "Frequency": 1000,
+      "PriceBaseline": 6,
+      "PotAddMp": 70,
+      "StackAmount": 1,
+      "BonusId": 100100000,
+      "CustomTextId": 1
+    },
+    "DropTime": "2017-04-18T17:42:09.8259713Z",
+    "UniqueId": 900001,
+    "MapId": 1002,
+    "Location": {
+      "X": 445,
+      "Y": 438
+    },
+    "StatusEffects": 262144,
+    "AttackRange": 1,
+    "Enemies": [],
+    "Friends": []
+  },
+  "900002": {
+    "Original": {
+      "UniqueId": 81332,
+      "ItemId": 1000000,
+      "CurrentDurability": 1,
+      "MaximumDurability": 1,
+      "Range": 1,
+      "Frequency": 1000,
+      "PriceBaseline": 5,
+      "PotAddHp": 70,
+      "StackAmount": 1,
+      "BonusId": 100000000,
+      "CustomTextId": 1
+    },
+    "DropTime": "2017-04-18T17:42:09.8294746Z",
+    "UniqueId": 900002,
+    "MapId": 1002,
+    "Location": {
+      "X": 456,
+      "Y": 441
+    },
+    "StatusEffects": 262144,
+    "AttackRange": 1,
+    "Enemies": [],
+    "Friends": []
+  },
+  "900003": {
+    "Original": {
+      "UniqueId": 81333,
+      "ItemId": 1001000,
+      "CurrentDurability": 1,
+      "MaximumDurability": 1,
+      "Range": 1,
+      "Frequency": 1000,
+      "PriceBaseline": 6,
+      "PotAddMp": 70,
+      "StackAmount": 1,
+      "BonusId": 100100000,
+      "CustomTextId": 1
+    },
+    "DropTime": "2017-04-18T17:42:09.8294746Z",
+    "UniqueId": 900003,
+    "MapId": 1002,
+    "Location": {
+      "X": 452,
+      "Y": 445
+    },
+    "StatusEffects": 262144,
+    "AttackRange": 1,
+    "Enemies": [],
+    "Friends": []
+  },
+  "900004": {
+    "Original": {
+      "UniqueId": 81334,
+      "ItemId": 1090000,
+      "CurrentDurability": 298,
+      "MaximumDurability": 298,
+      "Range": 1,
+      "Frequency": 1000,
+      "StackAmount": 1,
+      "BonusId": 109000000,
+      "CustomTextId": 1
+    },
+    "Amount": 10,
+    "DropTime": "2017-04-18T17:42:11.0488417Z",
+    "UniqueId": 900004,
+    "MapId": 1002,
+    "Location": {
+      "X": 438,
+      "Y": 454
+    },
+    "StatusEffects": 262144,
+    "AttackRange": 1,
+    "Enemies": [],
+    "Friends": []
+  },
+  "900005": {
+    "Original": {
+      "UniqueId": 81335,
+      "ItemId": 1001000,
+      "CurrentDurability": 1,
+      "MaximumDurability": 1,
+      "Range": 1,
+      "Frequency": 1000,
+      "PriceBaseline": 6,
+      "PotAddMp": 70,
+      "StackAmount": 1,
+      "BonusId": 100100000,
+      "CustomTextId": 1
+    },
+    "DropTime": "2017-04-18T17:42:12.3526067Z",
+    "UniqueId": 900005,
+    "MapId": 1002,
+    "Location": {
+      "X": 428,
+      "Y": 459
+    },
+    "StatusEffects": 262144,
+    "AttackRange": 1,
+    "Enemies": [],
+    "Friends": []
+  }
+}

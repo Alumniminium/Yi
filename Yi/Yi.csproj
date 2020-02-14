@@ -1,0 +1,353 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.2.4.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.2.4.0\build\Microsoft.Net.Compilers.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8CAE240F-58C2-4A7F-A14F-98D34FAD224E}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Yi</RootNamespace>
+    <AssemblyName>Yi</AssemblyName>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+    <LangVersion>7</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <LangVersion>7</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Yi.Program</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="AI\BasicBrain.cs" />
+    <Compile Include="AI\Brain.cs" />
+    <Compile Include="AI\GuardBrain.cs" />
+    <Compile Include="AI\Workers\WorkerAI.cs" />
+    <Compile Include="AI\Workers\WorkerInteraction.cs" />
+    <Compile Include="Network\Packets\Conquer\MsgCompose.cs" />
+    <Compile Include="Network\Packets\Conquer\MsgGemSocket.cs" />
+    <Compile Include="SelfContainedSystems\ChatLog.cs" />
+    <Compile Include="SelfContainedSystems\CpuMonitor.cs" />
+    <Compile Include="Enums\SkillId.cs" />
+    <Compile Include="Enums\WorkerInteractionType.cs" />
+    <Compile Include="AI\Workers\WorkerTask.cs" />
+    <Compile Include="SelfContainedSystems\GCMonitor.cs" />
+    <Compile Include="Helpers\ByteExtensions.cs" />
+    <Compile Include="Helpers\StorageList.cs" />
+    <Compile Include="Network\Sockets\IncommingPacketQueue.cs" />
+    <Compile Include="SelfContainedSystems\ItemLog.cs" />
+    <Compile Include="SelfContainedSystems\PerformanceMonitor.cs" />
+    <Compile Include="Network\Packets\Conquer\MsgWeather.cs" />
+    <Compile Include="Network\Packets\Conquer\MsgNoble.cs" />
+    <Compile Include="SelfContainedSystems\BlackHoleSystem.cs" />
+    <Compile Include="SelfContainedSystems\DayNightSystem.cs" />
+    <Compile Include="Database\JsonObjects\Main.cs" />
+    <Compile Include="Database\JsonObjects\Weather.cs" />
+    <Compile Include="Database\JsonObjects\WeatherJson.cs" />
+    <Compile Include="SelfContainedSystems\MobDropSystem.cs" />
+    <Compile Include="SelfContainedSystems\PkSystem.cs" />
+    <Compile Include="SelfContainedSystems\PlayerReborn.cs" />
+    <Compile Include="SelfContainedSystems\WeatherSystem.cs" />
+    <Compile Include="Database\JsonObjects\Wind.cs" />
+    <Compile Include="Structures\Buff.cs" />
+    <Compile Include="SelfContainedSystems\BuffSystem.cs" />
+    <Compile Include="SelfContainedSystems\SelectorSystem.cs" />
+    <Compile Include="SelfContainedSystems\UniqueIdGenerator.cs" />
+    <Compile Include="Structures\Drop.cs" />
+    <Compile Include="Structures\Drops.cs" />
+    <Compile Include="Enums\AIType.cs" />
+    <Compile Include="Calculations\AttackCalcs.cs" />
+    <Compile Include="AttackSystems\Magic.cs" />
+    <Compile Include="Enums\TargetingType.cs" />
+    <Compile Include="Enums\UseType.cs" />
+    <Compile Include="Enums\ItemExType.cs" />
+    <Compile Include="Enums\MsgStorageAction.cs" />
+    <Compile Include="Enums\SaveType.cs" />
+    <Compile Include="Enums\SchedulerPriority.cs" />
+    <Compile Include="Helpers\DictionaryExtensions.cs" />
+    <Compile Include="Helpers\ListExtensions.cs" />
+    <Compile Include="Helpers\MoarLinq.cs" />
+    <Compile Include="Helpers\SafeRandom.cs" />
+    <Compile Include="Helpers\StringExtensions.cs" />
+    <Compile Include="Factories\ItemFactory.cs" />
+    <Compile Include="Items\Product.cs" />
+    <Compile Include="Network\Packets\Conquer\MsgStorage.cs" />
+    <Compile Include="Network\Packets\Conquer\MsgItemInfoEx.cs" />
+    <Compile Include="Scripting\AppDomainFactory.cs" />
+    <Compile Include="Scripting\IYiScript.cs" />
+    <Compile Include="Scripting\Reflector.cs" />
+    <Compile Include="Scripting\Script.cs" />
+    <Compile Include="Database\Collections.cs" />
+    <Compile Include="Database\Converters\BoolConverter.cs" />
+    <Compile Include="Database\Converters\Dmap\Cell.cs" />
+    <Compile Include="Database\Converters\Dmap\GameMap.cs" />
+    <Compile Include="Database\Converters\Dmap\LayerInfo.cs" />
+    <Compile Include="Database\Converters\Dmap\MapObj\C2DMapCoverObj.cs" />
+    <Compile Include="Database\Converters\Dmap\MapObj\C2DMapTerrainObj.cs" />
+    <Compile Include="Database\Converters\Dmap\MapObj\C3DMapEffect.cs" />
+    <Compile Include="Database\Converters\Dmap\MapObj\C3DMapEffectNew.cs" />
+    <Compile Include="Database\Converters\Dmap\MapObj\C3DMapTerrainObjPart.cs" />
+    <Compile Include="Database\Converters\Dmap\MapObj\CMapSound.cs" />
+    <Compile Include="Database\Converters\Dmap\MapObj\MapObjects.cs" />
+    <Compile Include="Database\Converters\Dmap\MyPos.cs" />
+    <Compile Include="Database\Converters\Dmap\MySize.cs" />
+    <Compile Include="Database\Converters\Dmap\PassageInfo.cs" />
+    <Compile Include="Database\Converters\Dmap\RegionInfo.cs" />
+    <Compile Include="Database\Converters\DynamicNpcDb.cs" />
+    <Compile Include="Database\DbConverter.cs" />
+    <Compile Include="Database\Converters\ItemBonusConverter.cs" />
+    <Compile Include="Database\Converters\KeyValueFormat.cs" />
+    <Compile Include="Database\Converters\LevelExpConverter.cs" />
+    <Compile Include="Database\Converters\MonsterDb.cs" />
+    <Compile Include="Database\Converters\NpcDb.cs" />
+    <Compile Include="Database\Converters\Portaldb.cs" />
+    <Compile Include="Database\Converters\ShopDb.cs" />
+    <Compile Include="Database\Converters\MagicTypeConverter.cs" />
+    <Compile Include="Database\Converters\NativeMethods.cs" />
+    <Compile Include="Database\Converters\Dmap\MapConverter.cs" />
+    <Compile Include="Database\Converters\StatpointConverter.cs" />
+    <Compile Include="Enums\MsgRemoteMaintenanceType.cs" />
+    <Compile Include="Enums\WeatherType.cs" />
+    <Compile Include="Helpers\Message.cs" />
+    <Compile Include="Helpers\StreamExtensions.cs" />
+    <Compile Include="Helpers\ConcurrentDictionaryExtensions.cs" />
+    <Compile Include="Calculations\Constants.cs" />
+    <Compile Include="Enums\MsgItemInfoAction.cs" />
+    <Compile Include="Entities\YiObj.cs" />
+    <Compile Include="Network\Packets\Conquer\MsgProf.cs" />
+    <Compile Include="Network\Packets\Conquer\MsgAssignPet.cs" />
+    <Compile Include="Network\Packets\Conquer\MsgDynNpcSpawn.cs" />
+    <Compile Include="Network\Packets\Conquer\MsgMagicEffect.cs" />
+    <Compile Include="Network\Packets\Conquer\MsgNpcSpawn.cs" />
+    <Compile Include="Network\Packets\Conquer\MsgSpawn.cs" />
+    <Compile Include="Network\Packets\Conquer\MsgSyndicate.cs" />
+    <Compile Include="Network\Packets\Conquer\MsgSyndicateSpawn.cs" />
+    <Compile Include="Network\Sockets\OutgoingPacketQueue.cs" />
+    <Compile Include="Scripting\ScriptEngine.cs" />
+    <Compile Include="Enums\ScriptType.cs" />
+    <Compile Include="Scripting\ScriptAttribute.cs" />
+    <Compile Include="Scripting\ScriptWatcher.cs" />
+    <Compile Include="Structures\Equipment.cs" />
+    <Compile Include="Structures\Guild.cs" />
+    <Compile Include="Helpers\SafeList.cs" />
+    <Compile Include="Structures\Inventory.cs" />
+    <Compile Include="Structures\MagicTypeHelper.cs" />
+    <Compile Include="SelfContainedSystems\BoothSystem.cs" />
+    <Compile Include="SelfContainedSystems\FloorItemSystem.cs" />
+    <Compile Include="SelfContainedSystems\StorageSystem.cs" />
+    <Compile Include="Structures\Storage.cs" />
+    <Compile Include="Enums\StorageAccess.cs" />
+    <Compile Include="Structures\Trade.cs" />
+    <Compile Include="UserInterface.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserInterface.Designer.cs">
+      <DependentUpon>UserInterface.cs</DependentUpon>
+    </Compile>
+    <Compile Include="World\MapAccess.cs" />
+    <Compile Include="World\Pathfinding\Jps.cs" />
+    <Compile Include="World\Pathfinding\PathingMaster.cs" />
+    <Compile Include="World\Pathfinding\PathingNode.cs" />
+    <Compile Include="World\Pathfinding\Position.cs" />
+    <Compile Include="World\Pathfinding\SimplePath.cs" />
+    <Compile Include="Network\Packets\Conquer\MsgAction.cs" />
+    <Compile Include="Network\Packets\Conquer\MsgColor.cs" />
+    <Compile Include="Network\Packets\Conquer\MsgConnect.cs" />
+    <Compile Include="Network\Packets\Conquer\MsgDialog.cs" />
+    <Compile Include="Network\Packets\Conquer\MsgFloorItem.cs" />
+    <Compile Include="Network\Packets\Conquer\MsgForge.cs" />
+    <Compile Include="Network\Packets\Conquer\MsgFriend.cs" />
+    <Compile Include="Network\Packets\Conquer\MsgFriendInfo.cs" />
+    <Compile Include="Network\Packets\Conquer\MsgInteract.cs" />
+    <Compile Include="Network\Packets\Conquer\MsgItem.cs" />
+    <Compile Include="Network\Packets\Conquer\MsgItemInformation.cs" />
+    <Compile Include="Network\Packets\Conquer\MsgNpc.cs" />
+    <Compile Include="Network\Packets\Conquer\MsgRole.cs" />
+    <Compile Include="Network\Packets\Conquer\MsgSkill.cs" />
+    <Compile Include="Network\Packets\Conquer\MsgStatus.cs" />
+    <Compile Include="Network\Packets\Conquer\MsgSynMemberInfo.cs" />
+    <Compile Include="Network\Packets\Conquer\MsgTeam.cs" />
+    <Compile Include="Network\Packets\Conquer\MsgTeamUpdate.cs" />
+    <Compile Include="Network\Packets\Conquer\MsgTick.cs" />
+    <Compile Include="Network\Packets\Conquer\MsgLogin.cs" />
+    <Compile Include="Network\Packets\Conquer\MsgUpdate.cs" />
+    <Compile Include="Network\Packets\Conquer\MsgWalk.cs" />
+    <Compile Include="Network\Packets\Remote\MsgFileTransfer.cs" />
+    <Compile Include="Network\Packets\Remote\MsgRemoteLogin.cs" />
+    <Compile Include="Network\Packets\Remote\MsgRemoteMaintenance.cs" />
+    <Compile Include="Network\Packets\Remote\MsgRemoteText.cs" />
+    <Compile Include="Items\ItemBonus.cs" />
+    <Compile Include="Structures\LevelExp.cs" />
+    <Compile Include="Structures\MagicTypeEntry.cs" />
+    <Compile Include="World\Map.cs" />
+    <Compile Include="World\Portal.cs" />
+    <Compile Include="Structures\Prof.cs" />
+    <Compile Include="SelfContainedSystems\ScreenSystem.cs" />
+    <Compile Include="Structures\Skill.cs" />
+    <Compile Include="Structures\Spawn.cs" />
+    <Compile Include="Structures\Statpoints.cs" />
+    <Compile Include="SelfContainedSystems\TeamSystem.cs" />
+    <Compile Include="Database\Db.cs" />
+    <Compile Include="Entities\Bot.cs" />
+    <Compile Include="Entities\DynamicNpc.cs" />
+    <Compile Include="Items\FloorItem.cs" />
+    <Compile Include="Entities\Monster.cs" />
+    <Compile Include="Entities\Npc.cs" />
+    <Compile Include="Items\Item.cs" />
+    <Compile Include="Structures\Vector2.cs" />
+    <Compile Include="Entities\Pet.cs" />
+    <Compile Include="Entities\Player.cs" />
+    <Compile Include="Enums\AssociateMode.cs" />
+    <Compile Include="Enums\AttackResult.cs" />
+    <Compile Include="Enums\ClasseName.cs" />
+    <Compile Include="Enums\Direction.cs" />
+    <Compile Include="Enums\DuraType.cs" />
+    <Compile Include="Enums\Emote.cs" />
+    <Compile Include="Enums\EntityType.cs" />
+    <Compile Include="Enums\GuildRanks.cs" />
+    <Compile Include="Enums\GuildRequest.cs" />
+    <Compile Include="Enums\ItemNames.cs" />
+    <Compile Include="Enums\LoginType.cs" />
+    <Compile Include="Enums\MagicTypeEnum.cs" />
+    <Compile Include="Enums\MapEffects.cs" />
+    <Compile Include="Enums\MapFlags.cs" />
+    <Compile Include="Enums\MsgActionType.cs" />
+    <Compile Include="Enums\MsgDialogType.cs" />
+    <Compile Include="Enums\MsgFloorItemType.cs" />
+    <Compile Include="Enums\MsgFriendActionType.cs" />
+    <Compile Include="Enums\MsgFriendStatusType.cs" />
+    <Compile Include="Enums\MsgInteractType.cs" />
+    <Compile Include="Enums\MsgItemPosition.cs" />
+    <Compile Include="Enums\MsgItemType.cs" />
+    <Compile Include="Enums\MsgNameType.cs" />
+    <Compile Include="Enums\MsgNpcAction.cs" />
+    <Compile Include="Enums\MsgTeamAction.cs" />
+    <Compile Include="Enums\MsgTeamMemberAction.cs" />
+    <Compile Include="Enums\MsgTextType.cs" />
+    <Compile Include="Enums\MsgUpdateType.cs" />
+    <Compile Include="Enums\PacketType.cs" />
+    <Compile Include="Enums\PkMode.cs" />
+    <Compile Include="Enums\RebornItemEffect.cs" />
+    <Compile Include="Enums\Skills.cs" />
+    <Compile Include="Enums\SkillType.cs" />
+    <Compile Include="Enums\StatusEffect.cs" />
+    <Compile Include="Enums\StringType.cs" />
+    <Compile Include="Enums\TradeMode.cs" />
+    <Compile Include="Enums\Visibility.cs" />
+    <Compile Include="YiCore.cs" />
+    <Compile Include="AttackSystems\Physical.cs" />
+    <Compile Include="Calculations\Conditions.cs" />
+    <Compile Include="Calculations\EntityLogic.cs" />
+    <Compile Include="Helpers\CloneChamber.cs" />
+    <Compile Include="Calculations\Position.cs" />
+    <Compile Include="World\GameWorld.cs" />
+    <Compile Include="Helpers\NpcDialog.cs" />
+    <Compile Include="Network\PacketHandler.cs" />
+    <Compile Include="Network\Packets\Conquer\MsgName.cs" />
+    <Compile Include="Network\Packets\Conquer\MsgText.cs" />
+    <Compile Include="Network\Packets\Conquer\LegacyPackets.cs" />
+    <Compile Include="Network\Packets\Conquer\MsgTrade.cs" />
+    <Compile Include="Network\Sockets\BufferPool.cs" />
+    <Compile Include="Network\Sockets\Crypto.cs" />
+    <Compile Include="Network\Sockets\Packet.cs" />
+    <Compile Include="Network\Sockets\ClientSocket.cs" />
+    <Compile Include="Network\Sockets\ServerSocket.cs" />
+    <Compile Include="Network\Servers.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scheduler\Extensions.cs" />
+    <Compile Include="Scheduler\ICanCancel.cs" />
+    <Compile Include="Scheduler\ICanExecute.cs" />
+    <Compile Include="Scheduler\IExecutableWorkItem.cs" />
+    <Compile Include="Scheduler\IMultipleItems.cs" />
+    <Compile Include="Scheduler\IYiEngine.cs" />
+    <Compile Include="Scheduler\ISupportsEnqueueDequeue.cs" />
+    <Compile Include="Scheduler\Job.cs" />
+    <Compile Include="Scheduler\Lockable.cs" />
+    <Compile Include="Scheduler\YiScheduler.cs" />
+    <Compile Include="Scheduler\ThreadSafeQueue.cs" />
+    <Compile Include="Scheduler\WorkItemQueueHandler.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Output.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.8.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.4.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UserInterface.resx">
+      <DependentUpon>UserInterface.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.2.4.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.2.4.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

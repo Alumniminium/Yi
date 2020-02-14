@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="ItemCreator.Controls.ImportableItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ItemCreator.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="100" MaxWidth="554.363">
+    <Grid>
+        <TextBlock Text="Inv Icon" FontSize="10" Margin="10,0,406,85"/>
+        <TextBlock Text="Map Icon" FontSize="10" Margin="70,0,338,85"/>
+        <TextBlock Text="Female Texture" FontSize="10" Margin="126,0,257,85"/>
+        <TextBlock Text="Male Texture" FontSize="10" Margin="204,0,187,85"/>
+        <TextBlock Text="Name" FontSize="10" Margin="354,0,70,85"/>
+        <TextBlock Text="Id" FontSize="10" Margin="484,0,10,85"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Image x:Name="ItemImageField" Width="64" Height="64"/>
+            <Image x:Name="MapImageField" Width="64" Height="64"/>
+            <Image x:Name="TextureImageField" Width="64" Height="64"/>
+            <Image x:Name="TextureMImageField" Width="64" Height="64" Margin="10"/>
+            <TextBlock x:Name="ItemTextField" Margin="10,0,0,0" VerticalAlignment="Center" Width="170" Text="Super Blade Muhaaahahahah"/>
+            <TextBlock x:Name="ItemIdField" Margin="10,42,0,42" VerticalAlignment="Center" Text="Super Blade Muhaaahahahah"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

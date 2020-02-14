@@ -1,0 +1,169 @@
+﻿CO2_CORE_DLL v1.0.0 (REV-20) new features and fixed bugs (from REV-19) :
+
+1.  Fixed and tested the MapManager.
+
+November 26th, 2012
+
+CO2_CORE_DLL v1.0.0 (REV-19) new features and fixed bugs (from REV-18) :
+
+1.  Added support for TQ Digital: DawnPack format.
+
+June 16th, 2012
+
+CO2_CORE_DLL v1.0.0 (REV-18) new features and fixed bugs (from REV-17) :
+
+1.  Add a MapManager system.
+2.  Add two extensions to the Stream class.
+
+May 20th, 2012
+
+CO2_CORE_DLL v1.0.0 (REV-17) new features and fixed bugs (from REV-16) :
+
+1.  Removed an unused class.
+
+May 17th, 2012
+
+CO2_CORE_DLL v1.0.0 (REV-16) new features and fixed bugs (from REV-15) :
+
+1.  Add methods to retreive the Key, Request and Response in the DH exchange.
+2.  Change the ToPointer() method to avoid problem.
+3.  Use the stack over the heap when possible.
+
+May 17th, 2012
+
+CO2_CORE_DLL v1.0.0 (REV-15) new features and fixed bugs (from REV-14) :
+
+1.  Small bugfixes.
+
+April 7th, 2012
+
+CO2_CORE_DLL v1.0.0 (REV-14) new features and fixed bugs (from REV-13) :
+
+1.  Update the Blowfish implementation.
+2.  Add a function to get the Key in bytes. (DiffieHellman)
+3.  Add a CAST5 (CAST-128) implementation.
+
+March 31th, 2012
+
+CO2_CORE_DLL v1.0.0 (REV-13) new features and fixed bugs (from REV-12) :
+
+1.  Continue to implement the NetDragon Data Package (TPD/TPI).
+
+March 17th, 2012
+
+CO2_CORE_DLL v1.0.0 (REV-12) new features and fixed bugs (from REV-11) :
+
+1.  Started to implement the NetDragon Data Package (TPD/TPI).
+
+March 13th, 2012
+
+CO2_CORE_DLL v1.0.0 (REV-11) new features and fixed bugs (from REV-10) :
+
+1.  Adapt the MagicType, ItemType and LevelExp implementations to work like a Dictionary/List to be used as a database.
+2.  Add a MathExt class that implement a thread-safe random.
+3.  Add the support of the SIMO (DBC) files. [3DSimpleObj]
+4.  Add the support of the ROPT (DBC) files. [RolePart]
+5.  Add the support of the RSDB [32bits] (DBC) files. [3DEffectObj, 3DObj, Sound]
+6.  Add the support of the RSDB [64bits] (DBC) files. [3DMotion, ArmetMotion, ArmorMotion, HeadMotion, MiscMotion, MountMotion, WeaponMotion]
+7.  Fix the COFAC implementation where the encrypt/decrypt functions where inversed.
+
+March 12th, 2012
+
+CO2_CORE_DLL v1.0.0 (REV-10) new features and fixed bugs (from REV-9) :
+
+1.  Fix the MATR implementation. (SaveToDat)
+2.  Fix the EMOI implementation. (SaveToDat)
+3.  Add the support of the EFFE (DBC) files. [3DEffect]
+
+February 23th, 2012
+
+CO2_CORE_DLL v1.0.0 (REV-9) new features and fixed bugs (from REV-8) :
+
+1.  Add the support of Blowfish Cipher Feedback (CFB64) algorithm.
+2.  Add the support of the Diffie-Hellman key exchange algorithm.
+3.  Add an implementation of BigInteger.
+4.  Add an implementation of the C assertion.
+5.  Add the support of the MESH (DBC) files. [Armet, Armor, Head, Misc, Mount, Weapon]
+
+February 22th, 2012
+
+CO2_CORE_DLL v1.0.0 (REV-8) new features and fixed bugs (from REV-7) :
+
+1.  Finish the implementation of the WDF files.
+
+January 25th, 2012
+
+CO2_CORE_DLL v1.0.0 (REV-7) new features and fixed bugs (from REV-6) :
+
+1.  Add the support of the EMOI (DBC) files. [EmotionIco]
+2.  Add the support of the MATR (DBC) files. [Material]
+3.  Add the support of the ItemType files.
+
+January 22th, 2012
+
+CO2_CORE_DLL v1.0.0 (REV-6) new features and fixed bugs (from REV-5) :
+
+1.  Add the support of the ChatLog files.
+2.  Add the support of the Windsoul Data File packages.
+3.  Add an extension to the String class to get a pointer.
+4.  Add an implementation of the memset function in the Kernel.
+5.  Fix the problem of redondant key in the MagicType class.
+
+January 18th, 2012
+
+CO2_CORE_DLL v1.0.0 (REV-5) new features and fixed bugs :
+
+1.  Base revision of the release on EPvP.
+
+January 10th, 2012
+
+--------
+
+What is implemented yet:
+
+CO2_CORE_DLL
+- Ini: INI wrapper. Still using the WinAPI.
+- Kernel: Kernel of the library. Contains memory management, etc. (memcpy/memset/malloc/free/srand/rand/assert)
+- BigInteger: Chew Keong TAN BigInteger implementation
+- MSRandom: Microsoft C Random implementation. (srand/rand)
+- MyString: Extensions to the String class.
+- Queue: Saint's queue class. Still not worked on.
+
+CO2_CORE_DLL.IO
+- AutoAllot: Binary / Custom Text support (not fully working for text)
+- ItemType: Custom Binary / Text support
+- LevelExp: Binary / Custom Text support
+- MagicType: Binary / Text support
+
+- ChatLog: Binary / Custom Text support
+- WDF: Windsoul Data File, fully supported
+- NetDragonDatPkg: NetDragon Data Package (TPI/TPD), partially supported
+
+- EFFE (DBC): Binary / Text support [3DEffect]
+- EMOI (DBC): Binary / Text support [EmotionIco]
+- MATR (DBC): Binary / Text support [Material]
+- MESH (DBC): Binary / Text support [Armet, Armor, Head, Misc, Mount, Weapon]
+- ROPT (DBC): Binary / Text support [RolePart]
+- RSDB [32bits] (DBC): Binary / Text support [3DEffectObj, 3DObj, 3DTexture, Sound]
+- RSDB [64bits] (DBC): Binary / Text support [3DMotion, ArmetMotion, ArmorMotion, HeadMotion, MiscMotion, MountMotion, WeaponMotion]
+- SIMO (DBC): Binary / Text support [3DSimpleObj]
+
+CO2_CORE_DLL.Net
+- Msg: Basic class for packets. Work with structure and packet writer.
+
+CO2_CORE_DLL.Net.Sockets
+- ServerSocket: Server socket class to create a server using TCP/IPv4.
+- NetworkClient: Client class used by the server.
+- ClientSocket: Client socket class to create a client using TCP/IPv4.
+- Event: Network events.
+
+CO2_CORE_DLL.Security.Cryptography
+- Blowfish: Blowfish Cipher Feedback (CFB64)
+- CAST5: CAST-128 Cipher Feedback (CFB64)
+- COCAC: Conquer Online Client Asymmetric Cipher
+- COFAC: Conquer Online File Asymmetric Cipher
+- CORC5: Conquer Online Rivest Cipher 5
+- COSAC: Conquer Online Server Asymmetric Cipher
+- DiffieHellman: Diffie-Hellman Key Exchange.
+
+Special thanks to Sparkie, Hybrid, Saint & high6 for all their contributions in the community.

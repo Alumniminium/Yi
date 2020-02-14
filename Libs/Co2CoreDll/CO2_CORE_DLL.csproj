@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{968B7257-3D98-46AE-9C0D-A4990C1D5873}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CO2_CORE_DLL</RootNamespace>
+    <AssemblyName>CO2_CORE_DLL</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Optimize>false</Optimize>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>..\bin\win32\release %28x86%29\</OutputPath>
+    <DefineConstants>TRACE;UNMANAGED, COMPRESS, LZMA_STREAM, CS4</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\bin\win32\debug %28x64%29\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;UNMANAGED, COMPRESS, LZMA_STREAM, CS4</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Optimize>false</Optimize>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+    <OutputPath>..\bin\win32\release %28x64%29\</OutputPath>
+    <DefineConstants>TRACE;UNMANAGED, COMPRESS, LZMA_STREAM, CS4</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BigInteger.cs" />
+    <Compile Include="CStdLib\cassert.cs" />
+    <Compile Include="CStdLib\cstdlib.cs" />
+    <Compile Include="CStdLib\cstring.cs" />
+    <Compile Include="Ini.cs" />
+    <Compile Include="IO\ChatLog.cs" />
+    <Compile Include="IO\DBC\EFFE.cs" />
+    <Compile Include="IO\DBC\EMOI.cs" />
+    <Compile Include="IO\DBC\MATR.cs" />
+    <Compile Include="IO\DBC\MESH.cs" />
+    <Compile Include="IO\DBC\ROPT.cs" />
+    <Compile Include="IO\DBC\RSDB_BIG.cs" />
+    <Compile Include="IO\DBC\RSDB_SMALL.cs" />
+    <Compile Include="IO\DBC\SIMO.cs" />
+    <Compile Include="IO\DNP.cs" />
+    <Compile Include="IO\Ini\ItemType.cs" />
+    <Compile Include="IO\NetDragonDatPkg\NetDragonDatPkg.cs" />
+    <Compile Include="Kernel.cs" />
+    <Compile Include="Map\GameMap.cs" />
+    <Compile Include="Map\MapBase.cs" />
+    <Compile Include="Map\MapManager.cs" />
+    <Compile Include="Map\MapObj\C2DMapCoverObj.cs" />
+    <Compile Include="Map\MapObj\C2DMapTerrainObj.cs" />
+    <Compile Include="Map\MapObj\C3DMapEffect.cs" />
+    <Compile Include="Map\MapObj\C3DMapEffectNew.cs" />
+    <Compile Include="Map\MapObj\C3DMapTerrainObjPart.cs" />
+    <Compile Include="Map\MapObj\CMapSound.cs" />
+    <Compile Include="MSRandom.cs" />
+    <Compile Include="MyStream.cs" />
+    <Compile Include="MyString.cs" />
+    <Compile Include="Queue.cs" />
+    <None Include="CHANGES" />
+    <Content Include="Constants.txt" />
+    <Compile Include="IO\Ini\AutoAllot.cs" />
+    <Compile Include="IO\Ini\LevelExp.cs" />
+    <Compile Include="IO\Ini\MagicType.cs" />
+    <Compile Include="IO\NetDragonDatPkg\TPD.cs" />
+    <Compile Include="IO\NetDragonDatPkg\TPI.cs" />
+    <Compile Include="IO\Compression\zlib\Adler32.cs" />
+    <Compile Include="IO\Compression\zlib\Deflate.cs" />
+    <Compile Include="IO\Compression\zlib\InfBlocks.cs" />
+    <Compile Include="IO\Compression\zlib\InfCodes.cs" />
+    <Compile Include="IO\Compression\zlib\Inflate.cs" />
+    <Compile Include="IO\Compression\zlib\InfTree.cs" />
+    <Compile Include="IO\Compression\zlib\StaticTree.cs" />
+    <Compile Include="IO\Compression\zlib\SupportClass.cs" />
+    <Compile Include="IO\Compression\zlib\Tree.cs" />
+    <Compile Include="IO\Compression\zlib\ZInputStream.cs" />
+    <Compile Include="IO\Compression\zlib\Zlib.cs" />
+    <Compile Include="IO\Compression\zlib\ZOutputStream.cs" />
+    <Compile Include="IO\Compression\zlib\ZStream.cs" />
+    <Compile Include="IO\Compression\zlib\ZStreamException.cs" />
+    <Compile Include="Net\Msg.cs" />
+    <Compile Include="Net\Sockets\ClientSocket.cs" />
+    <Compile Include="Net\Sockets\Event.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="IO\WDF.cs" />
+    <Compile Include="SafeRandom.cs" />
+    <Compile Include="Security\Cryptography\Blowfish.cs" />
+    <Compile Include="Security\Cryptography\CAST5.cs" />
+    <Compile Include="Security\Cryptography\COCAC.cs" />
+    <Compile Include="Security\Cryptography\COFAC.cs" />
+    <Compile Include="Security\Cryptography\CORC5.cs" />
+    <Compile Include="Security\Cryptography\COSAC.cs" />
+    <Compile Include="Net\Sockets\NetworkClient.cs" />
+    <Compile Include="Net\Sockets\ServerSocket.cs" />
+    <Compile Include="Security\Cryptography\DiffieHellman.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+</Project>

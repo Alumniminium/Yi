@@ -1,0 +1,1148 @@
+{
+  "1000": {
+    "Id": 1000,
+    "Height": 984,
+    "Width": 984,
+    "Flags": 8192,
+    "SpawnVector2": {
+      "X": 499,
+      "Y": 650
+    }
+  },
+  "1001": {
+    "Id": 1001,
+    "Height": 908,
+    "Width": 908,
+    "Flags": 8192,
+    "SpawnVector2": {}
+  },
+  "1002": {
+    "Id": 1002,
+    "Height": 972,
+    "Width": 972,
+    "Flags": 24576,
+    "SpawnVector2": {
+      "X": 430,
+      "Y": 380
+    }
+  },
+  "1003": {
+    "Id": 1003,
+    "Height": 96,
+    "Width": 96,
+    "Flags": 8192,
+    "SpawnVector2": {}
+  },
+  "1004": {
+    "Id": 1004,
+    "Height": 96,
+    "Width": 96,
+    "Flags": 24576,
+    "SpawnVector2": {}
+  },
+  "1005": {
+    "Id": 1005,
+    "Height": 96,
+    "Width": 96,
+    "Flags": 1,
+    "SpawnVector2": {
+      "X": 51,
+      "Y": 50
+    }
+  },
+  "1006": {
+    "Id": 1006,
+    "Height": 52,
+    "Width": 52,
+    "Flags": 24576,
+    "SpawnVector2": {
+      "X": 37,
+      "Y": 31
+    }
+  },
+  "1100": {
+    "Id": 1100,
+    "Height": 224,
+    "Width": 224,
+    "Flags": 8196,
+    "SpawnVector2": {
+      "X": 187,
+      "Y": 162
+    }
+  },
+  "1101": {
+    "Id": 1101,
+    "Height": 224,
+    "Width": 224,
+    "Flags": 8196,
+    "SpawnVector2": {
+      "X": 187,
+      "Y": 162
+    }
+  },
+  "1102": {
+    "Id": 1102,
+    "Height": 224,
+    "Width": 224,
+    "Flags": 8196,
+    "SpawnVector2": {
+      "X": 187,
+      "Y": 162
+    }
+  },
+  "1103": {
+    "Id": 1103,
+    "Height": 224,
+    "Width": 224,
+    "Flags": 8196,
+    "SpawnVector2": {
+      "X": 187,
+      "Y": 162
+    }
+  },
+  "1104": {
+    "Id": 1104,
+    "Height": 224,
+    "Width": 224,
+    "Flags": 8196,
+    "SpawnVector2": {
+      "X": 187,
+      "Y": 162
+    }
+  },
+  "1105": {
+    "Id": 1105,
+    "Height": 224,
+    "Width": 224,
+    "Flags": 8196,
+    "SpawnVector2": {
+      "X": 187,
+      "Y": 162
+    }
+  },
+  "1106": {
+    "Id": 1106,
+    "Height": 224,
+    "Width": 224,
+    "Flags": 8196,
+    "SpawnVector2": {
+      "X": 187,
+      "Y": 162
+    }
+  },
+  "1107": {
+    "Id": 1107,
+    "Height": 224,
+    "Width": 224,
+    "Flags": 8196,
+    "SpawnVector2": {
+      "X": 187,
+      "Y": 162
+    }
+  },
+  "1108": {
+    "Id": 1108,
+    "Height": 224,
+    "Width": 224,
+    "Flags": 8196,
+    "SpawnVector2": {
+      "X": 187,
+      "Y": 162
+    }
+  },
+  "1109": {
+    "Id": 1109,
+    "Height": 224,
+    "Width": 224,
+    "Flags": 8196,
+    "SpawnVector2": {
+      "X": 187,
+      "Y": 162
+    }
+  },
+  "1007": {
+    "Id": 1007,
+    "Height": 40,
+    "Width": 40,
+    "Flags": 8192,
+    "SpawnVector2": {
+      "X": 25,
+      "Y": 24
+    }
+  },
+  "1008": {
+    "Id": 1008,
+    "Height": 40,
+    "Width": 40,
+    "Flags": 8206,
+    "SpawnVector2": {
+      "X": 22,
+      "Y": 25
+    }
+  },
+  "1009": {
+    "Id": 1009,
+    "Height": 40,
+    "Width": 40,
+    "Flags": 8192,
+    "SpawnVector2": {
+      "X": 187,
+      "Y": 265
+    }
+  },
+  "1010": {
+    "Id": 1010,
+    "Height": 132,
+    "Width": 132,
+    "Flags": 8,
+    "SpawnVector2": {
+      "X": 60,
+      "Y": 108
+    }
+  },
+  "1011": {
+    "Id": 1011,
+    "Height": 944,
+    "Width": 944,
+    "Flags": 24576,
+    "SpawnVector2": {
+      "X": 193,
+      "Y": 266
+    }
+  },
+  "1012": {
+    "Id": 1012,
+    "Height": 588,
+    "Width": 588,
+    "Flags": 8192,
+    "SpawnVector2": {}
+  },
+  "1013": {
+    "Id": 1013,
+    "Height": 104,
+    "Width": 104,
+    "Flags": 8192,
+    "SpawnVector2": {
+      "X": 22,
+      "Y": 25
+    }
+  },
+  "1014": {
+    "Id": 1014,
+    "Height": 172,
+    "Width": 172,
+    "Flags": 8192,
+    "SpawnVector2": {
+      "X": 22,
+      "Y": 25
+    }
+  },
+  "1015": {
+    "Id": 1015,
+    "Height": 1024,
+    "Width": 1024,
+    "Flags": 8192,
+    "SpawnVector2": {
+      "X": 717,
+      "Y": 577
+    }
+  },
+  "1017": {
+    "Id": 1017,
+    "Height": 208,
+    "Width": 208,
+    "SpawnVector2": {}
+  },
+  "1018": {
+    "Id": 1018,
+    "Height": 256,
+    "Width": 256,
+    "Flags": 7,
+    "SpawnVector2": {
+      "X": 430,
+      "Y": 380
+    }
+  },
+  "1019": {
+    "Id": 1019,
+    "Height": 320,
+    "Width": 320,
+    "SpawnVector2": {}
+  },
+  "1020": {
+    "Id": 1020,
+    "Height": 932,
+    "Width": 932,
+    "Flags": 24576,
+    "SpawnVector2": {
+      "X": 566,
+      "Y": 565
+    }
+  },
+  "1021": {
+    "Id": 1021,
+    "Height": 96,
+    "Width": 96,
+    "Flags": 8198,
+    "SpawnVector2": {}
+  },
+  "1022": {
+    "Id": 1022,
+    "Height": 560,
+    "Width": 560,
+    "Flags": 8718,
+    "SpawnVector2": {
+      "X": 499,
+      "Y": 520
+    }
+  },
+  "1025": {
+    "Id": 1025,
+    "Height": 184,
+    "Width": 184,
+    "Flags": 10242,
+    "SpawnVector2": {}
+  },
+  "1026": {
+    "Id": 1026,
+    "Height": 216,
+    "Width": 216,
+    "Flags": 10242,
+    "SpawnVector2": {}
+  },
+  "1027": {
+    "Id": 1027,
+    "Height": 216,
+    "Width": 216,
+    "Flags": 10242,
+    "SpawnVector2": {}
+  },
+  "1028": {
+    "Id": 1028,
+    "Height": 184,
+    "Width": 184,
+    "Flags": 10242,
+    "SpawnVector2": {}
+  },
+  "1029": {
+    "Id": 1029,
+    "Height": 184,
+    "Width": 184,
+    "SpawnVector2": {}
+  },
+  "1030": {
+    "Id": 1030,
+    "Height": 216,
+    "Width": 216,
+    "SpawnVector2": {}
+  },
+  "1032": {
+    "Id": 1032,
+    "Height": 184,
+    "Width": 184,
+    "SpawnVector2": {}
+  },
+  "1035": {
+    "Id": 1035,
+    "Height": 132,
+    "Width": 132,
+    "SpawnVector2": {}
+  },
+  "5000": {
+    "Id": 5000,
+    "Height": 184,
+    "Width": 184,
+    "Flags": 3,
+    "SpawnVector2": {
+      "X": 430,
+      "Y": 380
+    }
+  },
+  "6000": {
+    "Id": 6000,
+    "Height": 184,
+    "Width": 184,
+    "Flags": 130,
+    "SpawnVector2": {
+      "X": 29,
+      "Y": 72
+    }
+  },
+  "1036": {
+    "Id": 1036,
+    "Height": 384,
+    "Width": 384,
+    "Flags": 30,
+    "SpawnVector2": {
+      "X": 303,
+      "Y": 237
+    }
+  },
+  "1037": {
+    "Id": 1037,
+    "Height": 404,
+    "Width": 404,
+    "SpawnVector2": {}
+  },
+  "1038": {
+    "Id": 1038,
+    "Height": 400,
+    "Width": 400,
+    "Flags": 130,
+    "SpawnVector2": {}
+  },
+  "1039": {
+    "Id": 1039,
+    "Height": 496,
+    "Width": 496,
+    "Flags": 14,
+    "SpawnVector2": {
+      "X": 29,
+      "Y": 72
+    }
+  },
+  "1040": {
+    "Id": 1040,
+    "Height": 616,
+    "Width": 616,
+    "Flags": 8710,
+    "SpawnVector2": {
+      "X": 595,
+      "Y": 383
+    }
+  },
+  "1041": {
+    "Id": 1041,
+    "Height": 680,
+    "Width": 680,
+    "Flags": 518,
+    "SpawnVector2": {
+      "X": 566,
+      "Y": 565
+    }
+  },
+  "6001": {
+    "Id": 6001,
+    "Height": 184,
+    "Width": 184,
+    "Flags": 32867,
+    "SpawnVector2": {
+      "X": 30,
+      "Y": 76
+    }
+  },
+  "1042": {
+    "Id": 1042,
+    "Height": 64,
+    "Width": 64,
+    "Flags": 8192,
+    "SpawnVector2": {
+      "X": 60,
+      "Y": 108
+    }
+  },
+  "1043": {
+    "Id": 1043,
+    "Height": 224,
+    "Width": 224,
+    "Flags": 8258,
+    "SpawnVector2": {
+      "X": 60,
+      "Y": 108
+    }
+  },
+  "1044": {
+    "Id": 1044,
+    "Height": 224,
+    "Width": 224,
+    "Flags": 8258,
+    "SpawnVector2": {
+      "X": 60,
+      "Y": 108
+    }
+  },
+  "1045": {
+    "Id": 1045,
+    "Height": 224,
+    "Width": 224,
+    "Flags": 8258,
+    "SpawnVector2": {
+      "X": 60,
+      "Y": 108
+    }
+  },
+  "1046": {
+    "Id": 1046,
+    "Height": 224,
+    "Width": 224,
+    "Flags": 8258,
+    "SpawnVector2": {
+      "X": 60,
+      "Y": 108
+    }
+  },
+  "1047": {
+    "Id": 1047,
+    "Height": 224,
+    "Width": 224,
+    "Flags": 8258,
+    "SpawnVector2": {
+      "X": 60,
+      "Y": 108
+    }
+  },
+  "1048": {
+    "Id": 1048,
+    "Height": 224,
+    "Width": 224,
+    "Flags": 8258,
+    "SpawnVector2": {
+      "X": 60,
+      "Y": 108
+    }
+  },
+  "1049": {
+    "Id": 1049,
+    "Height": 224,
+    "Width": 224,
+    "Flags": 8258,
+    "SpawnVector2": {
+      "X": 60,
+      "Y": 108
+    }
+  },
+  "1050": {
+    "Id": 1050,
+    "Height": 224,
+    "Width": 224,
+    "Flags": 8258,
+    "SpawnVector2": {
+      "X": 60,
+      "Y": 108
+    }
+  },
+  "1051": {
+    "Id": 1051,
+    "Height": 456,
+    "Width": 456,
+    "Flags": 8192,
+    "SpawnVector2": {
+      "X": 724,
+      "Y": 573
+    }
+  },
+  "1060": {
+    "Id": 1060,
+    "Height": 680,
+    "Width": 680,
+    "Flags": 8710,
+    "SpawnVector2": {
+      "X": 566,
+      "Y": 565
+    }
+  },
+  "1061": {
+    "Id": 1061,
+    "Height": 680,
+    "Width": 680,
+    "Flags": 8710,
+    "SpawnVector2": {
+      "X": 566,
+      "Y": 565
+    }
+  },
+  "1062": {
+    "Id": 1062,
+    "Height": 680,
+    "Width": 680,
+    "Flags": 8710,
+    "SpawnVector2": {
+      "X": 566,
+      "Y": 565
+    }
+  },
+  "1064": {
+    "Id": 1064,
+    "Height": 560,
+    "Width": 560,
+    "SpawnVector2": {}
+  },
+  "1070": {
+    "Id": 1070,
+    "Height": 216,
+    "Width": 216,
+    "Flags": 8198,
+    "SpawnVector2": {
+      "X": 60,
+      "Y": 566
+    }
+  },
+  "1080": {
+    "Id": 1080,
+    "Height": 256,
+    "Width": 256,
+    "Flags": 7,
+    "SpawnVector2": {
+      "X": 430,
+      "Y": 380
+    }
+  },
+  "1081": {
+    "Id": 1081,
+    "Height": 256,
+    "Width": 256,
+    "Flags": 7,
+    "SpawnVector2": {
+      "X": 430,
+      "Y": 380
+    }
+  },
+  "1075": {
+    "Id": 1075,
+    "Height": 1000,
+    "Width": 1000,
+    "Flags": 8192,
+    "SpawnVector2": {
+      "X": 566,
+      "Y": 565
+    }
+  },
+  "1076": {
+    "Id": 1076,
+    "Height": 1000,
+    "Width": 1000,
+    "Flags": 8192,
+    "SpawnVector2": {
+      "X": 301,
+      "Y": 488
+    }
+  },
+  "1077": {
+    "Id": 1077,
+    "Height": 1000,
+    "Width": 1000,
+    "Flags": 8192,
+    "SpawnVector2": {
+      "X": 447,
+      "Y": 347
+    }
+  },
+  "1078": {
+    "Id": 1078,
+    "Height": 592,
+    "Width": 592,
+    "Flags": 8192,
+    "SpawnVector2": {
+      "X": 362,
+      "Y": 115
+    }
+  },
+  "1063": {
+    "Id": 1063,
+    "Height": 456,
+    "Width": 456,
+    "Flags": 8710,
+    "SpawnVector2": {
+      "X": 449,
+      "Y": 358
+    }
+  },
+  "1082": {
+    "Id": 1082,
+    "Height": 424,
+    "Width": 424,
+    "SpawnVector2": {}
+  },
+  "1090": {
+    "Id": 1090,
+    "Height": 192,
+    "Width": 192,
+    "Flags": 7,
+    "SpawnVector2": {
+      "X": 430,
+      "Y": 380
+    }
+  },
+  "1091": {
+    "Id": 1091,
+    "Height": 56,
+    "Width": 56,
+    "Flags": 7,
+    "SpawnVector2": {
+      "X": 430,
+      "Y": 380
+    }
+  },
+  "1098": {
+    "Id": 1098,
+    "Height": 56,
+    "Width": 56,
+    "SpawnVector2": {}
+  },
+  "1099": {
+    "Id": 1099,
+    "Height": 92,
+    "Width": 92,
+    "SpawnVector2": {}
+  },
+  "1601": {
+    "Id": 1601,
+    "Height": 464,
+    "Width": 464,
+    "SpawnVector2": {}
+  },
+  "1201": {
+    "Id": 1201,
+    "Height": 600,
+    "Width": 600,
+    "Flags": 2,
+    "SpawnVector2": {
+      "X": 447,
+      "Y": 347
+    }
+  },
+  "1202": {
+    "Id": 1202,
+    "Height": 700,
+    "Width": 700,
+    "Flags": 2,
+    "SpawnVector2": {
+      "X": 447,
+      "Y": 347
+    }
+  },
+  "1204": {
+    "Id": 1204,
+    "Height": 1360,
+    "Width": 1360,
+    "Flags": 2,
+    "SpawnVector2": {
+      "X": 448,
+      "Y": 272
+    }
+  },
+  "1205": {
+    "Id": 1205,
+    "Height": 1360,
+    "Width": 1360,
+    "Flags": 2,
+    "SpawnVector2": {
+      "X": 447,
+      "Y": 347
+    }
+  },
+  "1207": {
+    "Id": 1207,
+    "Height": 1220,
+    "Width": 1220,
+    "Flags": 2,
+    "SpawnVector2": {
+      "X": 448,
+      "Y": 272
+    }
+  },
+  "1208": {
+    "Id": 1208,
+    "Height": 1020,
+    "Width": 1020,
+    "Flags": 2,
+    "SpawnVector2": {
+      "X": 448,
+      "Y": 272
+    }
+  },
+  "1210": {
+    "Id": 1210,
+    "Height": 1048,
+    "Width": 1048,
+    "Flags": 32834,
+    "SpawnVector2": {
+      "X": 1017,
+      "Y": 1294
+    }
+  },
+  "1211": {
+    "Id": 1211,
+    "Height": 960,
+    "Width": 960,
+    "Flags": 32834,
+    "SpawnVector2": {
+      "X": 1017,
+      "Y": 1294
+    }
+  },
+  "1212": {
+    "Id": 1212,
+    "Height": 1360,
+    "Width": 1360,
+    "Flags": 32834,
+    "SpawnVector2": {
+      "X": 1017,
+      "Y": 1294
+    }
+  },
+  "1213": {
+    "Id": 1213,
+    "Height": 1080,
+    "Width": 1080,
+    "Flags": 2,
+    "SpawnVector2": {
+      "X": 448,
+      "Y": 272
+    }
+  },
+  "1214": {
+    "Id": 1214,
+    "Height": 1440,
+    "Width": 1440,
+    "Flags": 2,
+    "SpawnVector2": {
+      "X": 448,
+      "Y": 272
+    }
+  },
+  "1215": {
+    "Id": 1215,
+    "Height": 944,
+    "Width": 944,
+    "Flags": 2,
+    "SpawnVector2": {
+      "X": 448,
+      "Y": 272
+    }
+  },
+  "1216": {
+    "Id": 1216,
+    "Height": 960,
+    "Width": 960,
+    "Flags": 2,
+    "SpawnVector2": {
+      "X": 448,
+      "Y": 272
+    }
+  },
+  "1500": {
+    "Id": 1500,
+    "Height": 184,
+    "Width": 184,
+    "SpawnVector2": {}
+  },
+  "1501": {
+    "Id": 1501,
+    "Height": 184,
+    "Width": 184,
+    "SpawnVector2": {}
+  },
+  "1502": {
+    "Id": 1502,
+    "Height": 184,
+    "Width": 184,
+    "SpawnVector2": {}
+  },
+  "1503": {
+    "Id": 1503,
+    "Height": 184,
+    "Width": 184,
+    "SpawnVector2": {}
+  },
+  "1351": {
+    "Id": 1351,
+    "Height": 496,
+    "Width": 496,
+    "Flags": 8194,
+    "SpawnVector2": {
+      "X": 430,
+      "Y": 380
+    }
+  },
+  "1352": {
+    "Id": 1352,
+    "Height": 688,
+    "Width": 688,
+    "Flags": 8194,
+    "SpawnVector2": {
+      "X": 430,
+      "Y": 380
+    }
+  },
+  "1353": {
+    "Id": 1353,
+    "Height": 808,
+    "Width": 808,
+    "Flags": 8194,
+    "SpawnVector2": {
+      "X": 430,
+      "Y": 380
+    }
+  },
+  "1354": {
+    "Id": 1354,
+    "Height": 944,
+    "Width": 944,
+    "Flags": 8194,
+    "SpawnVector2": {
+      "X": 430,
+      "Y": 380
+    }
+  },
+  "1505": {
+    "Id": 1505,
+    "Height": 320,
+    "Width": 320,
+    "Flags": 7,
+    "SpawnVector2": {
+      "X": 430,
+      "Y": 380
+    }
+  },
+  "1506": {
+    "Id": 1506,
+    "Height": 188,
+    "Width": 188,
+    "Flags": 7,
+    "SpawnVector2": {
+      "X": 430,
+      "Y": 380
+    }
+  },
+  "1507": {
+    "Id": 1507,
+    "Height": 208,
+    "Width": 208,
+    "Flags": 7,
+    "SpawnVector2": {
+      "X": 430,
+      "Y": 380
+    }
+  },
+  "1508": {
+    "Id": 1508,
+    "Height": 236,
+    "Width": 236,
+    "Flags": 7,
+    "SpawnVector2": {
+      "X": 430,
+      "Y": 380
+    }
+  },
+  "1509": {
+    "Id": 1509,
+    "Height": 212,
+    "Width": 212,
+    "Flags": 7,
+    "SpawnVector2": {
+      "X": 430,
+      "Y": 380
+    }
+  },
+  "1550": {
+    "Id": 1550,
+    "Height": 400,
+    "Width": 400,
+    "Flags": 8196,
+    "SpawnVector2": {
+      "X": 430,
+      "Y": 380
+    }
+  },
+  "1551": {
+    "Id": 1551,
+    "Height": 400,
+    "Width": 400,
+    "Flags": 8196,
+    "SpawnVector2": {
+      "X": 430,
+      "Y": 380
+    }
+  },
+  "1510": {
+    "Id": 1510,
+    "Height": 40,
+    "Width": 40,
+    "SpawnVector2": {}
+  },
+  "1511": {
+    "Id": 1511,
+    "Height": 96,
+    "Width": 96,
+    "Flags": 8200,
+    "SpawnVector2": {
+      "X": 430,
+      "Y": 380
+    }
+  },
+  "1512": {
+    "Id": 1512,
+    "Height": 104,
+    "Width": 104,
+    "SpawnVector2": {}
+  },
+  "1615": {
+    "Id": 1615,
+    "Height": 56,
+    "Width": 56,
+    "SpawnVector2": {}
+  },
+  "1616": {
+    "Id": 1616,
+    "Height": 108,
+    "Width": 108,
+    "SpawnVector2": {}
+  },
+  "1617": {
+    "Id": 1617,
+    "Height": 108,
+    "Width": 108,
+    "SpawnVector2": {}
+  },
+  "2021": {
+    "Id": 2021,
+    "Height": 550,
+    "Width": 550,
+    "Flags": 10242,
+    "SpawnVector2": {}
+  },
+  "2022": {
+    "Id": 2022,
+    "Height": 424,
+    "Width": 424,
+    "Flags": 10242,
+    "SpawnVector2": {}
+  },
+  "2023": {
+    "Id": 2023,
+    "Height": 676,
+    "Width": 676,
+    "Flags": 10242,
+    "SpawnVector2": {}
+  },
+  "2024": {
+    "Id": 2024,
+    "Height": 302,
+    "Width": 302,
+    "Flags": 10242,
+    "SpawnVector2": {}
+  },
+  "1645": {
+    "Id": 1645,
+    "Height": 420,
+    "Width": 420,
+    "SpawnVector2": {}
+  },
+  "1560": {
+    "Id": 1560,
+    "Height": 400,
+    "Width": 400,
+    "SpawnVector2": {}
+  },
+  "1561": {
+    "Id": 1561,
+    "Height": 400,
+    "Width": 400,
+    "SpawnVector2": {}
+  },
+  "1707": {
+    "Id": 1707,
+    "Height": 96,
+    "Width": 96,
+    "SpawnVector2": {}
+  },
+  "1700": {
+    "Id": 1700,
+    "Height": 1246,
+    "Width": 1246,
+    "Flags": 8195,
+    "SpawnVector2": {
+      "X": 611,
+      "Y": 645
+    }
+  },
+  "601": {
+    "Id": 601,
+    "Height": 128,
+    "Width": 128,
+    "Flags": 78,
+    "SpawnVector2": {
+      "X": 65,
+      "Y": 55
+    }
+  },
+  "700": {
+    "Id": 700,
+    "Height": 96,
+    "Width": 96,
+    "Flags": 588,
+    "SpawnVector2": {
+      "X": 40,
+      "Y": 47
+    }
+  },
+  "1760": {
+    "Id": 1760,
+    "Height": 96,
+    "Width": 96,
+    "Flags": 14,
+    "SpawnVector2": {
+      "X": 430,
+      "Y": 380
+    }
+  },
+  "1766": {
+    "Id": 1766,
+    "Height": 164,
+    "Width": 164,
+    "SpawnVector2": {}
+  },
+  "1767": {
+    "Id": 1767,
+    "Height": 108,
+    "Width": 108,
+    "SpawnVector2": {}
+  },
+  "1069": {
+    "Id": 1069,
+    "Height": 1080,
+    "Width": 1080,
+    "SpawnVector2": {}
+  },
+  "1763": {
+    "Id": 1763,
+    "Height": 192,
+    "Width": 192,
+    "Flags": 2,
+    "SpawnVector2": {
+      "X": 100,
+      "Y": 100
+    }
+  },
+  "1764": {
+    "Id": 1764,
+    "Height": 96,
+    "Width": 96,
+    "Flags": 2,
+    "SpawnVector2": {
+      "X": 58,
+      "Y": 58
+    }
+  },
+  "1765": {
+    "Id": 1765,
+    "Height": 128,
+    "Width": 128,
+    "Flags": 14,
+    "SpawnVector2": {
+      "X": 65,
+      "Y": 55
+    }
+  },
+  "1761": {
+    "Id": 1761,
+    "Height": 224,
+    "Width": 224,
+    "Flags": 14,
+    "SpawnVector2": {
+      "X": 187,
+      "Y": 162
+    }
+  }
+}

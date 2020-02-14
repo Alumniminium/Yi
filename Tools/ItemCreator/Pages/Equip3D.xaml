@@ -1,0 +1,90 @@
+﻿<Page x:Class="ItemCreator.Pages.Equip3D"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ItemCreator.Pages"
+      xmlns:enums="clr-namespace:ItemCreator.Enums"
+      mc:Ignorable="d"
+      Title="Equip3D" AllowDrop="True" Width="437" Height="593">
+
+    <Grid>
+        <TextBlock Text="{Binding Equipment.Id, FallbackValue=ItemId: 0, StringFormat={}ItemId:{0},RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:Equip3D}}}" Margin="319,23,203,573"/>
+        <Image x:Name="InvIconImg" HorizontalAlignment="Left" Height="100" Margin="333,72,0,0" VerticalAlignment="Top" Width="100" Source="/ItemCreator;component/Assets/DragDrop.bmp" Drop="InvIconImgDrop"/>
+        <Image x:Name="MapIconImg" Height="100" Margin="333,196,0,0" VerticalAlignment="Top" Source="/ItemCreator;component/Assets/DragDrop.bmp" Drop="MapIconImgDrop" HorizontalAlignment="Left" Width="100"/>
+        <Image x:Name="TextureFImg" Height="100" Margin="333,319,0,0" VerticalAlignment="Top" Source="/ItemCreator;component/Assets/DragDrop.bmp" Drop="TextureImgDrop" HorizontalAlignment="Left" Width="100"/>
+        <Image x:Name="TextureMImg" Height="100" Margin="333,440,0,0" VerticalAlignment="Top" Source="/ItemCreator;component/Assets/DragDrop.bmp" Drop="TextureImgDrop" HorizontalAlignment="Left" Width="100"/>
+        <TextBlock Margin="333,56,0,0" Text="Inventory Icon" VerticalAlignment="Top" RenderTransformOrigin="-0.534,1.013" HorizontalAlignment="Left"/>
+        <TextBlock  HorizontalAlignment="Left" Margin="337,180,0,0" Text="Map Icon" VerticalAlignment="Top" RenderTransformOrigin="-0.534,1.013" />
+        <TextBlock  HorizontalAlignment="Left" Margin="333,301,0,0" Text="Texture 1 (Female)" VerticalAlignment="Top" RenderTransformOrigin="-0.534,1.013"/>
+        <TextBlock  HorizontalAlignment="Left" Margin="333,424,0,0" Text="Texture 2 (Male)" VerticalAlignment="Top" RenderTransformOrigin="-0.534,1.013"/>
+        <CheckBox x:Name="GenerateQualitiesCheckbox" Content="Automatically generate all other qualities" HorizontalAlignment="Left" Margin="23,494,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.634,0.4" Width="241"/>
+        <GroupBox Header="Item Stats" HorizontalAlignment="Left" Margin="6,50,0,0" VerticalAlignment="Top" Height="492" Width="322" BorderBrush="Crimson">
+            <Grid HorizontalAlignment="Left" Width="309">
+                <StackPanel HorizontalAlignment="Left" Width="116" Margin="0,0,0,48">
+                    <TextBlock Text="ItemId:" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"/>
+                    <TextBlock Text="Quality:" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"/>
+                    <TextBlock Text="Description:" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"/>
+                    <TextBlock Text="Name:" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"/>
+                    <TextBlock Text="Level:" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"/>
+                    <TextBlock Text="Minimum Attack:" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"/>
+                    <TextBlock Text="Maximum Attack:" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"/>
+                    <TextBlock Text="Magic Attack:" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"/>
+                    <TextBlock Text="Frequency:" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"/>
+                    <TextBlock Text="Range:" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"/>
+                    <TextBlock Text="Dodge:" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"/>
+                    <TextBlock Text="Defense:" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"/>
+                    <TextBlock Text="Magic Defense:" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"/>
+                    <TextBlock Text="Required Strength:" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"/>
+                    <TextBlock Text="Required Agility:" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"/>
+                    <TextBlock Text="Price Baseline:" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"/>
+                    <TextBlock Text="Durability:" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"/>
+                    <TextBlock Text="PotHP:" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"/>
+                    <TextBlock Text="PotMP:" HorizontalAlignment="Left" Margin="10,5,0,0" VerticalAlignment="Top"/>
+                    <TextBlock Text="Super Effect" HorizontalAlignment="Left" Margin="10,5,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+                </StackPanel>
+                <StackPanel Margin="114,0,0,48" HorizontalAlignment="Left" Width="200">
+                    <TextBox Margin="10,3,10,0" Text="{Binding Equipment.Id, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:Equip3D}}}"/>
+                    <TextBox Margin="10,3,10,0" Text="{Binding Equipment.Quality, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:Equip3D}}}"/>
+                    <TextBox Margin="10,3,10,0" Text="{Binding Equipment.Description, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:Equip3D}}}"/>
+                    <TextBox Margin="10,3,10,0" Text="{Binding Equipment.Name, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:Equip3D}}}"/>
+                    <TextBox Margin="10,3,10,0" Text="{Binding Equipment.Level, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:Equip3D}}}"/>
+                    <TextBox Margin="10,3,10,0" Text="{Binding Equipment.MinimumAttack, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:Equip3D}}}"/>
+                    <TextBox Margin="10,3,10,0" Text="{Binding Equipment.MaximumAttack, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:Equip3D}}}" />
+                    <TextBox Margin="10,3,10,0" Text="{Binding Equipment.MagicAttack, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:Equip3D}}}"/>
+                    <TextBox Margin="10,3,10,0" Text="{Binding Equipment.Frequency, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:Equip3D}}}"/>
+                    <TextBox Margin="10,3,10,0" Text="{Binding Equipment.Range, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:Equip3D}}}"/>
+                    <TextBox Margin="10,3,10,0" Text="{Binding Equipment.Dodge, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:Equip3D}}}"/>
+                    <TextBox Margin="10,3,10,0" Text="{Binding Equipment.Defense, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:Equip3D}}}"/>
+                    <TextBox Margin="10,3,10,0" Text="{Binding Equipment.MagicDefense, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:Equip3D}}}"/>
+                    <TextBox Margin="10,3,10,0" Text="{Binding Equipment.RequiredStrenght, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:Equip3D}}}"/>
+                    <TextBox Margin="10,3,10,0" Text="{Binding Equipment.RequiredAgility, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:Equip3D}}}"/>
+                    <TextBox Margin="10,3,10,0" Text="{Binding Equipment.PriceBaseLine, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:Equip3D}}}"/>
+                    <TextBox Margin="10,3,10,0" Text="{Binding Equipment.Durability, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:Equip3D}}}"/>
+                    <TextBox Margin="10,3,10,0" Text="{Binding Equipment.PotHp, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:Equip3D}}}"/>
+                    <TextBox Margin="10,3,10,0" Text="{Binding Equipment.PotMp, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:Equip3D}}}"/>
+                    <TextBox Margin="10,3,10,0" Text="{Binding Equipment.GlowEffect, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:Equip3D}}}"/>
+                </StackPanel>
+            </Grid>
+        </GroupBox>
+        <TextBlock HorizontalAlignment="Left" Margin="23,514,0,0" TextWrapping="Wrap" Text="Quality Modifier Rate (%): " VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="17" Margin="162,513,0,0" TextWrapping="Wrap" Text="3.5" VerticalAlignment="Top" Width="97" RenderTransformOrigin="0.782,0.609"/>
+        <Button x:Name="Create" Content="CREATE" HorizontalAlignment="Left" Margin="10,547,0,0" VerticalAlignment="Top" Width="423" Height="36"/>
+        <GroupBox x:Name="groupBox" Header="Import Template" HorizontalAlignment="Left" VerticalAlignment="Top" Height="49" Width="423" Margin="6,5,0,0" BorderBrush="#FF66BCF0">
+            <Grid Margin="0,0,-2,-12">
+                <ComboBox x:Name="ItemTypeBox" DisplayMemberPath="DisplayName" HorizontalAlignment="Left" Margin="86,6,0,0" VerticalAlignment="Top" Width="170" SelectedValuePath="Value" SelectedIndex="0" ItemsSource="{local:EnumToItemsSource {x:Type enums:ItemType3DEnum}}" SelectedValue="{Binding SelectedItemType, Mode=TwoWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:Equip3D}}}" RenderTransformOrigin="0.5,0.5">
+                    <ComboBox.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="0.122"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </ComboBox.RenderTransform>
+                </ComboBox>
+                <TextBlock HorizontalAlignment="Left" Margin="10,9,0,0" Text="Item Type" VerticalAlignment="Top"/>
+                <Button x:Name="button_Copy" Content="Import" HorizontalAlignment="Left" Margin="288,7,0,0" VerticalAlignment="Top" Width="115" Click="ImportButtonClick" Height="19"/>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</Page>

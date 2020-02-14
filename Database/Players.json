@@ -1,0 +1,533 @@
+{
+  "Yuki": [
+    {
+      "Xp": 11,
+      "Level": 200,
+      "Look": 1003,
+      "Class": 45,
+      "CurrentHp": 1,
+      "MaximumHp": 1,
+      "Money": 1626123,
+      "Stamina": 255,
+      "AccountId": "Yuki",
+      "Password": "123",
+      "IP": "192.168.0.12",
+      "LoginType": 1,
+      "CurrentKAYOH": 1604,
+      "Name": "Alumni\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+      "Alive": 1,
+      "UniqueId": 1000002,
+      "MapId": 1002,
+      "Location": {
+        "X": 426,
+        "Y": 373
+      },
+      "Direction": 7,
+      "Defense": 32,
+      "MagicDefense": 1,
+      "Emote": 100,
+      "StatusEffects": 256,
+      "Hair": 11,
+      "Partner": "None",
+      "PkPoints": 57708,
+      "MaximumPhsyicalAttack": 1266,
+      "MinimumPhsyicalAttack": 989,
+      "MagicAttack": 190,
+      "AttackSpeed": 9317,
+      "AttackRange": 14,
+      "PkMode": 3,
+      "Inventory": {
+        "Items": {
+          "22806": {
+            "Product": {
+              "Owner": 35016,
+              "ShopId": 1035016,
+              "Price": 35000
+            },
+            "UniqueId": 22806,
+            "ItemId": 480178,
+            "Level": 90,
+            "CurrentDurability": 5698,
+            "MaximumDurability": 5698,
+            "MaximumPhsyicalAttack": 1047,
+            "MinimumPhsyicalAttack": 350,
+            "Range": 1,
+            "Frequency": 1000,
+            "PriceBaseline": 35000,
+            "Prof": 9,
+            "ReqStr": 139,
+            "StackAmount": 1,
+            "BonusId": 44417000,
+            "CustomTextId": 1
+          },
+          "10007": {
+            "Product": {
+              "Owner": 35016,
+              "ShopId": 1035016,
+              "Price": 240
+            },
+            "UniqueId": 10007,
+            "ItemId": 1002000,
+            "CurrentDurability": 1,
+            "MaximumDurability": 1,
+            "Range": 1,
+            "Frequency": 1000,
+            "PriceBaseline": 240,
+            "PotAddHp": 800,
+            "StackAmount": 1,
+            "BonusId": 100200000,
+            "CustomTextId": 1
+          },
+          "90538": {
+            "Product": {
+              "Owner": 35016,
+              "ShopId": 1035016,
+              "Price": 33500
+            },
+            "UniqueId": 90538,
+            "ItemId": 421177,
+            "Level": 90,
+            "CurrentDurability": 5698,
+            "MaximumDurability": 5698,
+            "MaximumPhsyicalAttack": 224,
+            "MinimumPhsyicalAttack": 149,
+            "MagicAttack": 203,
+            "Range": 1,
+            "Frequency": 1000,
+            "PriceBaseline": 33500,
+            "StackAmount": 1,
+            "BonusId": 42117000,
+            "CustomTextId": 1
+          },
+          "54864": {
+            "Product": {
+              "Owner": 35016,
+              "ShopId": 1035016,
+              "Price": 33500
+            },
+            "UniqueId": 54864,
+            "ItemId": 421177,
+            "Level": 90,
+            "CurrentDurability": 5698,
+            "MaximumDurability": 5698,
+            "MaximumPhsyicalAttack": 224,
+            "MinimumPhsyicalAttack": 149,
+            "MagicAttack": 203,
+            "Range": 1,
+            "Frequency": 1000,
+            "PriceBaseline": 33500,
+            "StackAmount": 1,
+            "BonusId": 42117000,
+            "CustomTextId": 1
+          },
+          "2393": {
+            "Product": {
+              "Owner": 35016,
+              "ShopId": 1035016,
+              "Price": 33500
+            },
+            "UniqueId": 2393,
+            "ItemId": 421176,
+            "Level": 90,
+            "CurrentDurability": 5698,
+            "MaximumDurability": 5698,
+            "MaximumPhsyicalAttack": 214,
+            "MinimumPhsyicalAttack": 142,
+            "MagicAttack": 195,
+            "Range": 1,
+            "Frequency": 1000,
+            "PriceBaseline": 33500,
+            "StackAmount": 1,
+            "BonusId": 42117000,
+            "CustomTextId": 1
+          },
+          "51035": {
+            "Product": {
+              "Owner": 35016,
+              "ShopId": 1035016,
+              "Price": 600
+            },
+            "UniqueId": 51035,
+            "ItemId": 1002020,
+            "CurrentDurability": 1,
+            "MaximumDurability": 1,
+            "Range": 1,
+            "Frequency": 1000,
+            "PriceBaseline": 600,
+            "PotAddHp": 2000,
+            "StackAmount": 1,
+            "BonusId": 100202000,
+            "CustomTextId": 1
+          },
+          "69478": {
+            "Product": {
+              "Owner": 35016,
+              "ShopId": 1035016,
+              "Price": 35000
+            },
+            "UniqueId": 69478,
+            "ItemId": 490176,
+            "Level": 90,
+            "CurrentDurability": 5698,
+            "MaximumDurability": 5698,
+            "MaximumPhsyicalAttack": 267,
+            "MinimumPhsyicalAttack": 218,
+            "Range": 1,
+            "Frequency": 909,
+            "PriceBaseline": 35000,
+            "Prof": 9,
+            "ReqStr": 139,
+            "StackAmount": 1,
+            "BonusId": 44417000,
+            "CustomTextId": 1
+          },
+          "98023": {
+            "Product": {
+              "Owner": 35016,
+              "ShopId": 1035016,
+              "Price": 33500
+            },
+            "UniqueId": 98023,
+            "ItemId": 421179,
+            "Level": 90,
+            "CurrentDurability": 5698,
+            "MaximumDurability": 5698,
+            "MaximumPhsyicalAttack": 285,
+            "MinimumPhsyicalAttack": 190,
+            "MagicAttack": 259,
+            "Range": 1,
+            "Frequency": 1000,
+            "PriceBaseline": 33500,
+            "StackAmount": 1,
+            "BonusId": 42117000,
+            "CustomTextId": 1
+          }
+        }
+      },
+      "Equipment": {
+        "Items": {
+          "Inventory": {
+            "Product": {
+              "Owner": 10026,
+              "ShopId": 1010026,
+              "Price": 4500
+            },
+            "UniqueId": 23677,
+            "ItemId": 720013,
+            "CurrentDurability": 1,
+            "MaximumDurability": 1,
+            "Range": 1,
+            "Frequency": 1000,
+            "PriceBaseline": 3000,
+            "StackAmount": 1,
+            "BonusId": 72001000,
+            "CustomTextId": 1
+          },
+          "Head": {
+            "Product": {
+              "Owner": 4,
+              "ShopId": 1000004,
+              "Price": 600
+            },
+            "UniqueId": 54052,
+            "ItemId": 113413,
+            "Level": 37,
+            "CurrentDurability": 4198,
+            "MaximumDurability": 4198,
+            "Defense": 16,
+            "Range": 1,
+            "Frequency": 1000,
+            "PriceBaseline": 400,
+            "ReqAgi": 82,
+            "StackAmount": 1,
+            "BonusId": 11301000,
+            "CustomTextId": 1
+          },
+          "Necklace": {
+            "Product": {
+              "Owner": 10023,
+              "ShopId": 1010023,
+              "Price": 32000
+            },
+            "UniqueId": 36310,
+            "ItemId": 121223,
+            "Level": 116,
+            "CurrentDurability": 4098,
+            "MaximumDurability": 4098,
+            "MagicAttack": 190,
+            "Range": 1,
+            "Frequency": 1000,
+            "PriceBaseline": 32000,
+            "StackAmount": 1,
+            "BonusId": 12122000,
+            "CustomTextId": 1
+          },
+          "Armor": {
+            "Product": {
+              "Owner": 4,
+              "ShopId": 1000004,
+              "Price": 585
+            },
+            "UniqueId": 11616,
+            "ItemId": 130405,
+            "Level": 15,
+            "CurrentDurability": 3698,
+            "MaximumDurability": 3698,
+            "MagicDefense": 1,
+            "Defense": 16,
+            "PriceBaseline": 390,
+            "StackAmount": 1,
+            "BonusId": 13000000,
+            "CustomTextId": 1
+          },
+          "RightWeapon": {
+            "Product": {
+              "Owner": 10025,
+              "ShopId": 1010025,
+              "Price": 156000
+            },
+            "UniqueId": 63203,
+            "ItemId": 500203,
+            "Level": 110,
+            "CurrentDurability": 4165,
+            "MaximumDurability": 6599,
+            "MaximumPhsyicalAttack": 616,
+            "MinimumPhsyicalAttack": 503,
+            "Range": 14,
+            "Frequency": 500,
+            "PriceBaseline": 104000,
+            "Prof": 11,
+            "ReqStr": 68,
+            "ReqAgi": 235,
+            "StackAmount": 1,
+            "BonusId": 50020000,
+            "CustomTextId": 1
+          },
+          "LeftWeapon": {
+            "Product": {
+              "Owner": 5,
+              "ShopId": 5,
+              "Price": 5100
+            },
+            "UniqueId": 44961,
+            "ItemId": 1050002,
+            "Level": 73,
+            "CurrentDurability": 426,
+            "MaximumDurability": 500,
+            "MaximumPhsyicalAttack": 100,
+            "MinimumPhsyicalAttack": 100,
+            "Range": 25,
+            "Frequency": 1000,
+            "PriceBaseline": 3400,
+            "StackAmount": 1,
+            "BonusId": 105000000,
+            "CustomTextId": 1
+          },
+          "Ring": {
+            "Product": {
+              "Owner": 10023,
+              "ShopId": 10023,
+              "Price": 69720
+            },
+            "UniqueId": 99640,
+            "ItemId": 150213,
+            "Level": 110,
+            "CurrentDurability": 7159,
+            "MaximumDurability": 7198,
+            "MaximumPhsyicalAttack": 550,
+            "MinimumPhsyicalAttack": 386,
+            "Range": 1,
+            "Frequency": 1000,
+            "PriceBaseline": 46480,
+            "StackAmount": 1,
+            "BonusId": 15021000,
+            "CustomTextId": 1
+          }
+        }
+      },
+      "Profs": {
+        "134": {
+          "Id": 134,
+          "Level": 10
+        },
+        "133": {
+          "Id": 133,
+          "Level": 10
+        },
+        "130": {
+          "Id": 130,
+          "Level": 10
+        },
+        "131": {
+          "Id": 131,
+          "Level": 10
+        },
+        "117": {
+          "Id": 117,
+          "Level": 10
+        },
+        "114": {
+          "Id": 114,
+          "Level": 10
+        },
+        "113": {
+          "Id": 113,
+          "Level": 10
+        },
+        "118": {
+          "Id": 118,
+          "Level": 10
+        },
+        "111": {
+          "Id": 111,
+          "Level": 10
+        },
+        "121": {
+          "Id": 121,
+          "Level": 10
+        },
+        "120": {
+          "Id": 120,
+          "Level": 10
+        },
+        "150": {
+          "Id": 150,
+          "Level": 10
+        },
+        "151": {
+          "Id": 151,
+          "Level": 10
+        },
+        "152": {
+          "Id": 152,
+          "Level": 10
+        },
+        "160": {
+          "Id": 160,
+          "Level": 10
+        },
+        "900": {
+          "Id": 900,
+          "Level": 10
+        },
+        "400": {
+          "Id": 400,
+          "Level": 10
+        },
+        "410": {
+          "Id": 410,
+          "Level": 10
+        },
+        "420": {
+          "Id": 420,
+          "Level": 10
+        },
+        "421": {
+          "Id": 421,
+          "Level": 10
+        },
+        "430": {
+          "Id": 430,
+          "Level": 10
+        },
+        "440": {
+          "Id": 440,
+          "Level": 10
+        },
+        "450": {
+          "Id": 450,
+          "Level": 10
+        },
+        "460": {
+          "Id": 460,
+          "Level": 10
+        },
+        "480": {
+          "Id": 480,
+          "Level": 10
+        },
+        "481": {
+          "Id": 481,
+          "Level": 10
+        },
+        "490": {
+          "Id": 490,
+          "Level": 10
+        },
+        "500": {
+          "Id": 500,
+          "Level": 20
+        },
+        "510": {
+          "Id": 510,
+          "Level": 10
+        },
+        "530": {
+          "Id": 530,
+          "Level": 10
+        },
+        "540": {
+          "Id": 540,
+          "Level": 10
+        },
+        "560": {
+          "Id": 560,
+          "Level": 10
+        },
+        "561": {
+          "Id": 561,
+          "Level": 10
+        },
+        "562": {
+          "Id": 562,
+          "Level": 10
+        },
+        "580": {
+          "Id": 580,
+          "Level": 10
+        }
+      },
+      "Skills": {
+        "Thunder": {
+          "Id": 1000
+        },
+        "Fire": {
+          "Id": 1001
+        },
+        "Tornado": {
+          "Id": 1002
+        },
+        "Shield": {
+          "Id": 1020
+        },
+        "AdvancedDispel": {
+          "Id": 1070
+        },
+        "Invisibility": {
+          "Id": 1075
+        },
+        "MagicShield": {
+          "Id": 1090,
+          "Level": 1
+        },
+        "RapidFire": {
+          "Id": 8000,
+          "Level": 5
+        },
+        "Scatter": {
+          "Id": 8001,
+          "Level": 5
+        },
+        "Fly": {
+          "Id": 8002
+        },
+        "AdvancedFly": {
+          "Id": 8003
+        }
+      },
+      "Enemies": [],
+      "Friends": [],
+      "CurrentStorageId": 761
+    }
+  ]
+}

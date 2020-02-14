@@ -1,0 +1,22 @@
+﻿<Page x:Class="Launcher.Pages.SettingsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Launcher.Pages"
+      mc:Ignorable="d" 
+      Height="600" Width="400"
+      Title="SettingsPage">
+
+    <Grid>
+        <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" FontSize="18" TextWrapping="Wrap" FontWeight="Bold"  VerticalAlignment="Top"><Run Text="Welcome to the "/><Run Text="Y"/><Run Text="i Setup!"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="10,39,0,0" FontSize="16" TextWrapping="Wrap" VerticalAlignment="Top" Height="214" Width="380"><Run Text="Our launcher is more advanced than what you commonly find at other private servers."/><LineBreak/><Run/><LineBreak/><Run Text="If you have another Client "/><Run Text="(any patch) "/><Run Text="on your PC, please set it below so we can copy all the useful files from it to the Yi Client. That saves you a lot of time as you don't have to download everything, just missing pieces. "/><LineBreak/><Run Text="We won't "/><Run Text="add or "/><Run Text="change anything "/><Run Text="in "/><Run Text="the client you set below. We just cop"/><Run Text="y"/><Run Text=" files "/><Run Text="from it."/><LineBreak/><Run/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="10,362,0,0" FontSize="16" TextWrapping="Wrap" VerticalAlignment="Top" Height="44" Width="380"><Run Text="Now please tell us where you want to install the Yi Client to"/><LineBreak/><Run/></TextBlock>
+        <Button x:Name="SetExistingClientPathButton" Content="Browse to existing client" FontSize="16" HorizontalAlignment="Left" Margin="10,276,0,0" VerticalAlignment="Top" Width="203" Height="43" BorderBrush="{x:Null}" Click="SetExistingClientPathClick"/>
+        <TextBlock x:Name="ExistingClientPathStatusBlock" Visibility="Hidden" HorizontalAlignment="Left" FontSize="22" TextWrapping="Wrap" Text="Success! " VerticalAlignment="Top" Margin="270,281,0,0" Width="93" Foreground="#FF00FF5D" FontWeight="Bold"/>
+        <Button x:Name="SetInstallPathButton" Content="Set Install Path" FontSize="16" HorizontalAlignment="Left" Margin="10,437,0,0" VerticalAlignment="Top" Width="203" Height="43" BorderBrush="{x:Null}" Click="SetInstallPathButtonClick"/>
+        <TextBlock x:Name="InstallPathStatusBlock" Visibility="Hidden" HorizontalAlignment="Left" FontSize="22" TextWrapping="Wrap" Text="Success! " VerticalAlignment="Top" Margin="270,442,0,0" Width="93" Foreground="#FF00FF5D" FontWeight="Bold"/>
+        <Button x:Name="SaveAndContinueButton" Content="Save &amp; Continue" HorizontalAlignment="Left" FontSize="16" Margin="10,542,0,0" VerticalAlignment="Top" Width="380" Height="48" Click="SaveAndContinueButtonClick" BorderBrush="{x:Null}"/>
+
+    </Grid>
+</Page>
